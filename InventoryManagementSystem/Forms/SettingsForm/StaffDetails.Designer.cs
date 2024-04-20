@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDetails));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             button1 = new Button();
             pictureBox1 = new PictureBox();
             textBox3 = new TextBox();
-            panel2 = new Panel();
+            panelBg = new Panel();
             pictureBox2 = new PictureBox();
             closeBtn = new Button();
             label1 = new Label();
@@ -51,7 +51,7 @@
             Column6 = new DataGridViewImageColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
+            panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -66,6 +66,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1055, 100);
             panel1.TabIndex = 6;
+            panel1.Paint += panel1_Paint;
             // 
             // button1
             // 
@@ -108,17 +109,18 @@
             textBox3.Size = new Size(212, 25);
             textBox3.TabIndex = 21;
             // 
-            // panel2
+            // panelBg
             // 
-            panel2.BackColor = Color.DimGray;
-            panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(closeBtn);
-            panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1055, 36);
-            panel2.TabIndex = 5;
+            panelBg.BackColor = Color.DimGray;
+            panelBg.Controls.Add(pictureBox2);
+            panelBg.Controls.Add(closeBtn);
+            panelBg.Controls.Add(label1);
+            panelBg.Dock = DockStyle.Top;
+            panelBg.Location = new Point(0, 0);
+            panelBg.Name = "panelBg";
+            panelBg.Size = new Size(1055, 36);
+            panelBg.TabIndex = 5;
+            panelBg.Paint += panelBg_Paint;
             // 
             // pictureBox2
             // 
@@ -228,10 +230,10 @@
             // Column5
             // 
             Column5.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.NullValue = resources.GetObject("dataGridViewCellStyle1.NullValue");
-            Column5.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.NullValue = resources.GetObject("dataGridViewCellStyle2.NullValue");
+            Column5.DefaultCellStyle = dataGridViewCellStyle2;
             Column5.Description = "Edit";
             Column5.HeaderText = "";
             Column5.Image = Properties.Resources.pencil__1_;
@@ -257,17 +259,18 @@
             ClientSize = new Size(1055, 592);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
-            Controls.Add(panel2);
+            Controls.Add(panelBg);
             FormBorderStyle = FormBorderStyle.None;
             Name = "StaffDetails";
             RightToLeft = RightToLeft.No;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffDetails";
+            Load += StaffDetails_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelBg.ResumeLayout(false);
+            panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -279,7 +282,7 @@
         private Button button1;
         private PictureBox pictureBox1;
         private TextBox textBox3;
-        private Panel panel2;
+        private Panel panelBg;
         private PictureBox pictureBox2;
         private Button closeBtn;
         private Label label1;

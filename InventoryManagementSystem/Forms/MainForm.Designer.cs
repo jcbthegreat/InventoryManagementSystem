@@ -48,6 +48,7 @@
             panel10 = new Panel();
             button1 = new Button();
             panel3 = new Panel();
+            pictureBox3 = new PictureBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
@@ -64,6 +65,7 @@
             panel6.SuspendLayout();
             panel10.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel4.SuspendLayout();
             SuspendLayout();
@@ -107,8 +109,8 @@
             // 
             // button6
             // 
-            button6.BackgroundImage = Properties.Resources.maximize_size;
-            button6.BackgroundImageLayout = ImageLayout.Zoom;
+            button6.BackgroundImage = (Image)resources.GetObject("button6.BackgroundImage");
+            button6.BackgroundImageLayout = ImageLayout.Center;
             button6.Cursor = Cursors.Hand;
             button6.Dock = DockStyle.Right;
             button6.FlatAppearance.BorderSize = 0;
@@ -318,6 +320,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(pictureBox3);
             panel3.Controls.Add(textBox2);
             panel3.Controls.Add(textBox1);
             panel3.Controls.Add(pictureBox1);
@@ -326,6 +329,18 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(263, 235);
             panel3.TabIndex = 0;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(233, 205);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(24, 24);
+            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.TabIndex = 3;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
             // 
             // textBox2
             // 
@@ -422,6 +437,7 @@
             panel10.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
@@ -455,5 +471,6 @@
         private PictureBox pictureBox2;
         private Label label1;
         private Label label2;
+        private PictureBox pictureBox3;
     }
 }

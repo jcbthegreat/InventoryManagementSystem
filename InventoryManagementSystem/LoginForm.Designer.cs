@@ -38,7 +38,6 @@
             inputPassword = new TextBox();
             button1 = new Button();
             inputUsername = new TextBox();
-            label3 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox4 = new PictureBox();
@@ -148,17 +147,6 @@
             inputUsername.Size = new Size(283, 23);
             inputUsername.TabIndex = 5;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Cursor = Cursors.Hand;
-            label3.ForeColor = SystemColors.ControlDarkDark;
-            label3.Location = new Point(479, 321);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 15);
-            label3.TabIndex = 6;
-            label3.Text = "Forgot Password?";
-            // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
@@ -199,7 +187,6 @@
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox3);
-            Controls.Add(label3);
             Controls.Add(inputUsername);
             Controls.Add(button1);
             Controls.Add(inputPassword);
@@ -231,7 +218,6 @@
         private TextBox inputPassword;
         private Button button1;
         private TextBox inputUsername;
-        private Label label3;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox4;

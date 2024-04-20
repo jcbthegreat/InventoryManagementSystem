@@ -14,6 +14,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
     public partial class AddStaff : Form
     {
         private string imagePath;
+        public Panel PanelBg { get; set; }
+        public static AddStaff Instance { get; private set; }
 
         public AddStaff()
         {
@@ -28,6 +30,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
             ToolTip toolTip3 = new ToolTip();
             toolTip3.SetToolTip(btnGenerate, "Generate Password");
+
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         private void browseImageBtn_Click(object sender, EventArgs e)
@@ -82,6 +88,20 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
                 txtPassword.Text = password;
             }
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void ChangePanelColor9(Color color)
+        {
+            PanelBg.BackColor = color;
+        }
+
+        private void AddStaff_Load(object sender, EventArgs e)
+        {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
     }
 }

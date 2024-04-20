@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProductForm));
-            panel1 = new Panel();
+            panelBg = new Panel();
             pictureBox2 = new PictureBox();
             label9 = new Label();
             comboBox1 = new ComboBox();
@@ -64,23 +64,24 @@
             textBox2 = new TextBox();
             textBox7 = new TextBox();
             groupBox2 = new GroupBox();
-            panel1.SuspendLayout();
+            panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panelBg
             // 
-            panel1.BackColor = Color.DimGray;
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(label9);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(970, 37);
-            panel1.TabIndex = 1;
+            panelBg.BackColor = Color.DimGray;
+            panelBg.Controls.Add(pictureBox2);
+            panelBg.Controls.Add(label9);
+            panelBg.Dock = DockStyle.Top;
+            panelBg.Location = new Point(0, 0);
+            panelBg.Name = "panelBg";
+            panelBg.Size = new Size(970, 37);
+            panelBg.TabIndex = 1;
+            panelBg.Paint += panelBg_Paint;
             // 
             // pictureBox2
             // 
@@ -478,14 +479,14 @@
             ClientSize = new Size(970, 589);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(panel1);
+            Controls.Add(panelBg);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddProductForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "a";
             Load += AddProductForm_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelBg.ResumeLayout(false);
+            panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
@@ -496,7 +497,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelBg;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
         private TextBox textBox1;

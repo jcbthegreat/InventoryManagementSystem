@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace InventoryManagementSystem.Forms
 {
@@ -15,6 +16,13 @@ namespace InventoryManagementSystem.Forms
         public DashBoardUserControl()
         {
             InitializeComponent();
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Date.Text = DateTime.Now.ToLongDateString();
+            Time.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }

@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddLocation : Form
     {
+        public Panel PanelBg { get; set; }
+        public static AddLocation Instance { get; private set; }
+
         public AddLocation()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         #region FormShadow
@@ -106,7 +112,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             try
             {
-       
+
                 DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
 
 
@@ -133,7 +139,17 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void AddLocation_Load(object sender, EventArgs e)
         {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
             InitializeDataGridView();
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void ChangePanelColor7(Color color)
+        {
+            PanelBg.BackColor = color;
         }
     }
 }

@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddCustomers : Form
     {
+
+        public Panel PanelBg { get; set; }
+        public static AddCustomers Instance { get; private set; }
         public AddCustomers()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         #region FormShadow
@@ -104,7 +110,17 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void AddCustomers_Load(object sender, EventArgs e)
         {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
+        }
 
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void ChangePanelColor5(Color color)
+        {
+            PanelBg.BackColor = color;
         }
     }
 }
