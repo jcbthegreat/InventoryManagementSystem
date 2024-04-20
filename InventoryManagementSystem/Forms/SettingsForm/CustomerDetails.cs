@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class CustomerDetails : Form
     {
+        public Panel PanelBg { get; set; }
+        public static CustomerDetails Instance { get; private set; }
+
         public CustomerDetails()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         #region FormShadow
@@ -115,7 +121,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
                 DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
 
-                dataGridView1.Rows.Add(new object[] { "Joyce Maton", "09xxxxxxxx", "joyce.maton@gmail.com", "address can be blank (prefer to put some inputs here)",Properties.Resources.pencil, Properties.Resources.bin });
+                dataGridView1.Rows.Add(new object[] { "Joyce Maton", "09xxxxxxxx", "joyce.maton@gmail.com", "address can be blank (prefer to put some inputs here)", Properties.Resources.pencil, Properties.Resources.bin });
                 dataGridView1.Rows.Add(new object[] { "Guiller Carpio", "09xxxxxxxx", "guiller.dikomaintindihan_09@gmail.com", "address can be blank (prefer to put some inputs here)", Properties.Resources.pencil, Properties.Resources.bin });
                 dataGridView1.Rows.Add(new object[] { "Jayson Galawgaw", "09xxxxxxxx", "jaysondancer@yahoo.com", "address can be blank (prefer to put some inputs here)", Properties.Resources.pencil, Properties.Resources.bin });
                 dataGridView1.Rows.Add(new object[] { "Silverio Cabrales", "09xxxxxxxx", "sila.hes@gmail.com", "address can be blank (prefer to put some inputs here)", Properties.Resources.pencil, Properties.Resources.bin });
@@ -134,17 +140,28 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void CustomerDetails_Load(object sender, EventArgs e)
         {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
             InitializeDataGridView();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void ChangePanelColor6(Color color)
+        {
+            PanelBg.BackColor = color;
         }
     }
 }

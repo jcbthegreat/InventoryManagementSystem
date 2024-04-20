@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,10 +15,17 @@ namespace InventoryManagementSystem.Forms
     {
         private string imagePath;
 
+        public Panel PanelBg { get; set; }
+        public static AddProductForm Instance { get; private set; }
+
         public AddProductForm()
         {
 
             InitializeComponent();
+
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
 
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(browseImageBtn, "Choose Image");
@@ -142,7 +150,7 @@ namespace InventoryManagementSystem.Forms
 
         private void AddProductForm_Load(object sender, EventArgs e)
         {
-
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -154,5 +162,15 @@ namespace InventoryManagementSystem.Forms
         {
 
         }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void ChangePanelColor3(Color color)
+        {
+            PanelBg.BackColor = color;
+        }
+
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCustomers));
-            panel2 = new Panel();
+            panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
             label1 = new Label();
@@ -49,21 +49,22 @@
             textBox5 = new TextBox();
             label11 = new Label();
             label10 = new Label();
-            panel2.SuspendLayout();
+            panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // panel2
+            // panelBg
             // 
-            panel2.BackColor = Color.DimGray;
-            panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(closeBtn);
-            panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(579, 36);
-            panel2.TabIndex = 4;
+            panelBg.BackColor = Color.DimGray;
+            panelBg.Controls.Add(pictureBox1);
+            panelBg.Controls.Add(closeBtn);
+            panelBg.Controls.Add(label1);
+            panelBg.Dock = DockStyle.Top;
+            panelBg.Location = new Point(0, 0);
+            panelBg.Name = "panelBg";
+            panelBg.Size = new Size(579, 36);
+            panelBg.TabIndex = 4;
+            panelBg.Paint += panelBg_Paint;
             // 
             // pictureBox1
             // 
@@ -277,15 +278,15 @@
             Controls.Add(label3);
             Controls.Add(textBox1);
             Controls.Add(label2);
-            Controls.Add(panel2);
+            Controls.Add(panelBg);
             Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddCustomers";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddCustomers";
             Load += AddCustomers_Load;
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelBg.ResumeLayout(false);
+            panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -293,7 +294,7 @@
 
         #endregion
 
-        private Panel panel2;
+        private Panel panelBg;
         private Button closeBtn;
         private Label label1;
         private Label label2;

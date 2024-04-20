@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -126,6 +127,12 @@ namespace InventoryManagementSystem.Forms
         public void ChangePanelColor(Color color)
         {
             PanelBg.BackColor = color;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            EditProfile profile = new EditProfile();
+            profile.ShowDialog();
         }
     }
 }

@@ -16,13 +16,24 @@ namespace InventoryManagementSystem.Forms
         private AddCategory addcategory;
         private MainForm mainForm;
         private AddBrandName addBrandName;
-
+        private AddProductForm addproductForm;
+        private ManageUser addmangeuser;
+        private AddCustomers addcustomer;
+        private AddLocation addLocation;
+        private SupplierDetails supplierdetails;
+        private AddSupplier addSupplier;
         public SettingsUserControl()
         {
             InitializeComponent();
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
+            this.addproductForm = addproductForm;
+            this.addmangeuser = addmangeuser;
+            this.addcustomer = addcustomer;
+            this.addLocation = addLocation;
+            this.supplierdetails = supplierdetails;
+            this.addSupplier = addSupplier;
         }
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
@@ -89,6 +100,46 @@ namespace InventoryManagementSystem.Forms
                 if (AddBrandName.Instance != null)
                 {
                     AddBrandName.Instance.ChangePanelColor2(dialog.Color);
+                }
+
+                if (AddProductForm.Instance != null)
+                {
+                    AddProductForm.Instance.ChangePanelColor3(dialog.Color);
+                }
+
+                if (ManageUser.Instance != null)
+                {
+                    ManageUser.Instance.ChangePanelColor4(dialog.Color);
+                }
+
+                if (AddCustomers.Instance != null)
+                {
+                    AddCustomers.Instance.ChangePanelColor5(dialog.Color);
+                }
+
+                if (CustomerDetails.Instance != null)
+                {
+                    CustomerDetails.Instance.ChangePanelColor6(dialog.Color);
+                }
+                if (AddLocation.Instance != null)
+                {
+                    AddLocation.Instance.ChangePanelColor7(dialog.Color);
+                }
+                if (SupplierDetails.Instance != null)
+                {
+                    SupplierDetails.Instance.ChangePanelColor8(dialog.Color);
+                }
+                if (AddSupplier.Instance != null)
+                {
+                    AddSupplier.Instance.ChangePanelColor8(dialog.Color);
+                }
+                if (StaffDetails.Instance != null)
+                {
+                    StaffDetails.Instance.ChangePanelColor9(dialog.Color);
+                }
+                if (AddStaff.Instance != null)
+                {
+                    AddStaff.Instance.ChangePanelColor9(dialog.Color);
                 }
 
                 Properties.Settings.Default.MyColor = dialog.Color;

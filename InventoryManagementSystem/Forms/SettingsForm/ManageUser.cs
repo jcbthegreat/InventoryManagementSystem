@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class ManageUser : Form
     {
+        public Panel PanelBg { get; set; }
+        public static ManageUser Instance { get; private set; }
+
         public ManageUser()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         #region FormShadow
@@ -117,6 +123,21 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void ChangePanelColor4(Color color)
+        {
+            PanelBg.BackColor = color;
+        }
+
+        private void ManageUser_Load(object sender, EventArgs e)
+        {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
     }
 }
