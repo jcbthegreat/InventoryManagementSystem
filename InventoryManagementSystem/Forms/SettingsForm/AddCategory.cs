@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddCategory : Form
     {
+
+        public Panel PanelBg { get; set; }
+        public static AddCategory Instance { get; private set; }
         public AddCategory()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
         #region FormShadow
 
@@ -101,9 +107,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 // Create columns
-              
 
-                DataGridViewImageColumn imageColumn= new DataGridViewImageColumn();
+
+                DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
 
 
                 //dataGridView1.Rows.Add("Category1", "Category description can be blank");
@@ -155,9 +161,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             string columnData1 = CategName.Text;
             string columnData2 = DescTxt.Text;
-            
 
-            if(CategName.Text == "")
+
+            if (CategName.Text == "")
             {
                 MessageBox.Show("Please input Category Name!", "Warning", MessageBoxButtons.OK);
             }
@@ -168,7 +174,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 CategName.Text = "";
                 DescTxt.Text = "";
             }
-            
+
         }
 
         private void AddCategory_FormClosing(object sender, FormClosingEventArgs e)
@@ -185,8 +191,18 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void AddCategory_Load(object sender, EventArgs e)
         {
-       
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
             InitializeDataGridView();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void ChangePanelColor1(Color color)
+        {
+            PanelBg.BackColor = color;
+        }
+
     }
 }

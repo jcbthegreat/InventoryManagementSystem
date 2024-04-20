@@ -12,9 +12,15 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddBrandName : Form
     {
+        public Panel PanelBg { get; set; }
+        public static AddBrandName Instance { get; private set; }
+
         public AddBrandName()
         {
             InitializeComponent();
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
 
         #region FormShadow
@@ -133,6 +139,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void AddBrandName_Load(object sender, EventArgs e)
         {
+
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
             InitializeDataGridView();
             //PopulateComboBox();
         }
@@ -175,6 +183,16 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void ChangePanelColor2(Color color)
+        {
+            PanelBg.BackColor = color;
         }
     }
 }

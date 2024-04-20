@@ -13,9 +13,16 @@ namespace InventoryManagementSystem.Forms
 {
     public partial class SettingsUserControl : UserControl
     {
+        private AddCategory addcategory;
+        private MainForm mainForm;
+        private AddBrandName addBrandName;
+
         public SettingsUserControl()
         {
             InitializeComponent();
+            this.mainForm = mainForm;
+            this.addcategory = addcategory;
+            this.addBrandName = addBrandName;
         }
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
@@ -63,5 +70,31 @@ namespace InventoryManagementSystem.Forms
             StaffDetails staff = new StaffDetails();
             staff.ShowDialog();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (MainForm.Instance != null)
+                {
+                    MainForm.Instance.ChangePanelColor(dialog.Color);
+                }
+
+                if (AddCategory.Instance != null)
+                {
+                    AddCategory.Instance.ChangePanelColor1(dialog.Color);
+                }
+
+                if (AddBrandName.Instance != null)
+                {
+                    AddBrandName.Instance.ChangePanelColor2(dialog.Color);
+                }
+
+                Properties.Settings.Default.MyColor = dialog.Color;
+                Properties.Settings.Default.Save();
+            }
+
+    }
     }
 }
