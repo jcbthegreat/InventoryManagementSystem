@@ -58,8 +58,8 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(label9);
             panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label9);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -311,11 +311,15 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(1018, 4);
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(103, 8);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(40, 33);
-            pictureBox1.TabIndex = 8;
+            pictureBox1.Size = new Size(25, 24);
+            pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // SettingsUserControl
             // 

@@ -12,11 +12,16 @@ namespace InventoryManagementSystem.Forms
 {
     public partial class MainForm : Form
     {
+        public Panel PanelBg { get; set; }
+        public static MainForm Instance { get; private set; }
+
 
         public MainForm()
         {
             InitializeComponent();
-
+            PanelBg = panelBg;
+            PanelBg.BackColor = Color.DimGray;
+            Instance = this;
         }
         private UserControl currentControl = null;
         private bool isDragging;
@@ -27,6 +32,7 @@ namespace InventoryManagementSystem.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             button1.PerformClick();
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
@@ -115,6 +121,11 @@ namespace InventoryManagementSystem.Forms
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void ChangePanelColor(Color color)
+        {
+            PanelBg.BackColor = color;
         }
     }
 }

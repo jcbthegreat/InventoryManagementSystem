@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            panel1 = new Panel();
+            panelBg = new Panel();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             button6 = new Button();
@@ -54,7 +54,7 @@
             panel4 = new Panel();
             label2 = new Label();
             panel5 = new Panel();
-            panel1.SuspendLayout();
+            panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
             panel12.SuspendLayout();
@@ -68,21 +68,21 @@
             panel4.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panelBg
             // 
-            panel1.BackColor = Color.DimGray;
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(button6);
-            panel1.Controls.Add(mainFormCloseBtn);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1435, 36);
-            panel1.TabIndex = 0;
-            panel1.MouseDown += panel1_MouseDown;
-            panel1.MouseMove += panel1_MouseMove;
-            panel1.MouseUp += panel1_MouseUp;
+            panelBg.BackColor = Color.DimGray;
+            panelBg.Controls.Add(pictureBox2);
+            panelBg.Controls.Add(label1);
+            panelBg.Controls.Add(button6);
+            panelBg.Controls.Add(mainFormCloseBtn);
+            panelBg.Dock = DockStyle.Top;
+            panelBg.Location = new Point(0, 0);
+            panelBg.Name = "panelBg";
+            panelBg.Size = new Size(1435, 36);
+            panelBg.TabIndex = 0;
+            panelBg.MouseDown += panel1_MouseDown;
+            panelBg.MouseMove += panel1_MouseMove;
+            panelBg.MouseUp += panel1_MouseUp;
             // 
             // pictureBox2
             // 
@@ -403,15 +403,15 @@
             Controls.Add(panel5);
             Controls.Add(panel4);
             Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(panelBg);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
             Load += MainForm_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelBg.ResumeLayout(false);
+            panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel12.ResumeLayout(false);
@@ -430,7 +430,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel panelBg;
         private Panel panel2;
         private Panel panel3;
         private TextBox textBox2;
