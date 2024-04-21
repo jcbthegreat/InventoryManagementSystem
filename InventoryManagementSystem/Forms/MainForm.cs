@@ -21,7 +21,7 @@ namespace InventoryManagementSystem.Forms
         {
             InitializeComponent();
             PanelBg = panelBg;
-            PanelBg.BackColor = Color.DimGray;
+            panelBg.BackColor = Color.DimGray;
             Instance = this;
         }
         private UserControl currentControl = null;
@@ -133,6 +133,11 @@ namespace InventoryManagementSystem.Forms
         {
             EditProfile profile = new EditProfile();
             profile.ShowDialog();
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

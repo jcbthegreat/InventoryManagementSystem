@@ -19,7 +19,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             InitializeComponent();
             PanelBg = panelBg;
-            PanelBg.BackColor = Color.DimGray;
+            panelBg.BackColor = Color.DimGray;
             Instance = this;
         }
         #region FormShadow

@@ -82,6 +82,7 @@
             panelBg.Name = "panelBg";
             panelBg.Size = new Size(1435, 36);
             panelBg.TabIndex = 0;
+            panelBg.Paint += panelBg_Paint;
             panelBg.MouseDown += panel1_MouseDown;
             panelBg.MouseMove += panel1_MouseMove;
             panelBg.MouseUp += panel1_MouseUp;

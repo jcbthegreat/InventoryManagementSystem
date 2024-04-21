@@ -24,7 +24,7 @@ namespace InventoryManagementSystem.Forms
             InitializeComponent();
 
             PanelBg = panelBg;
-            PanelBg.BackColor = Color.DimGray;
+            panelBg.BackColor = Color.DimGray;
             Instance = this;
 
             ToolTip toolTip1 = new ToolTip();

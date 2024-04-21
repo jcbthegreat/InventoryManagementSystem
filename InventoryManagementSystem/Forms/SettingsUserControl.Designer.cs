@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsUserControl));
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             label9 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
@@ -46,14 +47,13 @@
             button4 = new Button();
             button2 = new Button();
             button9 = new Button();
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -65,6 +65,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 41);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(103, 8);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(25, 24);
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label9
             // 
@@ -173,6 +185,7 @@
             button6.Text = "Sub Category";
             button6.TextAlign = ContentAlignment.BottomCenter;
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // panel5
             // 
@@ -309,18 +322,6 @@
             button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImageLayout = ImageLayout.None;
-            pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(103, 8);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 24);
-            pictureBox1.TabIndex = 9;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
             // SettingsUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -331,12 +332,12 @@
             Size = new Size(1172, 658);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -360,5 +361,6 @@
         private Button button2;
         private Button button9;
         private PictureBox pictureBox1;
+       
     }
 }

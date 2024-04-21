@@ -32,7 +32,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             toolTip3.SetToolTip(btnGenerate, "Generate Password");
 
             PanelBg = panelBg;
-            PanelBg.BackColor = Color.DimGray;
+            panelBg.BackColor = Color.DimGray;
             Instance = this;
         }
 
