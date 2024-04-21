@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace InventoryManagementSystem.Forms
         private AddLocation addLocation;
         private SupplierDetails supplierdetails;
         private AddSupplier addSupplier;
+        private AddSubCategory subcategory;
+        private AddMeasurement measurement;
         public SettingsUserControl()
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace InventoryManagementSystem.Forms
             this.addLocation = addLocation;
             this.supplierdetails = supplierdetails;
             this.addSupplier = addSupplier;
+            this.subcategory = subcategory;
+            this.measurement = measurement;
         }
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
@@ -68,7 +73,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            AddMeasurement measure = new AddMeasurement();
+            measure.ShowDialog();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -141,11 +147,26 @@ namespace InventoryManagementSystem.Forms
                 {
                     AddStaff.Instance.ChangePanelColor9(dialog.Color);
                 }
+                if (AddSubCategory.Instance != null)
+                {
+                    AddSubCategory.Instance.ChangePanelColor10(dialog.Color);
+                }
+                if (AddMeasurement.Instance != null)
+                {
+                    AddMeasurement.Instance.ChangePanelColor11(dialog.Color);
+                }
+
 
                 Properties.Settings.Default.MyColor = dialog.Color;
                 Properties.Settings.Default.Save();
             }
 
-    }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AddSubCategory subcategory = new AddSubCategory();
+            subcategory.ShowDialog();
+        }
     }
 }
