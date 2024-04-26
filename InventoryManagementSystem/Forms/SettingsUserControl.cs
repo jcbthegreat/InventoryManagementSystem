@@ -25,6 +25,7 @@ namespace InventoryManagementSystem.Forms
         private AddSupplier addSupplier;
         private AddSubCategory subcategory;
         private AddMeasurement measurement;
+        private AddType addtype;
         public SettingsUserControl()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace InventoryManagementSystem.Forms
             this.addSupplier = addSupplier;
             this.subcategory = subcategory;
             this.measurement = measurement;
+            this.addtype = addtype;
         }
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
@@ -86,6 +88,16 @@ namespace InventoryManagementSystem.Forms
         {
             StaffDetails staff = new StaffDetails();
             staff.ShowDialog();
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AddSubCategory subcategory = new AddSubCategory();
+            subcategory.ShowDialog();
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AddType addtype = new AddType();
+            addtype.ShowDialog();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -155,7 +167,10 @@ namespace InventoryManagementSystem.Forms
                 {
                     AddMeasurement.Instance.ChangePanelColor11(dialog.Color);
                 }
-
+                if (AddType.Instance != null)
+                {
+                    AddType.Instance.ChangePanelColor12(dialog.Color);
+                }
 
                 Properties.Settings.Default.MyColor = dialog.Color;
                 Properties.Settings.Default.Save();
@@ -163,10 +178,11 @@ namespace InventoryManagementSystem.Forms
 
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            AddSubCategory subcategory = new AddSubCategory();
-            subcategory.ShowDialog();
+
         }
+
+       
     }
 }
