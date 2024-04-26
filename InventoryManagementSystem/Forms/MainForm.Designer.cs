@@ -39,7 +39,7 @@
             settingsBtn = new Button();
             panel8 = new Panel();
             panel11 = new Panel();
-            userBtn = new Button();
+            reportBtn = new Button();
             usersBtn = new Button();
             panel9 = new Panel();
             button2 = new Button();
@@ -82,7 +82,6 @@
             panelBg.Name = "panelBg";
             panelBg.Size = new Size(1435, 36);
             panelBg.TabIndex = 0;
-            panelBg.Paint += panelBg_Paint;
             panelBg.MouseDown += panel1_MouseDown;
             panelBg.MouseMove += panel1_MouseMove;
             panelBg.MouseUp += panel1_MouseUp;
@@ -192,31 +191,31 @@
             // 
             // panel11
             // 
-            panel11.Controls.Add(userBtn);
+            panel11.Controls.Add(reportBtn);
             panel11.Dock = DockStyle.Top;
             panel11.Location = new Point(0, 0);
             panel11.Name = "panel11";
             panel11.Size = new Size(263, 49);
             panel11.TabIndex = 4;
             // 
-            // userBtn
+            // reportBtn
             // 
-            userBtn.Cursor = Cursors.Hand;
-            userBtn.Dock = DockStyle.Fill;
-            userBtn.FlatAppearance.BorderSize = 0;
-            userBtn.FlatStyle = FlatStyle.Flat;
-            userBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            userBtn.Image = (Image)resources.GetObject("userBtn.Image");
-            userBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            userBtn.Location = new Point(0, 0);
-            userBtn.Name = "userBtn";
-            userBtn.Padding = new Padding(30, 0, 0, 0);
-            userBtn.Size = new Size(263, 49);
-            userBtn.TabIndex = 0;
-            userBtn.Text = "                Users";
-            userBtn.TextAlign = ContentAlignment.MiddleLeft;
-            userBtn.UseVisualStyleBackColor = true;
-            userBtn.Click += userBtn_Click;
+            reportBtn.Cursor = Cursors.Hand;
+            reportBtn.Dock = DockStyle.Fill;
+            reportBtn.FlatAppearance.BorderSize = 0;
+            reportBtn.FlatStyle = FlatStyle.Flat;
+            reportBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            reportBtn.Image = (Image)resources.GetObject("reportBtn.Image");
+            reportBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            reportBtn.Location = new Point(0, 0);
+            reportBtn.Name = "reportBtn";
+            reportBtn.Padding = new Padding(30, 0, 0, 0);
+            reportBtn.Size = new Size(263, 49);
+            reportBtn.TabIndex = 0;
+            reportBtn.Text = "                Reports";
+            reportBtn.TextAlign = ContentAlignment.MiddleLeft;
+            reportBtn.UseVisualStyleBackColor = true;
+            reportBtn.Click += userBtn_Click;
             // 
             // usersBtn
             // 
@@ -468,7 +467,7 @@
         private Panel panel12;
         private Button settingsBtn;
         private Panel panel11;
-        private Button userBtn;
+        private Button reportBtn;
         private PictureBox pictureBox2;
         private Label label1;
         private Label label2;

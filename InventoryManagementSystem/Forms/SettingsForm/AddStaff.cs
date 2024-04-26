@@ -103,5 +103,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

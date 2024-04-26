@@ -32,8 +32,9 @@ namespace InventoryManagementSystem.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+             PanelBg.BackColor = Properties.Settings.Default.MyColor;
             button1.PerformClick();
-            PanelBg.BackColor = Properties.Settings.Default.MyColor;
+           
         }
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
@@ -137,7 +138,7 @@ namespace InventoryManagementSystem.Forms
 
         private void panelBg_Paint(object sender, PaintEventArgs e)
         {
-
+            //PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
     }
 }

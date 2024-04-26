@@ -35,16 +35,10 @@
             textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             groupBox1 = new GroupBox();
             label4 = new Label();
             label7 = new Label();
             label6 = new Label();
-            comboBox1 = new ComboBox();
             label5 = new Label();
             addBtn = new Button();
             label2 = new Label();
@@ -55,6 +49,16 @@
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
             label1 = new Label();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            label8 = new Label();
+            label9 = new Label();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewImageColumn();
+            Column4 = new DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -94,7 +98,7 @@
             groupBox2.Size = new Size(407, 277);
             groupBox2.TabIndex = 24;
             groupBox2.TabStop = false;
-            groupBox2.Text = "List Of Sub Categories";
+            groupBox2.Text = "List Of Types";
             // 
             // dataGridView1
             // 
@@ -115,7 +119,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Column2, Column3, Column4 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Column6, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
@@ -135,49 +139,11 @@
             dataGridView1.Size = new Size(362, 216);
             dataGridView1.TabIndex = 0;
             // 
-            // Column1
-            // 
-            Column1.HeaderText = "Category Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 120;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Sub Category";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 120;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Description";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Image = Properties.Resources.pencil;
-            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Image = Properties.Resources.bin;
-            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
-            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
@@ -191,10 +157,10 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(43, 81);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(249, 298);
+            groupBox1.Size = new Size(249, 321);
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Add Sub Category";
+            groupBox1.Text = "Add Type";
             // 
             // label4
             // 
@@ -212,7 +178,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semilight", 8.25F, FontStyle.Italic, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ControlDarkDark;
-            label7.Location = new Point(85, 138);
+            label7.Location = new Point(85, 176);
             label7.Name = "label7";
             label7.Size = new Size(52, 13);
             label7.TabIndex = 22;
@@ -226,14 +192,6 @@
             label6.Size = new Size(96, 15);
             label6.TabIndex = 24;
             label6.Text = "Choose Category";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(18, 55);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(204, 23);
-            comboBox1.TabIndex = 23;
             // 
             // label5
             // 
@@ -254,7 +212,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(18, 233);
+            addBtn.Location = new Point(18, 271);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(90, 27);
             addBtn.TabIndex = 12;
@@ -273,7 +231,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(18, 137);
+            label3.Location = new Point(18, 175);
             label3.Name = "label3";
             label3.Size = new Size(68, 15);
             label3.TabIndex = 10;
@@ -281,7 +239,7 @@
             // 
             // CategName
             // 
-            CategName.Location = new Point(18, 101);
+            CategName.Location = new Point(18, 147);
             CategName.Name = "CategName";
             CategName.Size = new Size(204, 23);
             CategName.TabIndex = 7;
@@ -289,7 +247,7 @@
             // DescTxt
             // 
             DescTxt.BackColor = SystemColors.Window;
-            DescTxt.Location = new Point(18, 155);
+            DescTxt.Location = new Point(18, 193);
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.Size = new Size(204, 72);
@@ -344,6 +302,89 @@
             label1.TabIndex = 0;
             label1.Text = "Add Type Method";
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(18, 55);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(204, 23);
+            comboBox1.TabIndex = 23;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(18, 101);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(204, 23);
+            comboBox2.TabIndex = 28;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(47, 127);
+            label8.Name = "label8";
+            label8.Size = new Size(13, 15);
+            label8.TabIndex = 30;
+            label8.Text = "*";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(18, 129);
+            label9.Name = "label9";
+            label9.Size = new Size(32, 15);
+            label9.TabIndex = 29;
+            label9.Text = "Type";
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Category Name";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 120;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Sub Category";
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Width = 120;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "Type";
+            Column6.Name = "Column6";
+            Column6.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Description";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column3.HeaderText = "";
+            Column3.Image = Properties.Resources.pencil;
+            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Width = 5;
+            // 
+            // Column4
+            // 
+            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column4.HeaderText = "";
+            Column4.Image = Properties.Resources.bin;
+            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Width = 5;
+            // 
             // AddType
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -377,16 +418,10 @@
         private TextBox textBox1;
         private GroupBox groupBox2;
         public DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
         private GroupBox groupBox1;
         private Label label4;
         private Label label7;
         private Label label6;
-        private ComboBox comboBox1;
         private Label label5;
         private Button addBtn;
         private Label label2;
@@ -397,5 +432,15 @@
         private PictureBox pictureBox1;
         private Button closeBtn;
         private Label label1;
+        private Label label8;
+        private Label label9;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewImageColumn Column3;
+        private DataGridViewImageColumn Column4;
     }
 }
