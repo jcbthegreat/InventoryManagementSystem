@@ -65,6 +65,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 41);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // pictureBox1
             // 
@@ -212,6 +213,7 @@
             button7.Text = "Type";
             button7.TextAlign = ContentAlignment.BottomCenter;
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button8
             // 

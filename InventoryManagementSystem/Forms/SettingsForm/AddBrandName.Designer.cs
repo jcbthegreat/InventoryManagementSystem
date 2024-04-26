@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBrandName));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
@@ -54,6 +54,15 @@
             Column5 = new DataGridViewImageColumn();
             pictureBox2 = new PictureBox();
             textBox3 = new TextBox();
+            label8 = new Label();
+            label9 = new Label();
+            comboBox2 = new ComboBox();
+            label10 = new Label();
+            label11 = new Label();
+            comboBox3 = new ComboBox();
+            label12 = new Label();
+            label13 = new Label();
+            comboBox4 = new ComboBox();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -71,7 +80,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(862, 36);
+            panelBg.Size = new Size(1060, 36);
             panelBg.TabIndex = 2;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -93,7 +102,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(830, 0);
+            closeBtn.Location = new Point(1028, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -114,21 +123,22 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(16, 65);
+            comboBox1.Location = new Point(16, 46);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
             comboBox1.TabIndex = 3;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(16, 175);
+            textBox1.Location = new Point(243, 154);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(204, 23);
+            textBox1.Size = new Size(204, 80);
             textBox1.TabIndex = 8;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(16, 122);
+            textBox2.Location = new Point(16, 157);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(204, 23);
             textBox2.TabIndex = 9;
@@ -141,7 +151,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(16, 214);
+            addBtn.Location = new Point(371, 256);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(76, 27);
             addBtn.TabIndex = 13;
@@ -151,7 +161,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(16, 47);
+            label2.Location = new Point(16, 28);
             label2.Name = "label2";
             label2.Size = new Size(96, 15);
             label2.TabIndex = 14;
@@ -160,7 +170,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(16, 101);
+            label3.Location = new Point(16, 136);
             label3.Name = "label3";
             label3.Size = new Size(73, 15);
             label3.TabIndex = 15;
@@ -169,7 +179,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(16, 157);
+            label4.Location = new Point(243, 136);
             label4.Name = "label4";
             label4.Size = new Size(68, 15);
             label4.TabIndex = 16;
@@ -177,6 +187,15 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label12);
+            groupBox1.Controls.Add(label13);
+            groupBox1.Controls.Add(comboBox4);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(comboBox3);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
@@ -191,7 +210,7 @@
             groupBox1.Location = new Point(12, 77);
             groupBox1.Name = "groupBox1";
             groupBox1.RightToLeft = RightToLeft.No;
-            groupBox1.Size = new Size(251, 275);
+            groupBox1.Size = new Size(463, 303);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Enter Brand Name";
@@ -201,7 +220,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semilight", 8.25F, FontStyle.Italic, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ControlDarkDark;
-            label7.Location = new Point(85, 157);
+            label7.Location = new Point(312, 136);
             label7.Name = "label7";
             label7.Size = new Size(52, 13);
             label7.TabIndex = 22;
@@ -212,7 +231,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(88, 101);
+            label6.Location = new Point(88, 136);
             label6.Name = "label6";
             label6.Size = new Size(13, 15);
             label6.TabIndex = 21;
@@ -223,7 +242,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Red;
-            label5.Location = new Point(111, 47);
+            label5.Location = new Point(111, 28);
             label5.Name = "label5";
             label5.Size = new Size(13, 15);
             label5.TabIndex = 20;
@@ -233,7 +252,7 @@
             // 
             groupBox2.Controls.Add(dataGridView1);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.Location = new Point(291, 86);
+            groupBox2.Location = new Point(493, 105);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(555, 367);
             groupBox2.TabIndex = 18;
@@ -249,14 +268,14 @@
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.DimGray;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.DimGray;
+            dataGridViewCellStyle7.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.Location = new Point(13, 38);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
@@ -302,7 +321,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.search;
-            pictureBox2.Location = new Point(604, 64);
+            pictureBox2.Location = new Point(805, 74);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(26, 25);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -313,17 +332,101 @@
             // 
             textBox3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox3.ForeColor = SystemColors.WindowText;
-            textBox3.Location = new Point(633, 64);
+            textBox3.Location = new Point(834, 74);
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Search Brand";
             textBox3.Size = new Size(212, 25);
             textBox3.TabIndex = 21;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(362, 28);
+            label8.Name = "label8";
+            label8.Size = new Size(13, 15);
+            label8.TabIndex = 25;
+            label8.Text = "*";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(243, 28);
+            label9.Name = "label9";
+            label9.Size = new Size(120, 15);
+            label9.TabIndex = 24;
+            label9.Text = "Choose Sub Category";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(243, 46);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(204, 23);
+            comboBox2.TabIndex = 23;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(89, 82);
+            label10.Name = "label10";
+            label10.Size = new Size(13, 15);
+            label10.TabIndex = 28;
+            label10.Text = "*";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(16, 82);
+            label11.Name = "label11";
+            label11.Size = new Size(74, 15);
+            label11.TabIndex = 27;
+            label11.Text = "Choose Type";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(16, 100);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(204, 23);
+            comboBox3.TabIndex = 26;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.ForeColor = Color.Red;
+            label12.Location = new Point(328, 82);
+            label12.Name = "label12";
+            label12.Size = new Size(13, 15);
+            label12.TabIndex = 31;
+            label12.Text = "*";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(243, 82);
+            label13.Name = "label13";
+            label13.Size = new Size(86, 15);
+            label13.TabIndex = 30;
+            label13.Text = "Choose Variant";
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(243, 100);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(204, 23);
+            comboBox4.TabIndex = 29;
+            // 
             // AddBrandName
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(862, 465);
+            ClientSize = new Size(1060, 496);
             Controls.Add(pictureBox2);
             Controls.Add(textBox3);
             Controls.Add(groupBox2);
@@ -372,5 +475,14 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewImageColumn Column4;
         private DataGridViewImageColumn Column5;
+        private Label label8;
+        private Label label9;
+        private ComboBox comboBox2;
+        private Label label12;
+        private Label label13;
+        private ComboBox comboBox4;
+        private Label label10;
+        private Label label11;
+        private ComboBox comboBox3;
     }
 }

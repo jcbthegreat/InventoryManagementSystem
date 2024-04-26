@@ -21,7 +21,7 @@ namespace InventoryManagementSystem.Forms
         {
             InitializeComponent();
             PanelBg = panelBg;
-            panelBg.BackColor = Color.DimGray;
+            PanelBg.BackColor = Color.DimGray;
             Instance = this;
         }
         private UserControl currentControl = null;
