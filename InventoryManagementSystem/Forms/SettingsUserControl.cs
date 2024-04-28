@@ -99,7 +99,11 @@ namespace InventoryManagementSystem.Forms
             AddType addtype = new AddType();
             addtype.ShowDialog();
         }
-
+        private void button8_Click(object sender, EventArgs e)
+        {
+            AddVariant addvariant = new AddVariant();
+            addvariant.ShowDialog();
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -171,6 +175,10 @@ namespace InventoryManagementSystem.Forms
                 {
                     AddType.Instance.ChangePanelColor12(dialog.Color);
                 }
+                if (AddVariant.Instance != null)
+                {
+                    AddVariant.Instance.ChangePanelColor13(dialog.Color);
+                }
 
                 Properties.Settings.Default.MyColor = dialog.Color;
                 Properties.Settings.Default.Save();
@@ -183,6 +191,6 @@ namespace InventoryManagementSystem.Forms
 
         }
 
-       
+        
     }
 }
