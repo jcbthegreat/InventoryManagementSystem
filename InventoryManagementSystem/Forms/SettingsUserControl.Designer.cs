@@ -231,6 +231,7 @@
             button8.Text = "Variant";
             button8.TextAlign = ContentAlignment.BottomCenter;
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button5
             // 
