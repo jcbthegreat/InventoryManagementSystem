@@ -62,7 +62,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(579, 36);
+            panelBg.Size = new Size(493, 36);
             panelBg.TabIndex = 4;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -84,7 +84,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(547, 0);
+            closeBtn.Location = new Point(461, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -106,7 +106,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(25, 84);
+            label2.Location = new Point(12, 60);
             label2.Name = "label2";
             label2.Size = new Size(93, 15);
             label2.TabIndex = 5;
@@ -114,14 +114,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(25, 102);
+            textBox1.Location = new Point(12, 78);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(207, 23);
             textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(266, 102);
+            textBox2.Location = new Point(253, 78);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(207, 23);
             textBox2.TabIndex = 8;
@@ -130,7 +130,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(266, 84);
+            label3.Location = new Point(253, 60);
             label3.Name = "label3";
             label3.Size = new Size(95, 15);
             label3.TabIndex = 7;
@@ -138,7 +138,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(25, 172);
+            textBox3.Location = new Point(12, 126);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(207, 23);
             textBox3.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(25, 154);
+            label4.Location = new Point(12, 108);
             label4.Name = "label4";
             label4.Size = new Size(36, 15);
             label4.TabIndex = 9;
@@ -155,16 +155,17 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(266, 172);
+            textBox4.Location = new Point(253, 126);
+            textBox4.Multiline = true;
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(284, 23);
+            textBox4.Size = new Size(207, 72);
             textBox4.TabIndex = 12;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(266, 154);
+            label5.Location = new Point(253, 108);
             label5.Name = "label5";
             label5.Size = new Size(49, 15);
             label5.TabIndex = 11;
@@ -178,7 +179,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.WhiteSmoke;
-            button2.Location = new Point(467, 273);
+            button2.Location = new Point(377, 204);
             button2.Name = "button2";
             button2.Size = new Size(83, 27);
             button2.TabIndex = 14;
@@ -190,7 +191,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(117, 84);
+            label6.Location = new Point(104, 60);
             label6.Name = "label6";
             label6.Size = new Size(13, 15);
             label6.TabIndex = 21;
@@ -201,7 +202,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.Red;
-            label7.Location = new Point(314, 154);
+            label7.Location = new Point(301, 108);
             label7.Name = "label7";
             label7.Size = new Size(13, 15);
             label7.TabIndex = 22;
@@ -212,7 +213,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.Red;
-            label8.Location = new Point(59, 154);
+            label8.Location = new Point(46, 108);
             label8.Name = "label8";
             label8.Size = new Size(13, 15);
             label8.TabIndex = 23;
@@ -223,7 +224,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label9.ForeColor = Color.Red;
-            label9.Location = new Point(360, 84);
+            label9.Location = new Point(347, 60);
             label9.Name = "label9";
             label9.Size = new Size(13, 15);
             label9.TabIndex = 24;
@@ -231,7 +232,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(25, 235);
+            textBox5.Location = new Point(12, 175);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(207, 23);
             textBox5.TabIndex = 26;
@@ -240,7 +241,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(25, 217);
+            label11.Location = new Point(12, 157);
             label11.Name = "label11";
             label11.Size = new Size(80, 15);
             label11.TabIndex = 25;
@@ -251,7 +252,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semilight", 8.25F, FontStyle.Italic, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ControlDarkDark;
-            label10.Location = new Point(104, 217);
+            label10.Location = new Point(91, 157);
             label10.Name = "label10";
             label10.Size = new Size(52, 13);
             label10.TabIndex = 27;
@@ -261,7 +262,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(579, 312);
+            ClientSize = new Size(493, 246);
             Controls.Add(label10);
             Controls.Add(textBox5);
             Controls.Add(label11);

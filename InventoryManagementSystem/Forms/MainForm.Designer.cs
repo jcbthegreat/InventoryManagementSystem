@@ -89,7 +89,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.logo;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(38, 30);
@@ -335,10 +335,10 @@
             // 
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(233, 205);
+            pictureBox3.Location = new Point(241, 212);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(24, 24);
-            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.Size = new Size(16, 17);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 3;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
