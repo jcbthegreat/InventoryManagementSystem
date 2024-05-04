@@ -26,6 +26,9 @@ namespace InventoryManagementSystem.Forms
         private AddSubCategory subcategory;
         private AddMeasurement measurement;
         private AddType addtype;
+        private RoleAccess roleaccess;
+        private ChooseRole chooserole;
+        private RoleAssignment roleassign;
         public SettingsUserControl()
         {
             InitializeComponent();
@@ -41,6 +44,9 @@ namespace InventoryManagementSystem.Forms
             this.subcategory = subcategory;
             this.measurement = measurement;
             this.addtype = addtype;
+            this.roleaccess = roleaccess;
+            this.chooserole = chooserole;
+            this.roleassign = roleassign;
         }
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
@@ -179,6 +185,18 @@ namespace InventoryManagementSystem.Forms
                 {
                     AddVariant.Instance.ChangePanelColor13(dialog.Color);
                 }
+                if (RoleAccess.Instance != null)
+                {
+                    RoleAccess.Instance.ChangePanelColor12(dialog.Color);
+                }
+                if (ChooseRole.Instance != null)
+                {
+                    ChooseRole.Instance.ChangePanelColor12(dialog.Color);
+                }
+                if (RoleAssignment.Instance != null)
+                {
+                    RoleAssignment.Instance.ChangePanelColor12(dialog.Color);
+                }
 
                 Properties.Settings.Default.MyColor = dialog.Color;
                 Properties.Settings.Default.Save();
@@ -191,6 +209,10 @@ namespace InventoryManagementSystem.Forms
 
         }
 
-        
+        private void button10_Click(object sender, EventArgs e)
+        {
+            ChooseRole role = new ChooseRole();
+            role.ShowDialog();
+        }
     }
 }

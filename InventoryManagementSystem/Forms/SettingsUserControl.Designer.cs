@@ -47,6 +47,7 @@
             button4 = new Button();
             button2 = new Button();
             button9 = new Button();
+            button10 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
@@ -101,6 +102,7 @@
             flowLayoutPanel1.Controls.Add(button4);
             flowLayoutPanel1.Controls.Add(button2);
             flowLayoutPanel1.Controls.Add(button9);
+            flowLayoutPanel1.Controls.Add(button10);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 41);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -325,6 +327,24 @@
             button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
             // 
+            // button10
+            // 
+            button10.Cursor = Cursors.Hand;
+            button10.Dock = DockStyle.Top;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button10.Image = (Image)resources.GetObject("button10.Image");
+            button10.Location = new Point(3, 267);
+            button10.Name = "button10";
+            button10.Padding = new Padding(0, 0, 0, 10);
+            button10.Size = new Size(200, 126);
+            button10.TabIndex = 8;
+            button10.Text = "Role Access";
+            button10.TextAlign = ContentAlignment.BottomCenter;
+            button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
+            // 
             // SettingsUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -364,6 +384,6 @@
         private Button button2;
         private Button button9;
         private PictureBox pictureBox1;
-       
+        private Button button10;
     }
 }
