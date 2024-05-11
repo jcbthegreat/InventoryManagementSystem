@@ -31,7 +31,7 @@ namespace InventoryManagementSystem.Presenter
         {
             string userName = _loginView.UserName;
             string password = _loginView.PassWord;
-            string staffno = "";
+            string _staffNo = "";
 
             try
             {
@@ -43,9 +43,12 @@ namespace InventoryManagementSystem.Presenter
                     {
                         // Successful login
                         //staffId = user.StaffID;
+                        _staffNo = user.StaffNo;
+
                         _loginView.Hide();
                         IMainView mainView = new MainForm();
                         new MainPresenter(mainView, sqlConnectionString);
+                   
                         mainView.Show();
 
                     }

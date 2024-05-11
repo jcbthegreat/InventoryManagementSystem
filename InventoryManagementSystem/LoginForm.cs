@@ -18,6 +18,9 @@ namespace InventoryManagementSystem
 
         private int id;
         private string staffno;
+        private string lastname, firstname;
+        private string position;
+        private string roletype;
         public int ID
         {
             get { return id; }
@@ -27,6 +30,27 @@ namespace InventoryManagementSystem
         {
             get { return staffno; }
             set { staffno = value; }
+        }
+        public string RoleType
+        {
+            get { return roletype; }
+            set { roletype = value; }
+        }
+
+        public string Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+        public string LastName
+        {
+            get { return lastname; }
+            set { lastname = value; }
+        }
+        public string FirstName
+        {
+            get { return firstname; }
+            set { firstname = value; }
         }
         public string UserName
         {
