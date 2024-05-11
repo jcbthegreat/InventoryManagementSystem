@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,38 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
         public Panel PanelBg { get; set; }
-        public static MainForm Instance { get; private set; }
 
+        private string staffno,roletype,position,lastname,firstname;
+        public static MainForm Instance { get; private set; }
+        public string StaffNo
+        {
+            get { return staffno; }
+            set { staffno = value; }
+        }
+        public string RoleType
+        {
+            get { return roletype; }
+            set { roletype = value; }
+        }
+
+        public string Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+        public string LastName
+        {
+            get { return lastname; }
+            set { lastname = value; }
+        }
+        public string FirstName
+        {
+            get { return firstname; }
+            set { firstname = value; }
+        }
 
         public MainForm()
         {
@@ -29,6 +57,7 @@ namespace InventoryManagementSystem.Forms
         private Point lastCursor;
         private Point lastForm;
 
+        public event EventHandler ShowSettings;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
