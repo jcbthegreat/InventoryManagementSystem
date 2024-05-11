@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
         public Panel PanelBg { get; set; }
         public static MainForm Instance { get; private set; }
@@ -29,6 +30,7 @@ namespace InventoryManagementSystem.Forms
         private Point lastCursor;
         private Point lastForm;
 
+        public event EventHandler ShowSettings;
 
         private void MainForm_Load(object sender, EventArgs e)
         {

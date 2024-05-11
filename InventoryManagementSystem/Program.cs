@@ -1,3 +1,11 @@
+using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.Forms;
+using InventoryManagementSystem.Model;
+using InventoryManagementSystem.Presenter;
+using InventoryManagementSystem.Repositories;
+using InventoryManagementSystem.View;
+using System.Configuration;
+
 namespace InventoryManagementSystem
 {
     internal static class Program
@@ -13,7 +21,11 @@ namespace InventoryManagementSystem
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+            ILoginView loginView = new LoginForm();
+            new LoginPresenter(loginView, sqlConnectionString);
+
+            Application.Run((Form)loginView);
         }
     }
 }
