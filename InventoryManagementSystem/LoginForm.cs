@@ -42,7 +42,7 @@ namespace InventoryManagementSystem
             get { return position; }
             set { position = value; }
         }
-        public string LastName
+        public string Lastname
         {
             get { return lastname; }
             set { lastname = value; }
@@ -80,7 +80,7 @@ namespace InventoryManagementSystem
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -96,6 +96,11 @@ namespace InventoryManagementSystem
         public void SetBindingLoginSource(BindingSource login)
         {
             throw new NotImplementedException();
+        }
+
+        private void closeBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

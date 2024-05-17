@@ -27,7 +27,7 @@ namespace InventoryManagementSystem.Repositories
             {
                 connection.Open();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT ID, StaffNo, Username, Password" ;
+                cmd.CommandText = "SELECT ID, StaffNo,Username, Password,FirstName,Lastname,Position";
                 cmd.CommandText += " FROM IV.StaffAssignment WHERE Username = @UserName AND Password =@PassWord";
                 cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = UserName;
                 cmd.Parameters.Add("@PassWord", SqlDbType.VarChar).Value = PassWord;
@@ -42,6 +42,9 @@ namespace InventoryManagementSystem.Repositories
                         LoginModel.StaffNo = reader[1].ToString();
                         LoginModel.UserName = reader[2].ToString();
                         LoginModel.PassWord = reader[3].ToString();
+                        LoginModel.FirstName = reader[4].ToString();
+                        LoginModel.LastName = reader[5].ToString();
+                        LoginModel.Position = reader[6].ToString();
                         _loginList.Add(LoginModel);
                     }
                 }
