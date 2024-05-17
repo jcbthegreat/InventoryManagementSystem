@@ -49,8 +49,8 @@
             button1 = new Button();
             panel3 = new Panel();
             pictureBox3 = new PictureBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtPosition = new TextBox();
+            txtUsername = new TextBox();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
             label2 = new Label();
@@ -88,11 +88,11 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.logo;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(38, 30);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
@@ -124,8 +124,8 @@
             // 
             // mainFormCloseBtn
             // 
-            mainFormCloseBtn.BackgroundImage = Properties.Resources.close__1_;
-            mainFormCloseBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            mainFormCloseBtn.BackgroundImage = (Image)resources.GetObject("mainFormCloseBtn.BackgroundImage");
+            mainFormCloseBtn.BackgroundImageLayout = ImageLayout.Center;
             mainFormCloseBtn.Cursor = Cursors.Hand;
             mainFormCloseBtn.Dock = DockStyle.Right;
             mainFormCloseBtn.FlatAppearance.BorderSize = 0;
@@ -321,8 +321,8 @@
             // panel3
             // 
             panel3.Controls.Add(pictureBox3);
-            panel3.Controls.Add(textBox2);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(txtPosition);
+            panel3.Controls.Add(txtUsername);
             panel3.Controls.Add(pictureBox1);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
@@ -342,33 +342,33 @@
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
             // 
-            // textBox2
+            // txtPosition
             // 
-            textBox2.BackColor = SystemColors.Control;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Enabled = false;
-            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.ForeColor = Color.DimGray;
-            textBox2.Location = new Point(61, 192);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(145, 16);
-            textBox2.TabIndex = 2;
-            textBox2.Text = "System Administrator";
-            textBox2.TextAlign = HorizontalAlignment.Center;
+            txtPosition.BackColor = SystemColors.Control;
+            txtPosition.BorderStyle = BorderStyle.None;
+            txtPosition.Enabled = false;
+            txtPosition.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPosition.ForeColor = Color.DimGray;
+            txtPosition.Location = new Point(61, 192);
+            txtPosition.Name = "txtPosition";
+            txtPosition.ReadOnly = true;
+            txtPosition.Size = new Size(145, 16);
+            txtPosition.TabIndex = 2;
+            txtPosition.Text = "System Administrator";
+            txtPosition.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox1
+            // txtUsername
             // 
-            textBox1.BackColor = SystemColors.Control;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            textBox1.Location = new Point(61, 168);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(145, 18);
-            textBox1.TabIndex = 1;
-            textBox1.Text = "John Doe";
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            txtUsername.BackColor = SystemColors.Control;
+            txtUsername.BorderStyle = BorderStyle.None;
+            txtUsername.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUsername.Location = new Point(61, 168);
+            txtUsername.Name = "txtUsername";
+            txtUsername.ReadOnly = true;
+            txtUsername.Size = new Size(145, 18);
+            txtUsername.TabIndex = 1;
+            txtUsername.Text = "John Doe";
+            txtUsername.TextAlign = HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -409,6 +409,7 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(1172, 664);
             panel5.TabIndex = 3;
+            panel5.Paint += panel5_Paint;
             // 
             // MainForm
             // 
@@ -449,9 +450,9 @@
         private Panel panelBg;
         private Panel panel2;
         private Panel panel3;
-        private TextBox textBox2;
+        private TextBox txtPosition;
         private PictureBox pictureBox1;
-        private TextBox textBox1;
+        private TextBox txtUsername;
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;

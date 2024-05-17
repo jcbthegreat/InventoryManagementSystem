@@ -9,14 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace InventoryManagementSystem.Forms
 {
     public partial class MainForm : Form, IMainView
     {
         public Panel PanelBg { get; set; }
+        private string _fullName;
+        private string _position;
 
-        private string staffno,roletype,position,lastname,firstname;
+        private string staffno, roletype, position, lastname, firstname;
         public static MainForm Instance { get; private set; }
         public string StaffNo
         {
@@ -34,7 +37,7 @@ namespace InventoryManagementSystem.Forms
             get { return position; }
             set { position = value; }
         }
-        public string LastName
+        public string Lastname
         {
             get { return lastname; }
             set { lastname = value; }
@@ -45,12 +48,24 @@ namespace InventoryManagementSystem.Forms
             set { firstname = value; }
         }
 
-        public MainForm()
+        public MainForm(string firstname, string lastname, string postion)
         {
             InitializeComponent();
             PanelBg = panelBg;
             PanelBg.BackColor = Color.DimGray;
             Instance = this;
+            _fullName = $"{firstname} {lastname}";
+            _position = $"{postion}";
+
+            if (txtUsername != null)
+            {
+                txtUsername.Text = _fullName;
+                txtPosition.Text = _position;
+            }
+            else
+            {
+                MessageBox.Show("TextBox 'txtUsername' is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private UserControl currentControl = null;
         private bool isDragging;
@@ -61,9 +76,9 @@ namespace InventoryManagementSystem.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-             PanelBg.BackColor = Properties.Settings.Default.MyColor;
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
             button1.PerformClick();
-           
+
         }
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
@@ -146,7 +161,7 @@ namespace InventoryManagementSystem.Forms
 
         private void mainFormCloseBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Logout();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -168,6 +183,30 @@ namespace InventoryManagementSystem.Forms
         private void panelBg_Paint(object sender, PaintEventArgs e)
         {
             //PanelBg.BackColor = Properties.Settings.Default.MyColor;
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void Logout()
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check if the user clicked Yes
+            if (result == DialogResult.Yes)
+            {
+                // Reset the FirstName and LastName properties
+                MainForm.Instance.FirstName = string.Empty;
+                MainForm.Instance.Lastname = string.Empty;
+
+                // Close the main form
+                MainForm.Instance.Close();
+
+                // Show the login form
+                LoginForm loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
+                loginForm?.Show(); // Show the login form if it is not null
+            }
         }
     }
 }

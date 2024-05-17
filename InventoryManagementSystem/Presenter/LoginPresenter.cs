@@ -33,35 +33,45 @@ namespace InventoryManagementSystem.Presenter
             string password = _loginView.PassWord;
             string _staffNo = "";
 
+            // Check if username or password fields are empty
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Username and password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 using (var repository = new LoginRepository(sqlConnectionString))
                 {
                     var user = repository.GetByValue(userName, password).FirstOrDefault();
 
-                    if (user.UserName == _loginView.UserName && user.PassWord == _loginView.PassWord)
+                    // Check if user is found and credentials match
+                    if (user != null && user.UserName == userName && user.PassWord == password)
                     {
                         // Successful login
-                        //staffId = user.StaffID;
                         _staffNo = user.StaffNo;
 
-                        _loginView.Hide();
-                        IMainView mainView = new MainForm();
-                        new MainPresenter(mainView, sqlConnectionString);
-                   
-                        mainView.Show();
+                        // Retrieve first name and last name
+                        string firstName = user.FirstName;
+                        string lastname = user.LastName;
+                        string position = user.Position;
 
+                        _loginView.Hide();
+                        IMainView mainView = new MainForm(firstName,lastname, position); // Pass the first name and last name to the MainForm
+                        new MainPresenter(mainView, sqlConnectionString);
+
+                        mainView.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Failed");
+                        MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
-                //view.ShowMessage("An error occurred while processing the login: " + ex.Message);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
