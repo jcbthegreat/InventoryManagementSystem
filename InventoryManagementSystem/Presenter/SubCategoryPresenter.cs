@@ -1,7 +1,4 @@
-﻿using InventoryManagementSystem.Forms;
-using InventoryManagementSystem.Model;
-using InventoryManagementSystem.Repositories;
-using InventoryManagementSystem.View;
+﻿using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,41 +8,41 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Presenter
 {
-    public class CategoryPresenter
+    public class SubCategoryPresenter
     {
-        private ICategoryView _categoryView;
+        private ISubCategoryView _isubcategoryView;
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
         private readonly string _sqlConnectionString;
 
-        public CategoryPresenter(ICategoryView categoryView, string createdByFirstName, string createdByLastName, string sqlConnectionString)
+        public SubCategoryPresenter(ISubCategoryView subcategoryView, string createdByFirstName, string createdByLastName, string sqlConnectionString)
         {
-            _categoryView = categoryView;
+            _isubcategoryView = subcategoryView;
             _createdByFirstName = createdByFirstName;
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
-
-            _categoryView.Categ += CategoryEvent;
+            _isubcategoryView.SubCateg += CategoryEvent;
         }
 
         private void CategoryEvent(object? sender, EventArgs e)
         {
-            string categoryName = _categoryView.CategoryName;
-            string description = _categoryView.Description;
+            string subcategoryName = _isubcategoryView.SubCategoryName;
+            string description = _isubcategoryView.Description;
+            string maincategoryid = _isubcategoryView.MainCategoryId;
 
-            if (string.IsNullOrEmpty(categoryName))
+            if (string.IsNullOrEmpty(subcategoryName))
             {
-                MessageBox.Show("Category Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sub Category Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Insert data into the database
-            InsertCategory(categoryName, description);
+            InsertCategory(subcategoryName, description, maincategoryid);
 
-            _categoryView.RefreshDataGridView();
+            _isubcategoryView.RefreshDataGridView();
         }
 
-        private void InsertCategory(string categoryName, string description)
+        private void InsertCategory(string subcategoryName, string description,string maincategoryid)
         {
             try
             {
@@ -55,11 +52,12 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[Categories] (CategoryName, Description, CreatedBy,CreatedDate) VALUES (@CategoryName, @Description, @CreatedBy, @CreatedDate)";
+                    string query = "INSERT INTO [IV].[SubCategories] (SubCategoryName, Description, MainCategoryID, CreatedBy,CreatedDate) VALUES (@SubCategoryName, @Description,@MainCategoryID, @CreatedBy, @CreatedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CategoryName", categoryName);
+                        command.Parameters.AddWithValue("@SubCategoryName", subcategoryName);
                         command.Parameters.AddWithValue("@Description", description);
+                        command.Parameters.AddWithValue("@MainCategoryID", maincategoryid);
                         command.Parameters.AddWithValue("@CreatedBy", $"{_createdByFirstName} {_createdByLastName}");
                         command.Parameters.AddWithValue("@CreatedDate", createdDate);
                         int result = command.ExecuteNonQuery();
@@ -67,7 +65,7 @@ namespace InventoryManagementSystem.Presenter
                         if (result > 0)
                         {
                             MessageBox.Show("Category added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
+
                         }
                         else
                         {

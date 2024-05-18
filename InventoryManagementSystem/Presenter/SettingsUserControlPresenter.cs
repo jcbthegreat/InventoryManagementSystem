@@ -25,6 +25,7 @@ namespace InventoryManagementSystem.Presenter
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
             this._settingsUserControl.ShowCategory += ShowCategory;
+            this._settingsUserControl.ShowSubCategory += ShowSubCategory;
         }
 
         private void ShowCategory(Object? sender, EventArgs e)
@@ -35,6 +36,20 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addCategoryForm = (Form)categoryView;
             addCategoryForm.Show();
+
+
+        }
+
+        private void ShowSubCategory(Object? sender, EventArgs e)
+        {
+            ISubCategoryView subcategoryView = new AddSubCategory();
+            new SubCategoryPresenter(subcategoryView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addSubCategoryForm = (Form)subcategoryView;
+            addSubCategoryForm.Show();
+
+
         }
     }
 }
