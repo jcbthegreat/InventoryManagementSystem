@@ -88,7 +88,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT CategoryName as [Category Name],Description,CreatedDate as [Created Date] " +
+                adapter = new SqlDataAdapter("SELECT CategoryName as [Category Name],Description" +
                      " FROM IV.Categories  " +
                     " order by ID asc", connection);
                 dt = new DataTable();
@@ -114,6 +114,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
                 // Ensure all rows are visible
                 dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
                 // Optionally, adjust the last column to fill the remaining space
                 dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -132,6 +133,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         public void RefreshDataGridView()
         {
             showdata();
+        }
+
+        private void AddCategory_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

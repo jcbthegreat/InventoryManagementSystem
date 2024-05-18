@@ -287,6 +287,7 @@
             Name = "AddCategory";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddCategory";
+            Load += AddCategory_Load;
             panel1.ResumeLayout(false);
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();

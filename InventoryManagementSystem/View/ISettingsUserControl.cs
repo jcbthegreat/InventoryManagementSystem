@@ -9,5 +9,6 @@ namespace InventoryManagementSystem.View
     public interface ISettingsUserControl
     {
         event EventHandler ShowCategory;
+        event EventHandler ShowSubCategory;
     }
 }
