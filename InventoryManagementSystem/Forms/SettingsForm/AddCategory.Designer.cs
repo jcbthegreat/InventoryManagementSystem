@@ -39,16 +39,12 @@
             label2 = new Label();
             label3 = new Label();
             DescTxt = new TextBox();
-            addBtn = new Button();
+            addBtnCategory = new Button();
             groupBox1 = new GroupBox();
             label7 = new Label();
             label5 = new Label();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             pictureBox2 = new PictureBox();
             textBox1 = new TextBox();
             panel1.SuspendLayout();
@@ -152,26 +148,26 @@
             DescTxt.Size = new Size(204, 79);
             DescTxt.TabIndex = 9;
             // 
-            // addBtn
+            // addBtnCategory
             // 
-            addBtn.BackColor = Color.FromArgb(92, 184, 92);
-            addBtn.Cursor = Cursors.Hand;
-            addBtn.FlatAppearance.BorderSize = 0;
-            addBtn.FlatStyle = FlatStyle.Flat;
-            addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(18, 203);
-            addBtn.Name = "addBtn";
-            addBtn.Size = new Size(90, 27);
-            addBtn.TabIndex = 12;
-            addBtn.Text = "Add";
-            addBtn.UseVisualStyleBackColor = false;
+            addBtnCategory.BackColor = Color.FromArgb(92, 184, 92);
+            addBtnCategory.Cursor = Cursors.Hand;
+            addBtnCategory.FlatAppearance.BorderSize = 0;
+            addBtnCategory.FlatStyle = FlatStyle.Flat;
+            addBtnCategory.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            addBtnCategory.ForeColor = Color.WhiteSmoke;
+            addBtnCategory.Location = new Point(18, 203);
+            addBtnCategory.Name = "addBtnCategory";
+            addBtnCategory.Size = new Size(90, 27);
+            addBtnCategory.TabIndex = 12;
+            addBtnCategory.Text = "Add";
+            addBtnCategory.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(addBtn);
+            groupBox1.Controls.Add(addBtnCategory);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(CategName);
@@ -236,7 +232,6 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
@@ -255,40 +250,6 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(362, 216);
             dataGridView1.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Category Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 120;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Description";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Image = Properties.Resources.pencil;
-            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Image = Properties.Resources.bin;
-            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
             // 
             // pictureBox2
             // 
@@ -326,7 +287,6 @@
             Name = "AddCategory";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddCategory";
-            Load += AddCategory_Load;
             panel1.ResumeLayout(false);
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
@@ -349,7 +309,7 @@
         private Label label2;
         private Label label3;
         private TextBox DescTxt;
-        private Button addBtn;
+        private Button addBtnCategory;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         public DataGridView dataGridView1;
@@ -358,9 +318,5 @@
         private Label label5;
         private PictureBox pictureBox2;
         private TextBox textBox1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
     }
 }

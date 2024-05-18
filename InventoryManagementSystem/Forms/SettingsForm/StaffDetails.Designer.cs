@@ -163,6 +163,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(1039, 438);
             dataGridView1.TabIndex = 7;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // StaffDetails
             // 

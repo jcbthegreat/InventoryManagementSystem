@@ -1,6 +1,8 @@
-﻿using InventoryManagementSystem.View;
+﻿using InventoryManagementSystem.Forms;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +19,15 @@ namespace InventoryManagementSystem.Presenter
         {
             _mainView = mainView;
             this.sqlConnectionString = sqlConnectionString;
-            //this._mainView.ShowSettings += ShowSettings;
+            this._mainView.ShowSettings += ShowSettings;
 
+        }
+
+        private void ShowSettings(object? sender, EventArgs e)
+        {
+            ISettingsUserControl settingsView = new SettingsUserControl();
+            new SettingsUserControlPresenter(settingsView, MainForm.Instance.FirstName, MainForm.Instance.Lastname, sqlConnectionString);
+            _mainView.ShowSettingsUserControl(settingsView);
         }
     }
 }

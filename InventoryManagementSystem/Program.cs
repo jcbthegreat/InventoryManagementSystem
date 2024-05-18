@@ -24,7 +24,6 @@ namespace InventoryManagementSystem
             string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
             ILoginView loginView = new LoginForm();
             new LoginPresenter(loginView, sqlConnectionString);
-
             Application.Run((Form)loginView);
         }
     }

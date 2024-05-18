@@ -9,10 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.Presenter;
+using InventoryManagementSystem.View;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class SettingsUserControl : UserControl
+    public partial class SettingsUserControl : UserControl, ISettingsUserControl
     {
         private AddCategory addcategory;
         private MainForm mainForm;
@@ -32,6 +34,7 @@ namespace InventoryManagementSystem.Forms
         public SettingsUserControl()
         {
             InitializeComponent();
+            button1.Click += delegate { ShowCategory?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -47,7 +50,13 @@ namespace InventoryManagementSystem.Forms
             this.roleaccess = roleaccess;
             this.chooserole = chooserole;
             this.roleassign = roleassign;
+
+            
         }
+
+        public event EventHandler ShowCategory;
+
+
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {
@@ -57,8 +66,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddCategory addCategory = new AddCategory();
-            addCategory.ShowDialog();
+            //AddCategory addCategory = new AddCategory();
+            //addCategory.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -214,5 +223,12 @@ namespace InventoryManagementSystem.Forms
             ChooseRole role = new ChooseRole();
             role.ShowDialog();
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+       
     }
 }
