@@ -3,6 +3,7 @@ using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace InventoryManagementSystem.Forms
         private string _position;
 
         private string staffno, roletype, position, lastname, firstname;
+        string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
         public static MainForm Instance { get; private set; }
         public string StaffNo
         {
@@ -51,6 +53,7 @@ namespace InventoryManagementSystem.Forms
         public MainForm(string firstname, string lastname, string postion)
         {
             InitializeComponent();
+            settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
             PanelBg = panelBg;
             PanelBg.BackColor = Color.DimGray;
             Instance = this;
@@ -79,6 +82,12 @@ namespace InventoryManagementSystem.Forms
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
             button1.PerformClick();
 
+        }
+
+       public void ShowSettingsUserControl(ISettingsUserControl settingsUserControl)
+        {
+            panel5.Controls.Clear();
+            panel5.Controls.Add((Control)settingsUserControl);
         }
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
@@ -208,5 +217,7 @@ namespace InventoryManagementSystem.Forms
                 loginForm?.Show(); // Show the login form if it is not null
             }
         }
+
+    
     }
 }

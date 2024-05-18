@@ -73,7 +73,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT StaffNo as [Staff No],RoleType as [Role],Position,FirstName as [First Name],MiddleName as [Middle Name] "+
+                adapter = new SqlDataAdapter("SELECT StaffNo as [Staff No],RoleType as [Role],Position,FirstName as [First Name],MiddleName as [Middle Name] " +
                      ", LastName as [Last Name], Email, ContactNo as [Contact No], UserName as Username FROM IV.StaffAssignment  " +
                     " order by StaffNo asc", connection);
                 dt = new DataTable();
@@ -112,6 +112,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 // Ensure the connection is closed
                 connection.Close();
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

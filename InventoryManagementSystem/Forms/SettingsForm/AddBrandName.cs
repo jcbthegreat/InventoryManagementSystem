@@ -147,28 +147,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void PopulateComboBox()
         {
-            comboBox1.Items.Clear(); // Clear existing items
-
-            AddCategory categoryForm = new AddCategory();
-
-
-
-            int columnIndex = 0;
-
-
-            HashSet<string> uniqueValues = new HashSet<string>();
-            foreach (DataGridViewRow row in categoryForm.dataGridView1.Rows)
-            {
-                if (!row.IsNewRow && row.Cells[columnIndex].Value != null)
-                {
-                    string cellValue = row.Cells[columnIndex].Value.ToString();
-                    if (!uniqueValues.Contains(cellValue))
-                    {
-                        comboBox1.Items.Add(cellValue);
-                        uniqueValues.Add(cellValue);
-                    }
-                }
-            }
+           
+          
         }
 
         private void addBtn_Click(object sender, EventArgs e)
