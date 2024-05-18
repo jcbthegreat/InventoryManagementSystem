@@ -47,12 +47,10 @@ namespace InventoryManagementSystem.Forms
             dataTable.Columns.Add("Original Price", typeof(string));
             dataTable.Columns.Add("Retail Price", typeof(string));
             dataTable.Columns.Add("Stock", typeof(string));
-            //dataTable.Columns.Add("Minimum", typeof(string));
-            //dataTable.Columns.Add("Maximum", typeof(string));
-            //dataTable.Columns.Add("Availability", typeof(string));
+            dataTable.Columns.Add("Availability", typeof(string));
 
             // Add some sample rows
-            //dataTable.Rows.Add("Category1", "BrandName1", "Code1", "Product Name Here", "1000.00", "1500.00", "500", "70", "1500", "Yes");
+            dataTable.Rows.Add("BrandName1", "Code", "Product Name", "Category1", "Sub Category1", "Type", "Black", "1pc", "10", "20", "500" , "700" , "50" , "Yes");
             //dataTable.Rows.Add("Category2", "BrandName2", "Code2", "Product Name Here1", "699.00", "800.00", "500", "70", "1500", "Yes");
             //dataTable.Rows.Add("Category3", "BrandName3", "Code3", "Product Name Here2", "347.00", "500.00", "500", "70", "1500", "Yes");
             //dataTable.Rows.Add("Category4", "BrandName4", "Code4", "Product Name Here3", "897.00", "950.00", "345", "70", "1500", "Yes");
@@ -76,8 +74,25 @@ namespace InventoryManagementSystem.Forms
 
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+
+            dataGridView1.AutoResizeColumns();
+
+            // Remove padding from the cells
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.DefaultCellStyle.Padding = new Padding(0);
+            }
+
+            // Resize the column headers
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+            // Ensure all rows are visible
+            dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+
+            // Optionally, adjust the last column to fill the remaining space
+            dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
