@@ -35,13 +35,8 @@
             textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             groupBox1 = new GroupBox();
+            txtType = new TextBox();
             label8 = new Label();
             label9 = new Label();
             comboBox2 = new ComboBox();
@@ -53,7 +48,6 @@
             addBtn = new Button();
             label2 = new Label();
             label3 = new Label();
-            CategName = new TextBox();
             DescTxt = new TextBox();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
@@ -119,7 +113,6 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Column6, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
@@ -139,55 +132,9 @@
             dataGridView1.Size = new Size(362, 216);
             dataGridView1.TabIndex = 0;
             // 
-            // Column1
-            // 
-            Column1.HeaderText = "Category Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 120;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Sub Category";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 120;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Type";
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Description";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Image = Properties.Resources.pencil;
-            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Image = Properties.Resources.bin;
-            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
-            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtType);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(comboBox2);
@@ -199,7 +146,6 @@
             groupBox1.Controls.Add(addBtn);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(CategName);
             groupBox1.Controls.Add(DescTxt);
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 81);
@@ -208,6 +154,13 @@
             groupBox1.TabIndex = 23;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add Type";
+            // 
+            // txtType
+            // 
+            txtType.Location = new Point(18, 150);
+            txtType.Name = "txtType";
+            txtType.Size = new Size(204, 23);
+            txtType.TabIndex = 31;
             // 
             // label8
             // 
@@ -320,13 +273,6 @@
             label3.TabIndex = 10;
             label3.Text = "Description";
             // 
-            // CategName
-            // 
-            CategName.Location = new Point(18, 147);
-            CategName.Name = "CategName";
-            CategName.Size = new Size(204, 23);
-            CategName.TabIndex = 7;
-            // 
             // DescTxt
             // 
             DescTxt.BackColor = SystemColors.Window;
@@ -426,7 +372,7 @@
         private Button addBtn;
         private Label label2;
         private Label label3;
-        private TextBox CategName;
+        //private TextBox TypeName;
         private TextBox DescTxt;
         private Panel panelBg;
         private PictureBox pictureBox1;
@@ -436,11 +382,6 @@
         private Label label9;
         private ComboBox comboBox2;
         private ComboBox comboBox1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
+        private TextBox txtType;
     }
 }
