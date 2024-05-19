@@ -26,6 +26,7 @@ namespace InventoryManagementSystem.Presenter
             _sqlConnectionString = sqlConnectionString;
             this._settingsUserControl.ShowCategory += ShowCategory;
             this._settingsUserControl.ShowSubCategory += ShowSubCategory;
+            this._settingsUserControl.ShowType += ShowType;
         }
 
         private void ShowCategory(Object? sender, EventArgs e)
@@ -48,6 +49,18 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addSubCategoryForm = (Form)subcategoryView;
             addSubCategoryForm.Show();
+
+
+        }
+
+        private void ShowType(Object? sender, EventArgs e)
+        {
+            ITypeView typeView = new AddType();
+            new TypePresenter(typeView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addTypeForm = (Form)typeView;
+            addTypeForm.Show();
 
 
         }

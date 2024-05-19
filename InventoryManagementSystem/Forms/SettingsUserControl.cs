@@ -36,6 +36,7 @@ namespace InventoryManagementSystem.Forms
             InitializeComponent();
             button1.Click += delegate { ShowCategory?.Invoke(this, EventArgs.Empty); };
             button6.Click += delegate { ShowSubCategory?.Invoke(this, EventArgs.Empty); };
+            button7.Click += delegate { ShowType?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -58,6 +59,8 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowCategory;
 
         public event EventHandler ShowSubCategory;
+
+        public event EventHandler ShowType;
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {
@@ -112,8 +115,8 @@ namespace InventoryManagementSystem.Forms
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            AddType addtype = new AddType();
-            addtype.ShowDialog();
+            //AddType addtype = new AddType();
+            //addtype.ShowDialog();
         }
         private void button8_Click(object sender, EventArgs e)
         {
