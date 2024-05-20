@@ -40,6 +40,9 @@
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
             groupBox1 = new GroupBox();
+            comboBox3 = new ComboBox();
+            label10 = new Label();
+            label11 = new Label();
             label8 = new Label();
             label9 = new Label();
             comboBox2 = new ComboBox();
@@ -51,18 +54,8 @@
             addBtn = new Button();
             label2 = new Label();
             label3 = new Label();
-            CategName = new TextBox();
+            VarName = new TextBox();
             DescTxt = new TextBox();
-            comboBox3 = new ComboBox();
-            label10 = new Label();
-            label11 = new Label();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -172,7 +165,6 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column5, Column6, Column7, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
@@ -208,7 +200,7 @@
             groupBox1.Controls.Add(addBtn);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(CategName);
+            groupBox1.Controls.Add(VarName);
             groupBox1.Controls.Add(DescTxt);
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 68);
@@ -217,6 +209,34 @@
             groupBox1.TabIndex = 29;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add Variant";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(18, 147);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(204, 23);
+            comboBox3.TabIndex = 33;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(90, 129);
+            label10.Name = "label10";
+            label10.Size = new Size(13, 15);
+            label10.TabIndex = 32;
+            label10.Text = "*";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(18, 129);
+            label11.Name = "label11";
+            label11.Size = new Size(74, 15);
+            label11.TabIndex = 31;
+            label11.Text = "Choose Type";
             // 
             // label8
             // 
@@ -329,12 +349,12 @@
             label3.TabIndex = 10;
             label3.Text = "Description";
             // 
-            // CategName
+            // VarName
             // 
-            CategName.Location = new Point(18, 191);
-            CategName.Name = "CategName";
-            CategName.Size = new Size(204, 23);
-            CategName.TabIndex = 7;
+            VarName.Location = new Point(18, 191);
+            VarName.Name = "VarName";
+            VarName.Size = new Size(204, 23);
+            VarName.TabIndex = 7;
             // 
             // DescTxt
             // 
@@ -344,88 +364,6 @@
             DescTxt.Name = "DescTxt";
             DescTxt.Size = new Size(204, 72);
             DescTxt.TabIndex = 9;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(18, 147);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(204, 23);
-            comboBox3.TabIndex = 33;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.ForeColor = Color.Red;
-            label10.Location = new Point(90, 129);
-            label10.Name = "label10";
-            label10.Size = new Size(13, 15);
-            label10.TabIndex = 32;
-            label10.Text = "*";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(18, 129);
-            label11.Name = "label11";
-            label11.Size = new Size(74, 15);
-            label11.TabIndex = 31;
-            label11.Text = "Choose Type";
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Category Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 120;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Sub Category";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 120;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Type";
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "Variant Name";
-            Column7.Name = "Column7";
-            Column7.ReadOnly = true;
-            Column7.Width = 150;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Description";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Image = Properties.Resources.pencil;
-            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Image = Properties.Resources.bin;
-            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
             // 
             // AddVariant
             // 
@@ -475,17 +413,10 @@
         private Button addBtn;
         private Label label2;
         private Label label3;
-        private TextBox CategName;
+        private TextBox VarName;
         private TextBox DescTxt;
         private ComboBox comboBox3;
         private Label label10;
         private Label label11;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
     }
 }
