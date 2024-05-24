@@ -379,6 +379,7 @@
             Name = "AddVariant";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddVariant";
+            Load += AddVariant_Load;
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

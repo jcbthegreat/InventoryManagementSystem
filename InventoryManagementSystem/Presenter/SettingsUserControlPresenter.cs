@@ -29,6 +29,7 @@ namespace InventoryManagementSystem.Presenter
             this._settingsUserControl.ShowSubCategory += ShowSubCategory;
             this._settingsUserControl.ShowType += ShowType;
             this._settingsUserControl.ShowVariant += VariantType;
+            this._settingsUserControl.ShowBrand += BrandType;
         }
 
         private void ShowCategory(Object? sender, EventArgs e)
@@ -74,6 +75,17 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addVariantForm = (Form)variantView;
             addVariantForm.Show();
+
+
+        }
+        private void BrandType(Object? sender, EventArgs e)
+        {
+            IBrandView brandView = new AddBrandName();
+            new BrandPresenter(brandView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addBrandForm = (Form)brandView;
+            addBrandForm.Show();
 
 
         }

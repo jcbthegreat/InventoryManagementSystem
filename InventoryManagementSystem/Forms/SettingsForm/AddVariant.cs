@@ -228,5 +228,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             PanelBg.BackColor = color;
         }
+
+        private void AddVariant_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace InventoryManagementSystem.View
         event EventHandler ShowSubCategory;
         event EventHandler ShowType;
         event EventHandler ShowVariant;
+        event EventHandler ShowBrand;
     }
 }

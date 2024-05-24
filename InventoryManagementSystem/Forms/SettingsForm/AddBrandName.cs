@@ -1,7 +1,9 @@
-﻿using System;
+﻿using InventoryManagementSystem.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,154 +12,252 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms.SettingsForm
 {
-    public partial class AddBrandName : Form
+    public partial class AddBrandName : Form, IBrandView
     {
+        private const string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
+        public ComboBox CategoryComboBox { get; set; }
         public Panel PanelBg { get; set; }
         public static AddBrandName Instance { get; private set; }
+
+        private readonly SqlConnection connection;
+        SqlDataAdapter adapter;
+        DataTable dt;
+
+        public string BrandName
+        {
+            get { return txtBrand.Text; }
+            set { txtBrand.Text = value; }
+        }
+
+        public string Description
+        {
+            get { return txtDesc.Text; }
+            set { txtDesc.Text = value; }
+        }
+
+        public string VariantID
+        {
+            get { return comboBox4.SelectedValue?.ToString(); }
+            set { comboBox4.SelectedValue = value; }
+        }
 
         public AddBrandName()
         {
             InitializeComponent();
+            CategoryComboBox = comboBox1;
             PanelBg = panelBg;
             panelBg.BackColor = Color.DimGray;
             Instance = this;
+            connection = new SqlConnection(connectionString);
+            LoadCategoriesFromDatabase();
+            comboBox1.SelectedIndexChanged += (sender, e) => LoadSubcategoriesFromDatabase();
+            comboBox2.SelectedIndexChanged += (sender, e) => LoadTypeFromDatabase();
+            comboBox3.SelectedIndexChanged += (sender, e) => LoadVariantFromDatabase();
+            Categories();
+            showdata();
+            SaveDataToDatabase();
+            LoadVariantFromDatabase();
+        }
+        public void Categories()
+        {
+            addBtn.Click += delegate { Brands?.Invoke(this, EventArgs.Empty); };
+            showdata();
         }
 
-        #region FormShadow
+        public event EventHandler Brands;
 
-        private const int WM_NCHITTEST = 0x84;
-        private const int HTCLIENT = 0x1;
-        private const int HTCAPTION = 0x2;
-
-        private bool m_aeroEnabled;
-
-        private const int CS_DROPSHADOW = 0x00020000;
-        private const int WM_NCPAINT = 0x0085;
-        private const int WM_ACTIVATEAPP = 0x001C;
-
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-
-        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
-        [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-            );
-
-        public struct MARGINS
+        public void LoadCategoriesFromDatabase()
         {
-            public int leftWidth;
-            public int rightWidth;
-            public int topHeight;
-            public int bottomHeight;
-        }
-        protected override CreateParams CreateParams
-        {
-            get
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                m_aeroEnabled = CheckAeroEnabled();
-                CreateParams cp = base.CreateParams;
-                if (!m_aeroEnabled)
-                    cp.ClassStyle |= CS_DROPSHADOW; return cp;
+                try
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("SELECT ID, CategoryName FROM [IV].[Categories]", con);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    CategoryComboBox.DataSource = dataTable;
+                    CategoryComboBox.DisplayMember = "CategoryName";
+                    CategoryComboBox.ValueMember = "ID";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error loading categories: " + ex.Message);
+                }
             }
         }
-        private bool CheckAeroEnabled()
+  
+        public void LoadSubcategoriesFromDatabase()
         {
-            if (Environment.OSVersion.Version.Major >= 6)
+            try
             {
-                int enabled = 0; DwmIsCompositionEnabled(ref enabled);
-                return (enabled == 1) ? true : false;
-            }
-            return false;
-        }
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case WM_NCPAINT:
-                    if (m_aeroEnabled)
+                string categoryId = CategoryComboBox.SelectedValue?.ToString();
+                if (!string.IsNullOrEmpty(categoryId))
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
                     {
-                        var v = 2;
-                        DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
-                        MARGINS margins = new MARGINS()
-                        {
-                            bottomHeight = 1,
-                            leftWidth = 0,
-                            rightWidth = 0,
-                            topHeight = 0
-                        }; DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+                        con.Open();
+                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] WHERE MainCategoryID = @categoryId", con);
+                        command.Parameters.AddWithValue("@categoryId", categoryId);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        comboBox2.DataSource = dataTable;
+                        comboBox2.DisplayMember = "SubCategoryName";
+                        comboBox2.ValueMember = "ID";
                     }
-                    break;
-                default: break;
+                }
             }
-            base.WndProc(ref m);
-            if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT) m.Result = (IntPtr)HTCAPTION;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading subcategories: " + ex.Message);
+            }
         }
-        #endregion
+
+        public void LoadTypeFromDatabase()
+        {
+            try
+            {
+                string subCategoryId = comboBox2.SelectedValue?.ToString();
+                if (!string.IsNullOrEmpty(subCategoryId))
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("SELECT ID, TypeName FROM [IV].[Types] WHERE SubCategoryID = @subCategoryId", con);
+                        command.Parameters.AddWithValue("@subCategoryId", subCategoryId);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        comboBox3.DataSource = dataTable;
+                        comboBox3.DisplayMember = "TypeName";
+                        comboBox3.ValueMember = "ID";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading types: " + ex.Message);
+            }
+        }
+
+        public void LoadVariantFromDatabase()
+        {
+            try
+            {
+                string typeId = comboBox3.SelectedValue?.ToString();
+                if (!string.IsNullOrEmpty(typeId))
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("SELECT ID, VariantName FROM [IV].[Variant] WHERE TypeID = @typeid", con);
+                        command.Parameters.AddWithValue("@typeid", typeId);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        comboBox4.DataSource = dataTable;
+                        comboBox4.DisplayMember = "VariantName";
+                        comboBox4.ValueMember = "ID";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading variant: " + ex.Message);
+            }
+        }
+        public void SetBindingBrandSource(BindingSource login)
+        {
+            throw new NotImplementedException();
+        }
+        public void showdata()
+        {
+            try
+            {
+                connection.Open();
+                adapter = new SqlDataAdapter("SELECT ct.CategoryName as [Category Name], sb.SubCategoryName as [Sub Category Name], ty.TypeName as [Type Name], vr.VariantName as [Variant Name], br.BrandName as [Brand Name],br.Description " +
+                     " FROM [IV].[SubCategories] sb INNER JOIN [IV].[Categories] ct ON sb.MainCategoryID = ct.ID" +
+                     " INNER JOIN [IV].[Types] ty on sb.ID = ty.SubCategoryID " +
+                     " inner join[IV].[Variant] vr on vr.TypeID = ty.ID " +
+                     " INNER JOIN[IV].[Brand] br on br.VariantID = vr.ID " +
+                    " ORDER BY vr.ID ASC", connection);
+                dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                // Resize the columns based on the content
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+                dataGridView1.AutoResizeColumns();
+
+                // Remove padding from the cells
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.DefaultCellStyle.Padding = new Padding(0);
+                }
+
+                // Resize the column headers
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                // Ensure all rows are visible
+                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                // Optionally, adjust the last column to fill the remaining space
+                //dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void RefreshDataGridView()
+        {
+            showdata();
+        }
+        public void SaveDataToDatabase()
+        {
+            try
+            {
+                // Code para mag-save ng data sa database
+
+                // Pagkatapos ng pag-save, tawagin ang LoadSubcategoriesFromDatabase para i-refresh ang comboBox2
+                LoadSubcategoriesFromDatabase();
+                LoadCategoriesFromDatabase();
+                LoadVariantFromDatabase();
+                LoadTypeFromDatabase();
+                // Pagkatapos mag-save, linisin ang comboBox2
+                comboBox1.Items.Clear();
+                comboBox2.Items.Clear();
+                comboBox3.Items.Clear();
+                comboBox4.Items.Clear();
+                // Linisin ang mga text sa mga textBox
+                txtBrand.Clear();
+                txtDesc.Clear();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error saving data: " + ex.Message);
+            }
+        }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void InitializeDataGridView()
-        {
-            try
-            {
-
-                DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
-
-                dataGridView1.Rows.Add(new object[] { "Category1", "BrandName1", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category1", "BrandName2", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category1", "BrandName3", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category2", "BrandName4", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category2", "BrandName5", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category3", "BrandName1", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category1", "BrandName1", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category4", "BrandName5", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category5", "BrandName3", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category5", "BrandName3", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category4", "BrandName5", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category4", "BrandName5", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category2", "BrandName2", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Category3", "BrandName2", "Description can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void AddBrandName_Load(object sender, EventArgs e)
-        {
-
-            PanelBg.BackColor = Properties.Settings.Default.MyColor;
-            InitializeDataGridView();
-            //PopulateComboBox();
-        }
-
-        private void PopulateComboBox()
-        {
-           
-          
-        }
-
         private void addBtn_Click(object sender, EventArgs e)
         {
-            string columnData1 = comboBox1.Text;
-            string columnData2 = textBox2.Text;
-            string columnData3 = textBox1.Text;
 
-            dataGridView1.Rows.Add(columnData1, columnData2, columnData3);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,12 +267,14 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void panelBg_Paint(object sender, PaintEventArgs e)
         {
-
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
 
         public void ChangePanelColor2(Color color)
         {
             PanelBg.BackColor = color;
         }
+
+     
     }
 }
