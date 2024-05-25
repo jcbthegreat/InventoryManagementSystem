@@ -47,26 +47,26 @@
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
-            textBox7 = new TextBox();
+            txtposition = new TextBox();
             btnGenerate = new PictureBox();
             label8 = new Label();
             txtPassword = new TextBox();
             label9 = new Label();
-            textBox8 = new TextBox();
+            txtusername = new TextBox();
             label7 = new Label();
-            textBox6 = new TextBox();
+            txtfirstname = new TextBox();
             label6 = new Label();
-            textBox5 = new TextBox();
+            txtcontact = new TextBox();
             label5 = new Label();
-            textBox4 = new TextBox();
+            txtemail = new TextBox();
             label4 = new Label();
-            textBox3 = new TextBox();
+            txtlastname = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            txtmiddlename = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txtstaffno = new TextBox();
             groupBox2 = new GroupBox();
-            pictureBox1 = new PictureBox();
+            addimage = new PictureBox();
             browseImageBtn = new Button();
             deleteImageBtn = new Button();
             addBtn = new Button();
@@ -75,7 +75,7 @@
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnGenerate).BeginInit();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)addimage).BeginInit();
             SuspendLayout();
             // 
             // panelBg
@@ -142,24 +142,24 @@
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(label10);
-            groupBox1.Controls.Add(textBox7);
+            groupBox1.Controls.Add(txtposition);
             groupBox1.Controls.Add(btnGenerate);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(txtPassword);
             groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(textBox8);
+            groupBox1.Controls.Add(txtusername);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(textBox6);
+            groupBox1.Controls.Add(txtfirstname);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(txtcontact);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(txtemail);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(txtlastname);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtmiddlename);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtstaffno);
             groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 84);
             groupBox1.Name = "groupBox1";
@@ -307,12 +307,12 @@
             label10.TabIndex = 19;
             label10.Text = "Position";
             // 
-            // textBox7
+            // txtposition
             // 
-            textBox7.Location = new Point(9, 123);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(203, 25);
-            textBox7.TabIndex = 18;
+            txtposition.Location = new Point(9, 123);
+            txtposition.Name = "txtposition";
+            txtposition.Size = new Size(203, 25);
+            txtposition.TabIndex = 18;
             // 
             // btnGenerate
             // 
@@ -353,12 +353,12 @@
             label9.TabIndex = 13;
             label9.Text = "Username";
             // 
-            // textBox8
+            // txtusername
             // 
-            textBox8.Location = new Point(235, 242);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(203, 25);
-            textBox8.TabIndex = 12;
+            txtusername.Location = new Point(235, 242);
+            txtusername.Name = "txtusername";
+            txtusername.Size = new Size(203, 25);
+            txtusername.TabIndex = 12;
             // 
             // label7
             // 
@@ -370,12 +370,12 @@
             label7.TabIndex = 11;
             label7.Text = "First name";
             // 
-            // textBox6
+            // txtfirstname
             // 
-            textBox6.Location = new Point(8, 181);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(203, 25);
-            textBox6.TabIndex = 10;
+            txtfirstname.Location = new Point(8, 181);
+            txtfirstname.Name = "txtfirstname";
+            txtfirstname.Size = new Size(203, 25);
+            txtfirstname.TabIndex = 10;
             // 
             // label6
             // 
@@ -387,12 +387,12 @@
             label6.TabIndex = 9;
             label6.Text = "Contact number";
             // 
-            // textBox5
+            // txtcontact
             // 
-            textBox5.Location = new Point(235, 184);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(203, 25);
-            textBox5.TabIndex = 8;
+            txtcontact.Location = new Point(235, 184);
+            txtcontact.Name = "txtcontact";
+            txtcontact.Size = new Size(203, 25);
+            txtcontact.TabIndex = 8;
             // 
             // label5
             // 
@@ -404,12 +404,12 @@
             label5.TabIndex = 7;
             label5.Text = "Email";
             // 
-            // textBox4
+            // txtemail
             // 
-            textBox4.Location = new Point(235, 123);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(203, 25);
-            textBox4.TabIndex = 6;
+            txtemail.Location = new Point(235, 123);
+            txtemail.Name = "txtemail";
+            txtemail.Size = new Size(203, 25);
+            txtemail.TabIndex = 6;
             // 
             // label4
             // 
@@ -421,12 +421,12 @@
             label4.TabIndex = 5;
             label4.Text = "Last name";
             // 
-            // textBox3
+            // txtlastname
             // 
-            textBox3.Location = new Point(9, 298);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(203, 25);
-            textBox3.TabIndex = 4;
+            txtlastname.Location = new Point(9, 298);
+            txtlastname.Name = "txtlastname";
+            txtlastname.Size = new Size(203, 25);
+            txtlastname.TabIndex = 4;
             // 
             // label3
             // 
@@ -438,12 +438,12 @@
             label3.TabIndex = 3;
             label3.Text = "Middle name";
             // 
-            // textBox2
+            // txtmiddlename
             // 
-            textBox2.Location = new Point(9, 239);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(203, 25);
-            textBox2.TabIndex = 2;
+            txtmiddlename.Location = new Point(9, 239);
+            txtmiddlename.Name = "txtmiddlename";
+            txtmiddlename.Size = new Size(203, 25);
+            txtmiddlename.TabIndex = 2;
             // 
             // label2
             // 
@@ -455,16 +455,16 @@
             label2.TabIndex = 1;
             label2.Text = "Staff number";
             // 
-            // textBox1
+            // txtstaffno
             // 
-            textBox1.Location = new Point(8, 69);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(203, 25);
-            textBox1.TabIndex = 0;
+            txtstaffno.Location = new Point(8, 69);
+            txtstaffno.Name = "txtstaffno";
+            txtstaffno.Size = new Size(203, 25);
+            txtstaffno.TabIndex = 0;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(pictureBox1);
+            groupBox2.Controls.Add(addimage);
             groupBox2.Controls.Add(browseImageBtn);
             groupBox2.Controls.Add(deleteImageBtn);
             groupBox2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -476,15 +476,15 @@
             groupBox2.Text = "Profile Picture";
             groupBox2.Enter += groupBox2_Enter;
             // 
-            // pictureBox1
+            // addimage
             // 
-            pictureBox1.BackColor = SystemColors.ControlLight;
-            pictureBox1.Location = new Point(49, 36);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(170, 170);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 21;
-            pictureBox1.TabStop = false;
+            addimage.BackColor = SystemColors.ControlLight;
+            addimage.Location = new Point(49, 36);
+            addimage.Name = "addimage";
+            addimage.Size = new Size(170, 170);
+            addimage.SizeMode = PictureBoxSizeMode.Zoom;
+            addimage.TabIndex = 21;
+            addimage.TabStop = false;
             // 
             // browseImageBtn
             // 
@@ -555,7 +555,7 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnGenerate).EndInit();
             groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)addimage).EndInit();
             ResumeLayout(false);
         }
 
@@ -567,29 +567,29 @@
         private Label label1;
         private GroupBox groupBox1;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtstaffno;
         private Label label8;
         private TextBox txtPassword;
         private Label label9;
-        private TextBox textBox8;
+        private TextBox txtusername;
         private Label label7;
-        private TextBox textBox6;
+        private TextBox txtfirstname;
         private Label label6;
-        private TextBox textBox5;
+        private TextBox txtcontact;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox txtemail;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox txtlastname;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox txtmiddlename;
         private GroupBox groupBox2;
         private Button addBtn;
-        private PictureBox pictureBox1;
+        private PictureBox addimage;
         private Button browseImageBtn;
         private Button deleteImageBtn;
         private PictureBox btnGenerate;
         private Label label10;
-        private TextBox textBox7;
+        private TextBox txtposition;
         private Label label19;
         private Label label18;
         private Label label17;
