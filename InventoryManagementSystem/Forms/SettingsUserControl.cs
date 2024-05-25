@@ -43,6 +43,7 @@ namespace InventoryManagementSystem.Forms
             button8.Click += delegate { ShowVariant?.Invoke(this, EventArgs.Empty); };
             button3.Click += delegate { ShowBrand?.Invoke(this, EventArgs.Empty); };
             button5.Click += delegate { ShowMeasure?.Invoke(this, EventArgs.Empty); };
+            button9.Click += delegate { ShowStaff?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -72,6 +73,7 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowVariant;
         public event EventHandler ShowBrand;
         public event EventHandler ShowMeasure;
+        public event EventHandler ShowStaff;
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {
@@ -116,8 +118,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button9_Click(object sender, EventArgs e)
         {
-            StaffDetails staff = new StaffDetails();
-            staff.ShowDialog();
+            //StaffDetails staff = new StaffDetails();
+            //staff.ShowDialog();
         }
         private void button6_Click(object sender, EventArgs e)
         {

@@ -1,41 +1,107 @@
-﻿using System;
+﻿using InventoryManagementSystem.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddStaff : Form
     {
+        string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         private string imagePath;
         public Panel PanelBg { get; set; }
+        
         public static AddStaff Instance { get; private set; }
+        private readonly SqlConnection connection;
+       
+        public string StaffNo
+        {
+            get { return txtstaffno.Text; }
+            set { txtstaffno.Text = value; }
+        }
 
+        public string RoleType
+        {
+            get { return comboBox2.SelectedValue?.ToString(); }
+            set { comboBox2.SelectedValue = value; }
+        }
+        public string Position
+        {
+            get { return txtposition.Text; }
+            set { txtposition.Text = value; }
+        }
+        public string FirstName
+        {
+            get { return txtfirstname.Text; }
+            set { txtfirstname.Text = value; }
+        }
+        public string MiddleName
+        {
+            get { return txtmiddlename.Text; }
+            set { txtmiddlename.Text = value; }
+        }
+        public string Lastname
+        {
+            get { return txtlastname.Text; }
+            set { txtlastname.Text = value; }
+        }
+        public string Email
+        {
+            get { return txtemail.Text; }
+            set { txtemail.Text = value; }
+        }
+        public string ContactNo
+        {
+            get { return txtcontact.Text; }
+            set { txtcontact.Text = value; }
+        }
+        public string Username
+        {
+            get { return txtusername.Text; }
+            set { txtusername.Text = value; }
+        }
+        public string Password
+        {
+            get { return txtPassword.Text; }
+            set { txtPassword.Text = value; }
+        }
+        public string ImgPath
+        {
+            get { return pictureBox2.Text; }
+            set { pictureBox2.Text = value; }
+        }
+    
         public AddStaff()
         {
             InitializeComponent();
-
-            ToolTip toolTip1 = new ToolTip();
-            toolTip1.SetToolTip(browseImageBtn, "Choose Image");
-
-            ToolTip toolTip2 = new ToolTip();
-            toolTip2.SetToolTip(deleteImageBtn, "Delete Image");
-
-
-            ToolTip toolTip3 = new ToolTip();
-            toolTip3.SetToolTip(btnGenerate, "Generate Password");
-
+            connection = new SqlConnection(connectionString);
+            Categorie();
             PanelBg = panelBg;
             panelBg.BackColor = Color.DimGray;
             Instance = this;
+            
+        }
+        public void Categorie()
+        {
+            addBtn.Click += delegate { Staff?.Invoke(this, EventArgs.Empty); };
+           
         }
 
+        public event EventHandler Staff;
+
+        public void SetBindingStaffSource(BindingSource login)
+        {
+            throw new NotImplementedException();
+        }
         private void browseImageBtn_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -45,16 +111,16 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     imagePath = openFileDialog.FileName;
-                    pictureBox1.Image = new System.Drawing.Bitmap(imagePath);
+                    addimage.Image = new System.Drawing.Bitmap(imagePath);
                 }
             }
         }
 
         private void deleteImageBtn_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
+            if (addimage.Image != null)
             {
-                pictureBox1.Image = null;
+                addimage.Image = null;
                 imagePath = null;
                 MessageBox.Show("Image removed successfully.");
             }

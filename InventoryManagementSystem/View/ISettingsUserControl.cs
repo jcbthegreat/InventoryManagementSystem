@@ -14,5 +14,6 @@ namespace InventoryManagementSystem.View
         event EventHandler ShowVariant;
         event EventHandler ShowBrand;
         event EventHandler ShowMeasure;
+        event EventHandler ShowStaff;
     }
 }

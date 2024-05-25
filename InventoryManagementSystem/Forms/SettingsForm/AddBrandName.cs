@@ -87,7 +87,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 }
             }
         }
-  
+
         public void LoadSubcategoriesFromDatabase()
         {
             try
@@ -275,6 +275,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             PanelBg.BackColor = color;
         }
 
-     
+        private void AddBrandName_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

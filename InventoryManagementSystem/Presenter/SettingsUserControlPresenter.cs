@@ -31,6 +31,8 @@ namespace InventoryManagementSystem.Presenter
             this._settingsUserControl.ShowVariant += VariantType;
             this._settingsUserControl.ShowBrand += BrandType;
             this._settingsUserControl.ShowMeasure += MeasureType;
+            this._settingsUserControl.ShowStaff += StaffType;
+           
         }
 
         private void ShowCategory(Object? sender, EventArgs e)
@@ -98,6 +100,17 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addmeasureForm = (Form)measurementView;
             addmeasureForm.Show();
+
+
+        }
+        private void StaffType(Object? sender, EventArgs e)
+        {
+            IStaffView staffView = new StaffDetails();
+            new StaffPresenter(staffView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addstaffForm = (Form)staffView;
+            addstaffForm.Show();
 
 
         }
