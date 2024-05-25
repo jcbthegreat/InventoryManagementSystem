@@ -16,6 +16,9 @@ namespace InventoryManagementSystem.Forms
 {
     public partial class SettingsUserControl : UserControl, ISettingsUserControl
     {
+
+
+
         private AddCategory addcategory;
         private MainForm mainForm;
         private AddBrandName addBrandName;
@@ -39,6 +42,7 @@ namespace InventoryManagementSystem.Forms
             button7.Click += delegate { ShowType?.Invoke(this, EventArgs.Empty); };
             button8.Click += delegate { ShowVariant?.Invoke(this, EventArgs.Empty); };
             button3.Click += delegate { ShowBrand?.Invoke(this, EventArgs.Empty); };
+            button5.Click += delegate { ShowMeasure?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -55,7 +59,9 @@ namespace InventoryManagementSystem.Forms
             this.chooserole = chooserole;
             this.roleassign = roleassign;
 
-            
+
+          
+
         }
 
         public event EventHandler ShowCategory;
@@ -65,6 +71,7 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowType;
         public event EventHandler ShowVariant;
         public event EventHandler ShowBrand;
+        public event EventHandler ShowMeasure;
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {
@@ -98,8 +105,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AddMeasurement measure = new AddMeasurement();
-            measure.ShowDialog();
+            //AddMeasurement measure = new AddMeasurement();
+            //measure.ShowDialog();
         }
 
         private void button3_Click_1(object sender, EventArgs e)

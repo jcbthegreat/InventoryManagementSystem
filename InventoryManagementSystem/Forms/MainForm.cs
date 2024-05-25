@@ -69,6 +69,7 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("TextBox 'txtUsername' is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
         private UserControl currentControl = null;
         private bool isDragging;
@@ -117,21 +118,36 @@ namespace InventoryManagementSystem.Forms
 
         private void LoadUserControl(UserControl control)
         {
-            // Remove the currently displayed control (if any)
-            if (currentControl != null)
+            try
             {
-                this.Controls.Remove(currentControl);
-                currentControl.Dispose();
+                // Remove the current control if it exists
+                if (currentControl != null)
+                {
+                    panel5.Controls.Remove(currentControl);
+                    currentControl.Dispose();
+                }
+
+                // Clear any remaining controls, just to be sure
+                panel5.Controls.Clear();
+
+                // Set the new control
+                currentControl = control;
+
+                // Dock the control to the form
+                currentControl.Dock = DockStyle.Fill;
+
+                // Add the new control to the form
+                panel5.Controls.Add(currentControl);
             }
-
-            // Set the new control
-            currentControl = control;
-
-            // Dock the control to fill the form
-            currentControl.Dock = DockStyle.Fill;
-
-            // Add the new control to the form
-            panel5.Controls.Add(currentControl);
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            panel5.Hide(); // Itago ang panel5 bago isara ang form ng setting
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)

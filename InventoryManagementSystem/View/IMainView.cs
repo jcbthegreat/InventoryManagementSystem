@@ -15,6 +15,6 @@ namespace InventoryManagementSystem.View
         void Show();
         void ShowSettingsUserControl(ISettingsUserControl settingsUserControl);
 
-        void Hide();
+     
     }
 }
