@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Presenter
 {
-    public class SettingsUserControlPresenter
+    public class SettingsUserControlPresenter 
     {
         private ISettingsUserControl _settingsUserControl;
         private readonly string _createdByFirstName;
@@ -30,6 +30,7 @@ namespace InventoryManagementSystem.Presenter
             this._settingsUserControl.ShowType += ShowType;
             this._settingsUserControl.ShowVariant += VariantType;
             this._settingsUserControl.ShowBrand += BrandType;
+            this._settingsUserControl.ShowMeasure += MeasureType;
         }
 
         private void ShowCategory(Object? sender, EventArgs e)
@@ -86,6 +87,17 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addBrandForm = (Form)brandView;
             addBrandForm.Show();
+
+
+        }
+        private void MeasureType(Object? sender, EventArgs e)
+        {
+            IMeasurementView measurementView = new AddMeasurement();
+            new MeasurementPresenter(measurementView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addmeasureForm = (Form)measurementView;
+            addmeasureForm.Show();
 
 
         }

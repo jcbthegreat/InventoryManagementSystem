@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Presenter
 {
-    public class LoginPresenter
+    public class LoginPresenter 
     {
         private ILoginView _loginView;
         private readonly string sqlConnectionString;

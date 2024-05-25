@@ -35,18 +35,14 @@
             textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             groupBox1 = new GroupBox();
             label4 = new Label();
             label5 = new Label();
             addBtn = new Button();
             label2 = new Label();
             label3 = new Label();
-            CategName = new TextBox();
-            DescTxt = new TextBox();
+            MeasureName = new TextBox();
+            CodeTxt = new TextBox();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
@@ -111,7 +107,6 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Window;
@@ -131,40 +126,6 @@
             dataGridView1.Size = new Size(213, 216);
             dataGridView1.TabIndex = 0;
             // 
-            // Column1
-            // 
-            Column1.HeaderText = "Measurement Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Code";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 50;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Image = Properties.Resources.pencil;
-            Column3.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Image = Properties.Resources.bin;
-            Column4.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
-            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label4);
@@ -172,8 +133,8 @@
             groupBox1.Controls.Add(addBtn);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(CategName);
-            groupBox1.Controls.Add(DescTxt);
+            groupBox1.Controls.Add(MeasureName);
+            groupBox1.Controls.Add(CodeTxt);
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 71);
             groupBox1.Name = "groupBox1";
@@ -237,20 +198,20 @@
             label3.TabIndex = 10;
             label3.Text = "Code";
             // 
-            // CategName
+            // MeasureName
             // 
-            CategName.Location = new Point(19, 64);
-            CategName.Name = "CategName";
-            CategName.Size = new Size(204, 23);
-            CategName.TabIndex = 7;
+            MeasureName.Location = new Point(19, 64);
+            MeasureName.Name = "MeasureName";
+            MeasureName.Size = new Size(204, 23);
+            MeasureName.TabIndex = 7;
             // 
-            // DescTxt
+            // CodeTxt
             // 
-            DescTxt.BackColor = SystemColors.Window;
-            DescTxt.Location = new Point(19, 118);
-            DescTxt.Name = "DescTxt";
-            DescTxt.Size = new Size(204, 23);
-            DescTxt.TabIndex = 9;
+            CodeTxt.BackColor = SystemColors.Window;
+            CodeTxt.Location = new Point(19, 118);
+            CodeTxt.Name = "CodeTxt";
+            CodeTxt.Size = new Size(204, 23);
+            CodeTxt.TabIndex = 9;
             // 
             // panelBg
             // 
@@ -315,6 +276,7 @@
             Name = "AddMeasurement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddMeasurement";
+            Load += AddMeasurement_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -338,16 +300,12 @@
         private Button addBtn;
         private Label label2;
         private Label label3;
-        private TextBox CategName;
-        private TextBox DescTxt;
+        private TextBox MeasureName;
+        private TextBox CodeTxt;
         private Label label4;
         private Panel panelBg;
         private PictureBox pictureBox1;
         private Button closeBtn;
         private Label label1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
     }
 }

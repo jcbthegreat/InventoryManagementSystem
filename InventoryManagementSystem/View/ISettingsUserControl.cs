@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.View
 {
-    public interface ISettingsUserControl
+    public interface ISettingsUserControl 
     {
         event EventHandler ShowCategory;
         event EventHandler ShowSubCategory;
         event EventHandler ShowType;
         event EventHandler ShowVariant;
         event EventHandler ShowBrand;
+        event EventHandler ShowMeasure;
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Presenter
 {
-    public class MainPresenter
+    public class MainPresenter 
     {
         private IMainView _mainView;
         private readonly string sqlConnectionString;
@@ -23,7 +23,7 @@ namespace InventoryManagementSystem.Presenter
 
         }
 
-        private void ShowSettings(object? sender, EventArgs e)
+        private void ShowSettings(object? sender, EventArgs e) 
         {
             ISettingsUserControl settingsView = new SettingsUserControl();
             new SettingsUserControlPresenter(settingsView, MainForm.Instance.FirstName, MainForm.Instance.Lastname, sqlConnectionString);
