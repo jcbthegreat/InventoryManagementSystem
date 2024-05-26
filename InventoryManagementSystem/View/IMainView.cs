@@ -11,9 +11,11 @@ namespace InventoryManagementSystem.View
 
 
         event EventHandler ShowSettings;
+        event EventHandler ShowProfile;
 
         void Show();
         void ShowSettingsUserControl(ISettingsUserControl settingsUserControl);
+       
 
      
     }

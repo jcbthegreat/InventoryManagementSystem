@@ -54,6 +54,7 @@ namespace InventoryManagementSystem.Forms
         {
             InitializeComponent();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
+            pictureBox3.Click += delegate { ShowProfile?.Invoke(this, EventArgs.Empty); };
             PanelBg = panelBg;
             PanelBg.BackColor = Color.DimGray;
             Instance = this;
@@ -77,6 +78,7 @@ namespace InventoryManagementSystem.Forms
         private Point lastForm;
 
         public event EventHandler ShowSettings;
+        public event EventHandler ShowProfile;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -201,8 +203,8 @@ namespace InventoryManagementSystem.Forms
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            EditProfile profile = new EditProfile();
-            profile.ShowDialog();
+            //EditProfile editProfileForm = new EditProfile(); // Instantiate ang EditProfile form
+            //editProfileForm.ShowDialog();
         }
 
         private void panelBg_Paint(object sender, PaintEventArgs e)

@@ -30,11 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditProfile));
             groupBox1 = new GroupBox();
-            textBox3 = new TextBox();
-            cpassword = new Label();
-            textBox2 = new TextBox();
+            txtnewpass = new TextBox();
             npassword = new Label();
-            textBox1 = new TextBox();
+            txtuser = new TextBox();
             username = new Label();
             groupBox2 = new GroupBox();
             pictureBox1 = new PictureBox();
@@ -49,63 +47,46 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(cpassword);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtnewpass);
             groupBox1.Controls.Add(npassword);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtuser);
             groupBox1.Controls.Add(username);
             groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(18, 27);
+            groupBox1.Location = new Point(12, 27);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(245, 234);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Edit Profile";
             // 
-            // textBox3
+            // txtnewpass
             // 
-            textBox3.Location = new Point(16, 195);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(208, 25);
-            textBox3.TabIndex = 5;
-            // 
-            // cpassword
-            // 
-            cpassword.AutoSize = true;
-            cpassword.Location = new Point(16, 175);
-            cpassword.Name = "cpassword";
-            cpassword.Size = new Size(118, 17);
-            cpassword.TabIndex = 4;
-            cpassword.Text = "Confirm Password";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(16, 135);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(208, 25);
-            textBox2.TabIndex = 3;
+            txtnewpass.Location = new Point(17, 148);
+            txtnewpass.Name = "txtnewpass";
+            txtnewpass.PasswordChar = '*';
+            txtnewpass.Size = new Size(208, 25);
+            txtnewpass.TabIndex = 3;
             // 
             // npassword
             // 
             npassword.AutoSize = true;
-            npassword.Location = new Point(16, 115);
+            npassword.Location = new Point(17, 128);
             npassword.Name = "npassword";
             npassword.Size = new Size(97, 17);
             npassword.TabIndex = 2;
             npassword.Text = "New Password";
             // 
-            // textBox1
+            // txtuser
             // 
-            textBox1.Location = new Point(16, 70);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(208, 25);
-            textBox1.TabIndex = 1;
+            txtuser.Location = new Point(17, 83);
+            txtuser.Name = "txtuser";
+            txtuser.Size = new Size(208, 25);
+            txtuser.TabIndex = 1;
             // 
             // username
             // 
             username.AutoSize = true;
-            username.Location = new Point(16, 50);
+            username.Location = new Point(17, 63);
             username.Name = "username";
             username.Size = new Size(69, 17);
             username.TabIndex = 0;
@@ -211,6 +192,7 @@
             Name = "EditProfile";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditProfile";
+            Load += EditProfile_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -225,11 +207,9 @@
         private PictureBox pictureBox1;
         private Button browseImageBtn;
         private Button deleteImageBtn;
-        private TextBox textBox3;
-        private Label cpassword;
-        private TextBox textBox2;
+        private TextBox txtnewpass;
         private Label npassword;
-        private TextBox textBox1;
+        private TextBox txtuser;
         private Label username;
         private Button btn_save;
         private Button btn_close;

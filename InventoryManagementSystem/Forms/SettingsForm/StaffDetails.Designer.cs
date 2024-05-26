@@ -73,6 +73,7 @@
             addimage = new PictureBox();
             browseBtn = new Button();
             deleteBtn = new Button();
+            groupBox3 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)btnGeneratepass).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)addimage).BeginInit();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -114,7 +116,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(827, 36);
+            panelBg.Size = new Size(819, 36);
             panelBg.TabIndex = 5;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -136,7 +138,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(795, 0);
+            closeBtn.Location = new Point(787, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -150,9 +152,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(41, 11);
             label1.Name = "label1";
-            label1.Size = new Size(53, 15);
+            label1.Size = new Size(32, 15);
             label1.TabIndex = 0;
-            label1.Text = "Staff List";
+            label1.Text = "Staff";
             // 
             // dataGridView1
             // 
@@ -163,12 +165,12 @@
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Cursor = Cursors.Hand;
-            dataGridView1.Location = new Point(12, 469);
+            dataGridView1.Location = new Point(8, 18);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(792, 251);
+            dataGridView1.Size = new Size(778, 251);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -212,6 +214,7 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Register Staff";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // label21
             // 
@@ -435,6 +438,7 @@
             // txtcontact
             // 
             txtcontact.Location = new Point(235, 184);
+            txtcontact.MaxLength = 11;
             txtcontact.Name = "txtcontact";
             txtcontact.Size = new Size(203, 25);
             txtcontact.TabIndex = 8;
@@ -521,6 +525,7 @@
             addBtn.TabIndex = 16;
             addBtn.Text = "Register";
             addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
             // 
             // groupBox2
             // 
@@ -578,17 +583,28 @@
             deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(dataGridView1);
+            groupBox3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox3.Location = new Point(12, 445);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(792, 275);
+            groupBox3.TabIndex = 23;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Staff List";
+            // 
             // StaffDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(827, 732);
+            ClientSize = new Size(819, 732);
+            Controls.Add(groupBox3);
             Controls.Add(addBtn);
             Controls.Add(pictureBox1);
             Controls.Add(textBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(dataGridView1);
             Controls.Add(panelBg);
             FormBorderStyle = FormBorderStyle.None;
             Name = "StaffDetails";
@@ -606,6 +622,7 @@
             ((System.ComponentModel.ISupportInitialize)btnGeneratepass).EndInit();
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)addimage).EndInit();
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -656,5 +673,6 @@
         private PictureBox addimage;
         private Button browseBtn;
         private Button deleteBtn;
+        private GroupBox groupBox3;
     }
 }
