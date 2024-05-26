@@ -74,6 +74,8 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowBrand;
         public event EventHandler ShowMeasure;
         public event EventHandler ShowStaff;
+       
+      
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {

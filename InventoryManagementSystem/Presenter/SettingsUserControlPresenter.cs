@@ -32,6 +32,7 @@ namespace InventoryManagementSystem.Presenter
             this._settingsUserControl.ShowBrand += BrandType;
             this._settingsUserControl.ShowMeasure += MeasureType;
             this._settingsUserControl.ShowStaff += StaffType;
+         
            
         }
 

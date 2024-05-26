@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -103,7 +104,37 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         }
         public void Categorie()
         {
-            addBtn.Click += delegate { Staff?.Invoke(this, EventArgs.Empty); };
+            addBtn.Click += delegate
+            {
+                string contactNumber = txtcontact.Text;
+                string email = txtemail.Text;
+                // Subukan i-convert ang input sa integer
+                if (!Regex.IsMatch(contactNumber, @"^(09|\+639)\d{9}$"))
+                {
+                    MessageBox.Show("Invalid contact number format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtcontact.Focus();
+                    return;
+                }
+
+                    // Subukan ding tiyakin na ang contact number ay may eksaktong 11 digits
+                    if (contactNumber.Length != 11)
+                {
+                    MessageBox.Show("Invalid contact number format. Please enter a 11-digit number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtcontact.Focus();
+                    return;
+                }
+
+                if (!Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                {
+                    MessageBox.Show("Invalid email address format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtemail.Focus();
+                    return;
+                }
+
+                // Kung walang error sa validation, maaari mo nang iproseso ang pag-add ng staff o anumang iba pang kaukulang aksyon
+                Staff?.Invoke(this, EventArgs.Empty);
+            };
+
 
         }
 
@@ -262,6 +293,16 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 MessageBox.Show("No image to remove.");
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
