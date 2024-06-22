@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
@@ -38,15 +38,11 @@
             label6 = new Label();
             addBtn = new Button();
             label4 = new Label();
-            textBox1 = new TextBox();
+            nameTxt = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            address = new TextBox();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column4 = new DataGridViewImageColumn();
             pictureBox2 = new PictureBox();
             textBox3 = new TextBox();
             panelBg.SuspendLayout();
@@ -102,9 +98,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(41, 11);
             label1.Name = "label1";
-            label1.Size = new Size(123, 15);
+            label1.Size = new Size(137, 15);
             label1.TabIndex = 0;
-            label1.Text = "Add Location Method";
+            label1.Text = "Add Warehouse Method";
             // 
             // groupBox1
             // 
@@ -112,23 +108,23 @@
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(addBtn);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(nameTxt);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(address);
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 103);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(264, 313);
+            groupBox1.Size = new Size(264, 258);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Add Location";
+            groupBox1.Text = "Add Warehouse";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(77, 118);
+            label2.Location = new Point(77, 90);
             label2.Name = "label2";
             label2.Size = new Size(13, 15);
             label2.TabIndex = 29;
@@ -139,7 +135,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(111, 63);
+            label6.Location = new Point(123, 36);
             label6.Name = "label6";
             label6.Size = new Size(13, 15);
             label6.TabIndex = 28;
@@ -153,7 +149,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(29, 173);
+            addBtn.Location = new Point(29, 188);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(76, 27);
             addBtn.TabIndex = 25;
@@ -164,35 +160,37 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(29, 118);
+            label4.Location = new Point(29, 90);
             label4.Name = "label4";
             label4.Size = new Size(48, 13);
             label4.TabIndex = 27;
             label4.Text = "Address";
             // 
-            // textBox1
+            // nameTxt
             // 
-            textBox1.Location = new Point(29, 134);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(204, 23);
-            textBox1.TabIndex = 23;
+            nameTxt.Location = new Point(29, 54);
+            nameTxt.Name = "nameTxt";
+            nameTxt.Size = new Size(204, 23);
+            nameTxt.TabIndex = 23;
+            nameTxt.TextChanged += nameTxt_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(29, 66);
+            label3.Location = new Point(29, 38);
             label3.Name = "label3";
-            label3.Size = new Size(83, 13);
+            label3.Size = new Size(97, 13);
             label3.TabIndex = 26;
-            label3.Text = "Location Name";
+            label3.Text = "Warehouse Name";
             // 
-            // textBox2
+            // address
             // 
-            textBox2.Location = new Point(29, 81);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(204, 23);
-            textBox2.TabIndex = 24;
+            address.Location = new Point(29, 108);
+            address.Multiline = true;
+            address.Name = "address";
+            address.Size = new Size(204, 74);
+            address.TabIndex = 24;
             // 
             // groupBox2
             // 
@@ -200,10 +198,10 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(296, 103);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(483, 335);
+            groupBox2.Size = new Size(483, 258);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
-            groupBox2.Text = "List Of Locations";
+            groupBox2.Text = "List Of Warehouse";
             // 
             // dataGridView1
             // 
@@ -214,54 +212,23 @@
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Cursor = Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.DimGray;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Location = new Point(16, 27);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(461, 291);
+            dataGridView1.Size = new Size(451, 217);
             dataGridView1.TabIndex = 1;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Location Name";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 170;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Address";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 250;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column3.HeaderText = "";
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 5;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column4.HeaderText = "";
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 5;
             // 
             // pictureBox2
             // 
@@ -281,7 +248,7 @@
             textBox3.ForeColor = SystemColors.WindowText;
             textBox3.Location = new Point(567, 72);
             textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Search Location";
+            textBox3.PlaceholderText = "Search Warehouse";
             textBox3.Size = new Size(212, 25);
             textBox3.TabIndex = 23;
             // 
@@ -289,16 +256,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 399);
             Controls.Add(pictureBox2);
             Controls.Add(textBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(panelBg);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "AddLocation";
+            //Name = "AddLocation";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "AddLocation";
+            //Text = "AddLocation";
             Load += AddLocation_Load;
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
@@ -322,17 +289,13 @@
         private Label label6;
         private Button addBtn;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox nameTxt;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox address;
         private GroupBox groupBox2;
         private PictureBox pictureBox2;
         private TextBox textBox3;
         private Label label2;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewImageColumn Column4;
     }
 }

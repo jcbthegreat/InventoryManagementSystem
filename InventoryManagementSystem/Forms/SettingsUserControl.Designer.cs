@@ -287,7 +287,7 @@
             button4.Padding = new Padding(0, 0, 0, 10);
             button4.Size = new Size(200, 126);
             button4.TabIndex = 5;
-            button4.Text = "Add Location";
+            button4.Text = "Add Warehouse";
             button4.TextAlign = ContentAlignment.BottomCenter;
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;

@@ -10,7 +10,7 @@ namespace InventoryManagementSystem.Model
     {
         private int id;
         private string measurementname;
-        private string code;
+        private string measurementcode;
         private string createdby;
 
 
@@ -26,10 +26,10 @@ namespace InventoryManagementSystem.Model
             set { measurementname = value; }
         }
 
-        public string Code
+        public string MeasurementCode
         {
-            get { return code; }
-            set { code = value; }
+            get { return measurementcode; }
+            set { measurementcode = value; }
         }
 
         public string CreatedBy

@@ -110,7 +110,7 @@
             comboBox1.FlatStyle = FlatStyle.Flat;
             comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(15, 127);
+            comboBox1.Location = new Point(15, 66);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(195, 28);
             comboBox1.TabIndex = 2;
@@ -121,7 +121,7 @@
             comboBox2.FlatStyle = FlatStyle.Flat;
             comboBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(15, 64);
+            comboBox2.Location = new Point(15, 127);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(193, 28);
             comboBox2.TabIndex = 3;

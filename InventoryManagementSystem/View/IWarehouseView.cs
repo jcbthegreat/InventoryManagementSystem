@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.View
 {
-    public interface IMeasurementView
+    public interface IWarehouseView
     {
-        string MeasurementName { get; set; }
-        string MeasurementCode { get; set; }
+        string Name { get; set; }
+        string Address { get; set; }
 
 
-        event EventHandler Measure;
+        event EventHandler Warehouse;
 
-        void SetBindingMeasureSource(BindingSource measure);
+        void SetBindingWarehouseSource(BindingSource warehouse);
         void Show();
         void Hide();
         void RefreshDataGridView();

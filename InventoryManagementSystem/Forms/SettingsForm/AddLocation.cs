@@ -1,7 +1,9 @@
-﻿using System;
+﻿using InventoryManagementSystem.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,10 +12,27 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms.SettingsForm
 {
-    public partial class AddLocation : Form
+    public partial class AddLocation : Form, IWarehouseView
     {
+
+        string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         public Panel PanelBg { get; set; }
         public static AddLocation Instance { get; private set; }
+        private readonly SqlConnection connection;
+        SqlDataAdapter adapter;
+        DataTable dt;
+
+        public string Name
+        {
+            get { return nameTxt.Text; }
+            set { nameTxt.Text = value; }
+        }
+
+        public string Address
+        {
+            get { return address.Text; }
+            set { address.Text = value; }
+        }
 
         public AddLocation()
         {
@@ -21,6 +40,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             PanelBg = panelBg;
             panelBg.BackColor = Color.DimGray;
             Instance = this;
+            connection = new SqlConnection(connectionString);
+            Categorie();
+            showdata();
         }
 
         #region FormShadow
@@ -102,45 +124,82 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT) m.Result = (IntPtr)HTCAPTION;
         }
         #endregion
+        public void Categorie()
+        {
+            addBtn.Click += delegate { Warehouse?.Invoke(this, EventArgs.Empty); };
+            showdata();
+        }
+        public event EventHandler Warehouse;
+
+        public void SetBindingWarehouseSource(BindingSource login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void showdata()
+        {
+            try
+            {
+                // Open the connection
+                connection.Open();
+                adapter = new SqlDataAdapter("SELECT Name as [Warehouse Name],Address as [Warehouse Address]" +
+                     " FROM [IV].[Warehouse] " +
+                    " order by ID asc", connection);
+                dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                // Resize the columns based on the content
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+                dataGridView1.AutoResizeColumns();
+
+                // Remove padding from the cells
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.DefaultCellStyle.Padding = new Padding(0);
+                }
+
+                // Resize the column headers
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                // Ensure all rows are visible
+                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                // Optionally, adjust the last column to fill the remaining space
+                dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                connection.Close();
+            }
+        }
+
+        public void RefreshDataGridView()
+        {
+            showdata();
+        }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void InitializeDataGridView()
-        {
-            try
-            {
 
-                DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
-
-
-                //dataGridView1.Rows.Add("Category1", "Category description can be blank");
-                //dataGridView1.Rows.Add("Category2", "Category description can be blank");
-                //dataGridView1.Rows.Add("Category3", "Category description can be blank");
-                //dataGridView1.Rows.Add("Category4", "Category description can be blank");
-                //dataGridView1.Rows.Add("Category5", "Category description can be blank");
-
-                // Add some data rows with images and text
-                dataGridView1.Rows.Add(new object[] { "Location 1", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Location 2", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Location 3", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Location 4", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Location 5", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-                dataGridView1.Rows.Add(new object[] { "Location 6", "Location Address can be blank", Properties.Resources.pencil, Properties.Resources.bin });
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
 
         private void AddLocation_Load(object sender, EventArgs e)
         {
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
-            InitializeDataGridView();
+
         }
 
         private void panelBg_Paint(object sender, PaintEventArgs e)
@@ -150,6 +209,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         public void ChangePanelColor7(Color color)
         {
             PanelBg.BackColor = color;
+        }
+
+        private void nameTxt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
