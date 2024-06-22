@@ -8,46 +8,46 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Presenter
 {
-    public class MeasurementPresenter
+    public class WarehousePresenter
     {
-        private IMeasurementView _measurementView;
+        private IWarehouseView _warehouseView;
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
         private readonly string _sqlConnectionString;
 
-        public MeasurementPresenter(IMeasurementView measureView, string createdByFirstName, string createdByLastName, string sqlConnectionString)
+        public WarehousePresenter(IWarehouseView warehouseView, string createdByFirstName, string createdByLastName, string sqlConnectionString)
         {
-            _measurementView = measureView;
+            _warehouseView = warehouseView;
             _createdByFirstName = createdByFirstName;
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
-            _measurementView.Measure += CategoryEvent;
+            _warehouseView.Warehouse += CategoryEvent;
         }
 
         private void CategoryEvent(object? sender, EventArgs e)
         {
-            string measureName = _measurementView.MeasurementName;
-            string code = _measurementView.MeasurementCode;
-     
-            if (string.IsNullOrEmpty(measureName))
+            string warehouseName = _warehouseView.Name;
+            string address = _warehouseView.Address;
+
+            if (string.IsNullOrEmpty(warehouseName))
             {
-                MessageBox.Show("Measurement Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Warehouse Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(address))
             {
-                MessageBox.Show("Measurement Code cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Address cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Insert data into the database
-            InsertCategory(measureName, code);
+            InsertCategory(warehouseName, address);
 
-            _measurementView.RefreshDataGridView();
+            _warehouseView.RefreshDataGridView();
         }
 
-        private void InsertCategory(string measureName, string code)
+        private void InsertCategory(string warehouseName, string address)
         {
             try
             {
@@ -57,24 +57,24 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[Measurement] (MeasurementName, MeasurementCode, CreatedBy,CreatedDate) VALUES (@MeasurementName, @MeasurementCode, @CreatedBy, @CreatedDate)";
+                    string query = "INSERT INTO [IV].[Warehouse] (Name, Address, CreatedBy,CreatedDate) VALUES (@Name, @Address, @CreatedBy, @CreatedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@MeasurementName", measureName);
-                        command.Parameters.AddWithValue("@MeasurementCode", code);
-             
+                        command.Parameters.AddWithValue("@Name", warehouseName);
+                        command.Parameters.AddWithValue("@Address", address);
+
                         command.Parameters.AddWithValue("@CreatedBy", $"{_createdByFirstName} {_createdByLastName}");
                         command.Parameters.AddWithValue("@CreatedDate", createdDate);
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
                         {
-                            MessageBox.Show("Measurement added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Warehouse Location added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                         else
                         {
-                            MessageBox.Show("Error adding category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error adding Warehouse.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

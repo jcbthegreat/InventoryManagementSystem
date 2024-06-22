@@ -27,10 +27,10 @@ namespace InventoryManagementSystem.Repositories
                 connection.Open();
                 cmd.Connection = connection;
                 cmd.CommandText = "SELECT * ";
-                cmd.CommandText += " FROM [dbo].[IV_Measurement] mm " +
-                    " WHERE mm.MeasurementName = @MeasurementName AND mm.Code = @Code";
+                cmd.CommandText += " FROM [IV].[Measurement] mm " +
+                    " WHERE mm.MeasurementName = @MeasurementName AND mm.MeasurementCode = @MeasurementCode";
                 cmd.Parameters.Add("@MeasurementName", SqlDbType.VarChar).Value = measurementName;
-                cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = code;
+                cmd.Parameters.Add("@MeasurementCode", SqlDbType.VarChar).Value = code;
                
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -38,7 +38,7 @@ namespace InventoryManagementSystem.Repositories
                     {
                         var measure = new MeasurementModel();
                         measure.MeasurementName = reader["MeasurementName"].ToString();
-                        measure.Code = reader["Code"].ToString();
+                        measure.MeasurementCode = reader["MeasurementCode"].ToString();
                        
                         measures.Add(measure);
                     }

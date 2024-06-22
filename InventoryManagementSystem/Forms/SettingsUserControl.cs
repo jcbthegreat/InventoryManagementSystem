@@ -44,6 +44,7 @@ namespace InventoryManagementSystem.Forms
             button3.Click += delegate { ShowBrand?.Invoke(this, EventArgs.Empty); };
             button5.Click += delegate { ShowMeasure?.Invoke(this, EventArgs.Empty); };
             button9.Click += delegate { ShowStaff?.Invoke(this, EventArgs.Empty); };
+            button4.Click += delegate { ShowWarehouse?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -74,6 +75,7 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowBrand;
         public event EventHandler ShowMeasure;
         public event EventHandler ShowStaff;
+        public event EventHandler ShowWarehouse;
        
       
 
@@ -91,8 +93,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AddLocation addlocation = new AddLocation();
-            addlocation.ShowDialog();
+            //AddLocation addlocation = new AddLocation();
+            //addlocation.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

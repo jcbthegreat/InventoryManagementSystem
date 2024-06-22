@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Model
 {
-    public interface IMeasurementRepository
+    public interface IWarehouseRepository
     {
-        IEnumerable<MeasurementModel> GetByValue(string MeasurementName, string MeasurementCode);
+        IEnumerable<WarehouseModel> GetByValue(string Name, string Address);
     }
 }

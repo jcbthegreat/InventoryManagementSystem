@@ -27,7 +27,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             set { MeasureName.Text = value; }
         }
 
-        public string Code
+        public string MeasurementCode
         {
             get { return CodeTxt.Text; }
             set { CodeTxt.Text = value; }
@@ -62,8 +62,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT MeasurementName as [Measurement Name],Code" +
-                     " FROM [dbo].[IV_Measurement] " +
+                adapter = new SqlDataAdapter("SELECT MeasurementName as [Measurement Name],MeasurementCode as [Measurement Code]" +
+                     " FROM [IV].[Measurement] " +
                     " order by ID asc", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
@@ -124,6 +124,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         }
 
         private void AddMeasurement_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CodeTxt_TextChanged(object sender, EventArgs e)
         {
 
         }
