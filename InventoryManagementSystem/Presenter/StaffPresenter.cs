@@ -36,7 +36,7 @@ namespace InventoryManagementSystem.Presenter
             string contactno = _staffView.ContactNo;
             string username = _staffView.Username;
             string password = _staffView.Password;
-            string imgpath = _staffView.ImgPath;
+            string imgpath = Convert.ToBase64String(_staffView.ImgPath);
 
             if (string.IsNullOrEmpty(staffNo))
             {

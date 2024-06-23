@@ -19,7 +19,7 @@ namespace InventoryManagementSystem.View
         string ContactNo { get; set; }
         string Username { get; set; }
         string Password { get; set; }
-        string ImgPath { get; set; }
+        byte[] ImgPath { get; set; }
 
 
         event EventHandler Staff;

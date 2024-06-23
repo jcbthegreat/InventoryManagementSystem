@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,16 @@ namespace InventoryManagementSystem.Forms
 {
     public partial class ProductUserControl : UserControl
     {
+        string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
+        private readonly SqlConnection connection;
+        SqlDataAdapter adapter;
+        DataTable dt;
         public ProductUserControl()
         {
             InitializeComponent();
+            connection = new SqlConnection(connectionString);
+            showdata();
         }
-        private DataTable dataTable;
 
         private void addBtnFrm_Click(object sender, EventArgs e)
         {
@@ -24,109 +30,65 @@ namespace InventoryManagementSystem.Forms
             addProductForm.ShowDialog();
         }
 
+        public void showdata()
+        {
+            try
+            {
+                // Open the connection
+                connection.Open();
+                adapter = new SqlDataAdapter("SELECT wh.[Name] as [Warehouse Name], p.product_code as [Product Code], p.product_name as [Product Name],b.BrandName as [Brand Name], c.CategoryName as [Category Name], " +
+                    " s.subcategoryname as [Sub Category Name], t.typename as [Type Name], v.variantname as [Variant Name],m.measurementname as [Measurement Name], " +
+                    " w.current_stock as [Current Stock], w.min_stock as [Minimun Stock], w.max_stock as [Maximum Stock], w.original_price as [Original Price], w.retail_price as [Retail_Price] " +
+                     " FROM [IV].[Product] p LEFT JOIN [IV].[brand] b ON p.brand_id = b.id " +
+                     " LEFT JOIN [IV].[Categories] c on p.category_id = c.id LEFT JOIN [IV].[SubCategories] s on p.subcategory_id = s.ID " +
+                     " LEFT JOIN [IV].[Types] t on p.[type_id] = t.id LEFT JOIN [IV].[Variant] v on p.variant_id = v.id " +
+                     " LEFT JOIN [IV].[Measurement] m on p.unit_id = m.id " +
+                     " LEFT JOIN [IV].[WarehouseItems] w on p.id = w.product_id " +
+                     " LEFT JOIN [IV].[Warehouse] wh on w.warehouse_id = wh.id " +
+                    " order by p.ID asc", connection);
+                dt = new DataTable();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                // Resize the columns based on the content
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+                dataGridView1.AutoResizeColumns();
+
+                // Remove padding from the cells
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.DefaultCellStyle.Padding = new Padding(0);
+                }
+
+                // Resize the column headers
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                // Ensure all rows are visible
+                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                connection.Close();
+            }
+        }
+
         private void ProductUserControl_Load(object sender, EventArgs e)
         {
-            InitializeDataGridView();
+
 
         }
 
-        private void InitializeDataGridView()
-        {
-            // Sample data
-            dataTable = new DataTable();
-            dataTable.Columns.Add("Brand Name", typeof(string));
-            dataTable.Columns.Add("Product Code", typeof(string));
-            dataTable.Columns.Add("Product Name", typeof(string));
-            dataTable.Columns.Add("Category", typeof(string));
-            dataTable.Columns.Add("Sub Category", typeof(string));
-            dataTable.Columns.Add("Type", typeof(string));
-            dataTable.Columns.Add("Variant", typeof(string));
-            dataTable.Columns.Add("Measurement", typeof(string));
-            dataTable.Columns.Add("Minimum", typeof(string));
-            dataTable.Columns.Add("Maximum", typeof(string));
-            dataTable.Columns.Add("Original Price", typeof(string));
-            dataTable.Columns.Add("Retail Price", typeof(string));
-            dataTable.Columns.Add("Stock", typeof(string));
-            dataTable.Columns.Add("Availability", typeof(string));
-
-            // Add some sample rows
-            dataTable.Rows.Add("BrandName1", "Code", "Product Name", "Category1", "Sub Category1", "Type", "Black", "1pc", "10", "20", "500" , "700" , "50" , "Yes");
-            //dataTable.Rows.Add("Category2", "BrandName2", "Code2", "Product Name Here1", "699.00", "800.00", "500", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category3", "BrandName3", "Code3", "Product Name Here2", "347.00", "500.00", "500", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category4", "BrandName4", "Code4", "Product Name Here3", "897.00", "950.00", "345", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category3", "BrandName5", "Code5", "Product Name Here4", "456.00", "650.00", "645", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category4", "BrandName5", "Code6", "Product Name Here5", "555", "650.00", "234", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category5", "BrandName5", "Code7", "Product Name Here6", "660.00", "750.00", "435", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category5", "BrandName5", "Code8", "Product Name Here7", "700.00", "850.00", "56", "70", "1500", "No");
-            //dataTable.Rows.Add("Category1", "BrandName5", "Code9", "Product Name Here8", "900.00", "1050.00", "56", "70", "1500", "No");
-            //dataTable.Rows.Add("Category1", "BrandName5", "Code10", "Product Name Here9", "500.00", "650.00", "867", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category2", "BrandName5", "Code11", "Product Name Here10", "900.00", "1150.00", "456", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category2", "BrandName5", "Code12", "Product Name Here11", "320.00", "450.00", "654", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category3", "BrandName5", "Code13", "Product Name Here12", "200.00", "450.00", "876", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category3", "BrandName5", "Code14", "Product Name Here13", "100.00", "250.00", "456", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category4", "BrandName5", "Code15", "Product Name Here14", "120.00", "350.00", "567", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category4", "BrandName5", "Code16", "Product Name Here15", "600.00", "850.00", "446", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category4", "BrandName5", "Code17", "Product Name Here16", "600.00", "850.00", "45", "70", "1500", "No");
-            //dataTable.Rows.Add("Category5", "BrandName5", "Code18", "Product Name Here17", "400.00", "650.00", "66", "70", "1500", "Yes");
-            //dataTable.Rows.Add("Category5", "BrandName5", "Code19", "Product Name Here18", "400.00", "650.00", "6", "70", "1500", "No");
-            // Bind data to DataGridView
-            dataGridView1.DataSource = dataTable;
-
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
-
-            dataGridView1.AutoResizeColumns();
-
-            // Remove padding from the cells
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.DefaultCellStyle.Padding = new Padding(0);
-            }
-
-            // Resize the column headers
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            // Ensure all rows are visible
-            dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
-
-            // Optionally, adjust the last column to fill the remaining space
-            dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string searchValue = textBox1.Text.ToLower();
-
-            if (!string.IsNullOrEmpty(searchValue))
-            {
-
-                var filteredRows = dataTable.AsEnumerable()
-                    .Where(row =>
-                        row.ItemArray.Any(field =>
-                            field.ToString().ToLower().Contains(searchValue)))
-                    .ToList();
-
-                if (filteredRows.Any())
-                {
-                    // If there are filtered rows, bind them to the DataGridView
-                    dataGridView1.DataSource = filteredRows.CopyToDataTable();
-                }
-                else
-                {
-                    // If no rows match the filter criteria, clear the DataGridView
-                    dataGridView1.DataSource = null;
-                }
-            }
-            else
-            {
-                // If search box is empty, show all rows
-                dataGridView1.DataSource = dataTable;
-            }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

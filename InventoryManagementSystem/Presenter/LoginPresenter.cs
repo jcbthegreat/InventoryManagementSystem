@@ -58,7 +58,7 @@ namespace InventoryManagementSystem.Presenter
                         string position = user.Position;
 
                         _loginView.Hide();
-                        IMainView mainView = new MainForm(firstName,lastname, position); // Pass the first name and last name to the MainForm
+                        IMainView mainView = new MainForm(firstName,lastname, position, userName); // Pass the first name and last name to the MainForm
                         new MainPresenter(mainView, sqlConnectionString);
 
                         mainView.Show();
