@@ -80,11 +80,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             get { return txtPassword.Text; }
             set { txtPassword.Text = value; }
         }
-        public string ImgPath
-        {
-            get { return pictureBox2.Text; }
-            set { pictureBox2.Text = value; }
-        }
+        public byte[] ImgPath { get; set; }
 
         public StaffDetails()
         {

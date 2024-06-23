@@ -42,6 +42,7 @@
             button1 = new Button();
             addBtnFrm = new Button();
             deleteProdBtn = new Button();
+            additem = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -81,7 +82,6 @@
             textBox1.PlaceholderText = "Quick Search";
             textBox1.Size = new Size(325, 18);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label9
             // 
@@ -140,7 +140,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1172, 530);
             dataGridView1.TabIndex = 2;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // panel3
             // 
@@ -153,13 +153,14 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(additem);
             panel4.Controls.Add(button1);
             panel4.Controls.Add(addBtnFrm);
             panel4.Controls.Add(deleteProdBtn);
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(801, 0);
+            panel4.Location = new Point(658, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(371, 77);
+            panel4.Size = new Size(514, 77);
             panel4.TabIndex = 2;
             // 
             // button1
@@ -172,7 +173,7 @@
             button1.ForeColor = Color.WhiteSmoke;
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(129, 21);
+            button1.Location = new Point(263, 21);
             button1.Name = "button1";
             button1.Size = new Size(115, 33);
             button1.TabIndex = 2;
@@ -190,7 +191,7 @@
             addBtnFrm.ForeColor = Color.WhiteSmoke;
             addBtnFrm.Image = (Image)resources.GetObject("addBtnFrm.Image");
             addBtnFrm.ImageAlign = ContentAlignment.MiddleLeft;
-            addBtnFrm.Location = new Point(8, 21);
+            addBtnFrm.Location = new Point(141, 21);
             addBtnFrm.Name = "addBtnFrm";
             addBtnFrm.Size = new Size(116, 33);
             addBtnFrm.TabIndex = 0;
@@ -208,13 +209,31 @@
             deleteProdBtn.ForeColor = Color.WhiteSmoke;
             deleteProdBtn.Image = (Image)resources.GetObject("deleteProdBtn.Image");
             deleteProdBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            deleteProdBtn.Location = new Point(249, 21);
+            deleteProdBtn.Location = new Point(384, 21);
             deleteProdBtn.Name = "deleteProdBtn";
             deleteProdBtn.Size = new Size(112, 33);
             deleteProdBtn.TabIndex = 1;
             deleteProdBtn.Text = "Delete Product";
             deleteProdBtn.TextAlign = ContentAlignment.MiddleRight;
             deleteProdBtn.UseVisualStyleBackColor = false;
+            // 
+            // additem
+            // 
+            additem.BackColor = Color.FromArgb(92, 184, 92);
+            additem.BackgroundImageLayout = ImageLayout.Center;
+            additem.Cursor = Cursors.Hand;
+            additem.FlatAppearance.BorderSize = 0;
+            additem.FlatStyle = FlatStyle.Flat;
+            additem.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            additem.ForeColor = Color.WhiteSmoke;
+            additem.Image = (Image)resources.GetObject("additem.Image");
+            additem.ImageAlign = ContentAlignment.MiddleLeft;
+            additem.Location = new Point(19, 21);
+            additem.Name = "additem";
+            additem.Size = new Size(116, 33);
+            additem.TabIndex = 3;
+            additem.Text = "    Add Item";
+            additem.UseVisualStyleBackColor = false;
             // 
             // ProductUserControl
             // 
@@ -248,5 +267,6 @@
         private DataGridView dataGridView1;
         private Panel panel4;
         private Button button1;
+        private Button additem;
     }
 }

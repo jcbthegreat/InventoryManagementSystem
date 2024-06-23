@@ -13,7 +13,7 @@ namespace InventoryManagementSystem.Forms
 {
     public partial class AddProductForm : Form
     {
-        private string imagePath;
+        //private string imagePath;
 
         public Panel PanelBg { get; set; }
         public static AddProductForm Instance { get; private set; }
@@ -27,11 +27,11 @@ namespace InventoryManagementSystem.Forms
             panelBg.BackColor = Color.DimGray;
             Instance = this;
 
-            ToolTip toolTip1 = new ToolTip();
-            toolTip1.SetToolTip(browseImageBtn, "Choose Image");
+            //ToolTip toolTip1 = new ToolTip();
+            //toolTip1.SetToolTip(browseImageBtn, "Choose Image");
 
-            ToolTip toolTip2 = new ToolTip();
-            toolTip2.SetToolTip(deleteImageBtn, "Delete Image");
+            //ToolTip toolTip2 = new ToolTip();
+            //toolTip2.SetToolTip(deleteImageBtn, "Delete Image");
         }
 
         #region FormShadow
@@ -119,34 +119,34 @@ namespace InventoryManagementSystem.Forms
             this.Close();
         }
 
-        private void browseImageBtn_Click(object sender, EventArgs e)
-        {
+        //private void browseImageBtn_Click(object sender, EventArgs e)
+        //{
 
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.BMP;*.JPG;*.JPEG;*.GIF;*.PNG";
+        //    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        //    {
+        //        openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.BMP;*.JPG;*.JPEG;*.GIF;*.PNG";
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    imagePath = openFileDialog.FileName;
-                    pictureBox1.Image = new System.Drawing.Bitmap(imagePath);
-                }
-            }
-        }
+        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            imagePath = openFileDialog.FileName;
+        //            pictureBox1.Image = new System.Drawing.Bitmap(imagePath);
+        //        }
+        //    }
+        //}
 
-        private void deleteImageBtn_Click(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                pictureBox1.Image = null;
-                imagePath = null;
-                MessageBox.Show("Image removed successfully.");
-            }
-            else
-            {
-                MessageBox.Show("No image to remove.");
-            }
-        }
+        //private void deleteImageBtn_Click(object sender, EventArgs e)
+        //{
+        //    if (pictureBox1.Image != null)
+        //    {
+        //        pictureBox1.Image = null;
+        //        imagePath = null;
+        //        MessageBox.Show("Image removed successfully.");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("No image to remove.");
+        //    }
+        //}
 
         private void AddProductForm_Load(object sender, EventArgs e)
         {

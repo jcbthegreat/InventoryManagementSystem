@@ -20,8 +20,8 @@ namespace InventoryManagementSystem.Forms
         private string imagePath;
         private int id;
         private string staffno;
-        private string lastname, firstname,middlename;
-        private string position,email,contactno;
+        private string lastname, firstname, middlename;
+        private string position, email, contactno;
         private string roletype;
         private readonly EditProfilePresenter _presenter;
         public string StaffNo
@@ -77,20 +77,16 @@ namespace InventoryManagementSystem.Forms
             set
             {
                 txtnewpass.Text = value;
-               
+
             }
         }
-        public string ImgPath
-        {
-            get { return pictureBox1.Text; }
-            set { pictureBox1.Text = value; }
-        }
+        public byte[] ImgPath { get; set; }
         public EditProfile()
         {
             InitializeComponent();
-           
+
             Categorie();
-           
+
         }
 
 
@@ -110,7 +106,7 @@ namespace InventoryManagementSystem.Forms
         }
         public void RefreshDataGridView()
         {
-            
+
         }
         private void browseImageBtn_Click(object sender, EventArgs e)
         {
@@ -121,8 +117,20 @@ namespace InventoryManagementSystem.Forms
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     imagePath = openFileDialog.FileName;
-                    pictureBox1.Image = new System.Drawing.Bitmap(imagePath);
+                    pictureBox1.Image = new Bitmap(imagePath);
+
+                    // Convert image to byte array and assign to ImgPath
+                    ImgPath = ImageToByteArray(pictureBox1.Image);
                 }
+            }
+        }
+
+        private byte[] ImageToByteArray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat); // Convert image to byte array
+                return ms.ToArray();
             }
         }
 
@@ -141,6 +149,11 @@ namespace InventoryManagementSystem.Forms
         }
 
         private void EditProfile_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

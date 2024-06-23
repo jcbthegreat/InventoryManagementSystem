@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -50,7 +51,7 @@ namespace InventoryManagementSystem.Forms
             set { firstname = value; }
         }
 
-        public MainForm(string firstname, string lastname, string postion)
+        public MainForm(string firstname, string lastname, string postion, string username)
         {
             InitializeComponent();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
@@ -60,7 +61,7 @@ namespace InventoryManagementSystem.Forms
             Instance = this;
             _fullName = $"{firstname} {lastname}";
             _position = $"{postion}";
-
+            LoadProfileImage(username);
             if (txtUsername != null)
             {
                 txtUsername.Text = _fullName;
@@ -71,6 +72,25 @@ namespace InventoryManagementSystem.Forms
                 MessageBox.Show("TextBox 'txtUsername' is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+        }
+
+        private void LoadProfileImage(string username)
+        {
+            byte[] imageData = GetImageByUsername(username);
+
+            if (imageData != null)
+            {
+                using (MemoryStream ms = new MemoryStream(imageData))
+                {
+                    pictureBox1.Image = Image.FromStream(ms);
+                }
+            }
+            else
+            {
+                // Set default profile image if image is null
+                pictureBox1.Image = Properties.Resources.user;// Make sure this matches the correct resource name
+            }
         }
         private UserControl currentControl = null;
         private bool isDragging;
@@ -87,7 +107,7 @@ namespace InventoryManagementSystem.Forms
 
         }
 
-       public void ShowSettingsUserControl(ISettingsUserControl settingsUserControl)
+        public void ShowSettingsUserControl(ISettingsUserControl settingsUserControl)
         {
             panel5.Controls.Clear();
             panel5.Controls.Add((Control)settingsUserControl);
@@ -236,6 +256,38 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
-    
+        private byte[] GetImageByUsername(string username)
+        {
+            byte[] imageData = null;
+
+            try
+            {
+                // Implement your database retrieval logic here
+                using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT ImgPath FROM IV.StaffAssignment WHERE Username = @Username";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", username);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            imageData = (byte[])result;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while retrieving image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return imageData;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace InventoryManagementSystem.Presenter
         {
             string username = _staffView.Username;
             string password = _staffView.Password;
-
+            byte[] imageBytes = _staffView.ImgPath;
 
             if (string.IsNullOrEmpty(username))
             {
@@ -39,12 +40,18 @@ namespace InventoryManagementSystem.Presenter
                 return;
             }
 
+            if (imageBytes == null || imageBytes.Length == 0)
+            {
+                MessageBox.Show("Please upload an image.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
 
             // Update password only
-            ChangePassword(username, password);
+            ChangePassword(username, password, imageBytes);
         }
 
-        private void ChangePassword(string username, string newPassword)
+        private void ChangePassword(string username, string newPassword, byte[] imageBytes)
         {
             try
             {
@@ -52,13 +59,15 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "UPDATE IV.StaffAssignment SET Password = @NewPassword,ModifiedDate = GETDATE() WHERE Username = @Username";
+                    string query = "UPDATE IV.StaffAssignment SET Password = @NewPassword,ModifiedDate = GETDATE(),  ImgPath = CONVERT(varbinary(max), @ImageData) WHERE Username = @Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@NewPassword", newPassword);
-
+                        SqlParameter paramImageData = new SqlParameter("@ImageData", SqlDbType.VarBinary, -1); // Use -1 for max length
+                        paramImageData.Value = imageBytes;
+                        command.Parameters.Add(paramImageData);
 
                         int result = command.ExecuteNonQuery();
 
