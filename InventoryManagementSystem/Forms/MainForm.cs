@@ -79,17 +79,24 @@ namespace InventoryManagementSystem.Forms
         {
             byte[] imageData = GetImageByUsername(username);
 
-            if (imageData != null)
+            if (imageData != null && imageData.Length > 0)
             {
-                using (MemoryStream ms = new MemoryStream(imageData))
+                try
                 {
-                    pictureBox1.Image = Image.FromStream(ms);
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        pictureBox1.Image = Image.FromStream(ms);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pictureBox1.Image = Properties.Resources.user; // Set default image or handle error accordingly
                 }
             }
             else
             {
-                // Set default profile image if image is null
-                pictureBox1.Image = Properties.Resources.user;// Make sure this matches the correct resource name
+                pictureBox1.Image = Properties.Resources.user; // Set default profile image if image data is null or empty
             }
         }
         private UserControl currentControl = null;
