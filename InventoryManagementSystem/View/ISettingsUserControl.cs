@@ -16,6 +16,7 @@ namespace InventoryManagementSystem.View
         event EventHandler ShowMeasure;
         event EventHandler ShowStaff;
         event EventHandler ShowWarehouse;
+        event EventHandler ShowCustomer;
       
     }
 }

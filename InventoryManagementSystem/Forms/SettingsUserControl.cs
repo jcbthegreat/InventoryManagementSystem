@@ -45,6 +45,7 @@ namespace InventoryManagementSystem.Forms
             button5.Click += delegate { ShowMeasure?.Invoke(this, EventArgs.Empty); };
             button9.Click += delegate { ShowStaff?.Invoke(this, EventArgs.Empty); };
             button4.Click += delegate { ShowWarehouse?.Invoke(this, EventArgs.Empty); };
+            button2.Click += delegate { ShowCustomer?.Invoke(this, EventArgs.Empty); };
             this.mainForm = mainForm;
             this.addcategory = addcategory;
             this.addBrandName = addBrandName;
@@ -76,6 +77,7 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowMeasure;
         public event EventHandler ShowStaff;
         public event EventHandler ShowWarehouse;
+        public event EventHandler ShowCustomer;
        
       
 
@@ -105,8 +107,8 @@ namespace InventoryManagementSystem.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ManageUser manageUser = new ManageUser();
-            manageUser.ShowDialog();
+            //AddCustomers manageUser = new AddCustomers();
+            //manageUser.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)

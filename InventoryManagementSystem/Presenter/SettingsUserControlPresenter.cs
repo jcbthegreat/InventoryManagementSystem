@@ -33,6 +33,7 @@ namespace InventoryManagementSystem.Presenter
             this._settingsUserControl.ShowMeasure += MeasureType;
             this._settingsUserControl.ShowStaff += StaffType;
             this._settingsUserControl.ShowWarehouse += WarehouseType;
+            this._settingsUserControl.ShowCustomer += CustomerType;
          
            
         }
@@ -124,6 +125,17 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addwarehouseForm = (Form)warehouseView;
             addwarehouseForm.Show();
+
+
+        }
+        private void CustomerType(Object? sender, EventArgs e)
+        {
+            ICustomerView customerView = new AddCustomers();
+            new CustomerPresenter(customerView, _createdByFirstName, _createdByLastName, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var addcustomerForm = (Form)customerView;
+            addcustomerForm.Show();
 
 
         }

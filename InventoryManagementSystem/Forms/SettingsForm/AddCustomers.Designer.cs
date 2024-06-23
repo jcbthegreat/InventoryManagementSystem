@@ -33,24 +33,36 @@
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
             label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            textBox3 = new TextBox();
-            label4 = new Label();
-            textBox4 = new TextBox();
-            label5 = new Label();
-            button2 = new Button();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            textBox5 = new TextBox();
-            label11 = new Label();
             label10 = new Label();
+            groupBox3 = new GroupBox();
+            dataGridView1 = new DataGridView();
+            addBtn = new Button();
+            pictureBox2 = new PictureBox();
+            textBox6 = new TextBox();
+            groupBox1 = new GroupBox();
+            label21 = new Label();
+            comboBox1 = new ComboBox();
+            label20 = new Label();
+            label16 = new Label();
+            label13 = new Label();
+            label12 = new Label();
+            label22 = new Label();
+            label23 = new Label();
+            txtemail = new TextBox();
+            label26 = new Label();
+            txtcontact = new TextBox();
+            label27 = new Label();
+            txtdiscount = new TextBox();
+            label28 = new Label();
+            txtaddress = new TextBox();
+            label31 = new Label();
+            txtname = new TextBox();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panelBg
@@ -62,7 +74,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(579, 36);
+            panelBg.Size = new Size(1039, 36);
             panelBg.TabIndex = 4;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -84,7 +96,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(547, 0);
+            closeBtn.Location = new Point(1007, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -98,196 +110,298 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(39, 11);
             label1.Name = "label1";
-            label1.Size = new Size(83, 15);
+            label1.Size = new Size(58, 15);
             label1.TabIndex = 0;
-            label1.Text = "Add Customer";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(25, 84);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Customer Name";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(25, 102);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(207, 23);
-            textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(266, 102);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(207, 23);
-            textBox2.TabIndex = 8;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(266, 84);
-            label3.Name = "label3";
-            label3.Size = new Size(95, 15);
-            label3.TabIndex = 7;
-            label3.Text = "Contact Number";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(25, 172);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(207, 23);
-            textBox3.TabIndex = 10;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(25, 154);
-            label4.Name = "label4";
-            label4.Size = new Size(36, 15);
-            label4.TabIndex = 9;
-            label4.Text = "Email";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(266, 172);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(284, 23);
-            textBox4.TabIndex = 12;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(266, 154);
-            label5.Name = "label5";
-            label5.Size = new Size(49, 15);
-            label5.TabIndex = 11;
-            label5.Text = "Address";
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(92, 184, 92);
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.WhiteSmoke;
-            button2.Location = new Point(467, 273);
-            button2.Name = "button2";
-            button2.Size = new Size(83, 27);
-            button2.TabIndex = 14;
-            button2.Text = "Add";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Red;
-            label6.Location = new Point(117, 84);
-            label6.Name = "label6";
-            label6.Size = new Size(13, 15);
-            label6.TabIndex = 21;
-            label6.Text = "*";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.Red;
-            label7.Location = new Point(314, 154);
-            label7.Name = "label7";
-            label7.Size = new Size(13, 15);
-            label7.TabIndex = 22;
-            label7.Text = "*";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Red;
-            label8.Location = new Point(59, 154);
-            label8.Name = "label8";
-            label8.Size = new Size(13, 15);
-            label8.TabIndex = 23;
-            label8.Text = "*";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.Red;
-            label9.Location = new Point(360, 84);
-            label9.Name = "label9";
-            label9.Size = new Size(13, 15);
-            label9.TabIndex = 24;
-            label9.Text = "*";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(25, 235);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(207, 23);
-            textBox5.TabIndex = 26;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(25, 217);
-            label11.Name = "label11";
-            label11.Size = new Size(80, 15);
-            label11.TabIndex = 25;
-            label11.Text = "Add Discount";
+            label1.Text = "Customer";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semilight", 8.25F, FontStyle.Italic, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ControlDarkDark;
-            label10.Location = new Point(104, 217);
+            label10.Location = new Point(311, 162);
             label10.Name = "label10";
             label10.Size = new Size(52, 13);
             label10.TabIndex = 27;
             label10.Text = "(optional)";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(dataGridView1);
+            groupBox3.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox3.Location = new Point(472, 87);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(554, 275);
+            groupBox3.TabIndex = 33;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Customer List";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Cursor = Cursors.Hand;
+            dataGridView1.Location = new Point(8, 18);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(540, 251);
+            dataGridView1.TabIndex = 7;
+            // 
+            // addBtn
+            // 
+            addBtn.BackColor = Color.FromArgb(92, 184, 92);
+            addBtn.Cursor = Cursors.Hand;
+            addBtn.FlatAppearance.BorderSize = 0;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            addBtn.ForeColor = Color.WhiteSmoke;
+            addBtn.Location = new Point(9, 234);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(79, 27);
+            addBtn.TabIndex = 30;
+            addBtn.Text = "Register";
+            addBtn.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.Transparent;
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = Properties.Resources.search;
+            pictureBox2.Location = new Point(785, 56);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(26, 25);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 32;
+            pictureBox2.TabStop = false;
+            // 
+            // textBox6
+            // 
+            textBox6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox6.ForeColor = SystemColors.WindowText;
+            textBox6.Location = new Point(814, 56);
+            textBox6.Name = "textBox6";
+            textBox6.PlaceholderText = "Search Staff";
+            textBox6.Size = new Size(212, 25);
+            textBox6.TabIndex = 31;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label21);
+            groupBox1.Controls.Add(addBtn);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(label20);
+            groupBox1.Controls.Add(label16);
+            groupBox1.Controls.Add(label13);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(label12);
+            groupBox1.Controls.Add(label22);
+            groupBox1.Controls.Add(label23);
+            groupBox1.Controls.Add(txtemail);
+            groupBox1.Controls.Add(label26);
+            groupBox1.Controls.Add(txtcontact);
+            groupBox1.Controls.Add(label27);
+            groupBox1.Controls.Add(txtdiscount);
+            groupBox1.Controls.Add(label28);
+            groupBox1.Controls.Add(txtaddress);
+            groupBox1.Controls.Add(label31);
+            groupBox1.Controls.Add(txtname);
+            groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.Location = new Point(12, 55);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(454, 286);
+            groupBox1.TabIndex = 28;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Register Customer";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label21.Location = new Point(235, 49);
+            label21.Name = "label21";
+            label21.Size = new Size(30, 15);
+            label21.TabIndex = 38;
+            label21.Text = "Role";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(234, 69);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(204, 25);
+            comboBox1.TabIndex = 37;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label20.ForeColor = Color.Red;
+            label20.Location = new Point(263, 49);
+            label20.Name = "label20";
+            label20.Size = new Size(13, 15);
+            label20.TabIndex = 36;
+            label20.Text = "*";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.Red;
+            label16.Location = new Point(282, 103);
+            label16.Name = "label16";
+            label16.Size = new Size(13, 15);
+            label16.TabIndex = 31;
+            label16.Text = "*";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = Color.Red;
+            label13.Location = new Point(102, 161);
+            label13.Name = "label13";
+            label13.Size = new Size(13, 15);
+            label13.TabIndex = 28;
+            label13.Text = "*";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.ForeColor = Color.Red;
+            label12.Location = new Point(42, 103);
+            label12.Name = "label12";
+            label12.Size = new Size(13, 15);
+            label12.TabIndex = 27;
+            label12.Text = "*";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label22.ForeColor = Color.Red;
+            label22.Location = new Point(95, 49);
+            label22.Name = "label22";
+            label22.Size = new Size(13, 15);
+            label22.TabIndex = 26;
+            label22.Text = "*";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label23.Location = new Point(9, 103);
+            label23.Name = "label23";
+            label23.Size = new Size(36, 15);
+            label23.TabIndex = 19;
+            label23.Text = "Email";
+            // 
+            // txtemail
+            // 
+            txtemail.Location = new Point(9, 123);
+            txtemail.Name = "txtemail";
+            txtemail.Size = new Size(203, 25);
+            txtemail.TabIndex = 18;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label26.Location = new Point(234, 161);
+            label26.Name = "label26";
+            label26.Size = new Size(80, 15);
+            label26.TabIndex = 11;
+            label26.Text = "Add Discount";
+            // 
+            // txtcontact
+            // 
+            txtcontact.Location = new Point(8, 181);
+            txtcontact.Name = "txtcontact";
+            txtcontact.Size = new Size(203, 25);
+            txtcontact.TabIndex = 10;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label27.Location = new Point(9, 161);
+            label27.Name = "label27";
+            label27.Size = new Size(93, 15);
+            label27.TabIndex = 9;
+            label27.Text = "Contact number";
+            // 
+            // txtdiscount
+            // 
+            txtdiscount.Location = new Point(235, 184);
+            txtdiscount.MaxLength = 11;
+            txtdiscount.Name = "txtdiscount";
+            txtdiscount.Size = new Size(203, 25);
+            txtdiscount.TabIndex = 8;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label28.Location = new Point(235, 103);
+            label28.Name = "label28";
+            label28.Size = new Size(49, 15);
+            label28.TabIndex = 7;
+            label28.Text = "Address";
+            // 
+            // txtaddress
+            // 
+            txtaddress.Location = new Point(235, 123);
+            txtaddress.Name = "txtaddress";
+            txtaddress.Size = new Size(203, 25);
+            txtaddress.TabIndex = 6;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label31.Location = new Point(8, 49);
+            label31.Name = "label31";
+            label31.Size = new Size(91, 15);
+            label31.TabIndex = 1;
+            label31.Text = "Customer name";
+            // 
+            // txtname
+            // 
+            txtname.Location = new Point(8, 69);
+            txtname.Name = "txtname";
+            txtname.Size = new Size(203, 25);
+            txtname.TabIndex = 0;
+            // 
             // AddCustomers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(579, 312);
-            Controls.Add(label10);
-            Controls.Add(textBox5);
-            Controls.Add(label11);
-            Controls.Add(label9);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(button2);
-            Controls.Add(textBox4);
-            Controls.Add(label5);
-            Controls.Add(textBox3);
-            Controls.Add(label4);
-            Controls.Add(textBox2);
-            Controls.Add(label3);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
+            ClientSize = new Size(1039, 409);
+            Controls.Add(groupBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(groupBox1);
             Controls.Add(panelBg);
+            Controls.Add(textBox6);
             Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "AddCustomers";
+            //Name = "AddCustomers";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddCustomers";
             Load += AddCustomers_Load;
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -297,22 +411,30 @@
         private Panel panelBg;
         private Button closeBtn;
         private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label3;
-        private TextBox textBox3;
-        private Label label4;
-        private TextBox textBox4;
-        private Label label5;
-        private Button button2;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label9;
         private PictureBox pictureBox1;
-        private TextBox textBox5;
-        private Label label11;
         private Label label10;
+        private GroupBox groupBox3;
+        private DataGridView dataGridView1;
+        private Button addBtn;
+        private PictureBox pictureBox2;
+        private TextBox textBox6;
+        private GroupBox groupBox1;
+        private Label label21;
+        private ComboBox comboBox1;
+        private Label label20;
+        private Label label16;
+        private Label label13;
+        private Label label12;
+        private Label label22;
+        private Label label23;
+        private TextBox txtemail;
+        private Label label26;
+        private TextBox txtcontact;
+        private Label label27;
+        private TextBox txtdiscount;
+        private Label label28;
+        private TextBox txtaddress;
+        private Label label31;
+        private TextBox txtname;
     }
 }
