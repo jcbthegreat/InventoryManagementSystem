@@ -229,6 +229,10 @@ namespace InventoryManagementSystem.Forms
                 {
                     RoleAssignment.Instance.ChangePanelColor12(dialog.Color);
                 }
+                if (AddWarehouseItem.Instance != null)
+                {
+                    AddWarehouseItem.Instance.ChangePanelColor3(dialog.Color);
+                }
 
                 Properties.Settings.Default.MyColor = dialog.Color;
                 Properties.Settings.Default.Save();

@@ -36,7 +36,7 @@ namespace InventoryManagementSystem.Presenter
             string contactno = _staffView.ContactNo;
             string username = _staffView.Username;
             string password = _staffView.Password;
-            string imgpath = Convert.ToBase64String(_staffView.ImgPath);
+            string imgpath = _staffView.ImgPath != null ? Convert.ToBase64String(_staffView.ImgPath) : null;
 
             if (string.IsNullOrEmpty(staffNo))
             {
@@ -108,7 +108,7 @@ namespace InventoryManagementSystem.Presenter
 
                     string query = "INSERT INTO IV.StaffAssignment (StaffNo, RoleType, Position,FirstName,MiddleName,Lastname," +
                         " Email,ContactNo,Username,Password,ImgPath,CreatedBy,CreatedDate) VALUES (@StaffNo, @RoleType,@Position,@FirstName,@MiddleName,@Lastname,@Email," +
-                        " @ContactNo, @Username, @Password,@ImgPath,@CreatedBy, @CreatedDate)";
+                        " @ContactNo, @Username, @Password,CONVERT(varbinary(max), @ImgPath),@CreatedBy, @CreatedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@StaffNo", staffNo);
@@ -121,7 +121,14 @@ namespace InventoryManagementSystem.Presenter
                         command.Parameters.AddWithValue("@ContactNo", contactno);
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
-                        command.Parameters.AddWithValue("@ImgPath", imgpath);
+                        if (imgpath != null)
+                        {
+                            command.Parameters.AddWithValue("@ImgPath", imgpath);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ImgPath", DBNull.Value);
+                        }
                         command.Parameters.AddWithValue("@CreatedBy", $"{_createdByFirstName} {_createdByLastName}");
                         command.Parameters.AddWithValue("@CreatedDate", createdDate);
                         int result = command.ExecuteNonQuery();
