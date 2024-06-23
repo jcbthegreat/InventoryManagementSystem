@@ -39,10 +39,10 @@
             dataGridView1 = new DataGridView();
             panel3 = new Panel();
             panel4 = new Panel();
+            additem = new Button();
             button1 = new Button();
             addBtnFrm = new Button();
             deleteProdBtn = new Button();
-            additem = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -163,6 +163,25 @@
             panel4.Size = new Size(514, 77);
             panel4.TabIndex = 2;
             // 
+            // additem
+            // 
+            additem.BackColor = Color.FromArgb(92, 184, 92);
+            additem.BackgroundImageLayout = ImageLayout.Center;
+            additem.Cursor = Cursors.Hand;
+            additem.FlatAppearance.BorderSize = 0;
+            additem.FlatStyle = FlatStyle.Flat;
+            additem.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            additem.ForeColor = Color.WhiteSmoke;
+            additem.Image = (Image)resources.GetObject("additem.Image");
+            additem.ImageAlign = ContentAlignment.MiddleLeft;
+            additem.Location = new Point(19, 21);
+            additem.Name = "additem";
+            additem.Size = new Size(116, 33);
+            additem.TabIndex = 3;
+            additem.Text = "    Add Item";
+            additem.UseVisualStyleBackColor = false;
+            additem.Click += additem_Click;
+            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(91, 192, 222);
@@ -216,24 +235,6 @@
             deleteProdBtn.Text = "Delete Product";
             deleteProdBtn.TextAlign = ContentAlignment.MiddleRight;
             deleteProdBtn.UseVisualStyleBackColor = false;
-            // 
-            // additem
-            // 
-            additem.BackColor = Color.FromArgb(92, 184, 92);
-            additem.BackgroundImageLayout = ImageLayout.Center;
-            additem.Cursor = Cursors.Hand;
-            additem.FlatAppearance.BorderSize = 0;
-            additem.FlatStyle = FlatStyle.Flat;
-            additem.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            additem.ForeColor = Color.WhiteSmoke;
-            additem.Image = (Image)resources.GetObject("additem.Image");
-            additem.ImageAlign = ContentAlignment.MiddleLeft;
-            additem.Location = new Point(19, 21);
-            additem.Name = "additem";
-            additem.Size = new Size(116, 33);
-            additem.TabIndex = 3;
-            additem.Text = "    Add Item";
-            additem.UseVisualStyleBackColor = false;
             // 
             // ProductUserControl
             // 

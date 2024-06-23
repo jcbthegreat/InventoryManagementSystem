@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -91,6 +92,12 @@ namespace InventoryManagementSystem.Forms
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void additem_Click(object sender, EventArgs e)
+        {
+            AddWarehouseItem additemForm = new AddWarehouseItem();
+            additemForm.ShowDialog();
         }
     }
 }
