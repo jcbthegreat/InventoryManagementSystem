@@ -12,11 +12,13 @@ namespace InventoryManagementSystem.View
 
         event EventHandler ShowSettings;
         event EventHandler ShowProfile;
+        event EventHandler ShowProduct;
 
         void Show();
         void ShowSettingsUserControl(ISettingsUserControl settingsUserControl);
+        void ShowProductControl(IShowProductControl showProductControl);
        
 
-     
+   
     }
 }

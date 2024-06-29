@@ -34,7 +34,7 @@
             label9 = new Label();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
+            txtprodname = new TextBox();
             label1 = new Label();
             label4 = new Label();
             label5 = new Label();
@@ -51,7 +51,7 @@
             textBox3 = new TextBox();
             label11 = new Label();
             comboBox3 = new ComboBox();
-            textBox2 = new TextBox();
+            txtprodcode = new TextBox();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
@@ -94,31 +94,31 @@
             // 
             comboBox1.Cursor = Cursors.Hand;
             comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(15, 66);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(195, 28);
+            comboBox1.Size = new Size(195, 23);
             comboBox1.TabIndex = 2;
             // 
             // comboBox2
             // 
             comboBox2.Cursor = Cursors.Hand;
             comboBox2.FlatStyle = FlatStyle.Flat;
-            comboBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(15, 127);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(193, 28);
+            comboBox2.Size = new Size(193, 23);
             comboBox2.TabIndex = 3;
             // 
-            // textBox1
+            // txtprodname
             // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(446, 64);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(195, 27);
-            textBox1.TabIndex = 4;
+            txtprodname.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtprodname.Location = new Point(446, 64);
+            txtprodname.Name = "txtprodname";
+            txtprodname.Size = new Size(195, 23);
+            txtprodname.TabIndex = 4;
             // 
             // label1
             // 
@@ -203,10 +203,10 @@
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(comboBox3);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtprodname);
             groupBox1.Controls.Add(cancelBtn);
             groupBox1.Controls.Add(saveProductBtn);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtprodcode);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label8);
@@ -235,11 +235,11 @@
             // 
             comboBox6.Cursor = Cursors.Hand;
             comboBox6.FlatStyle = FlatStyle.Flat;
-            comboBox6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(15, 187);
+            comboBox6.Location = new Point(228, 186);
             comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(195, 28);
+            comboBox6.Size = new Size(195, 23);
             comboBox6.TabIndex = 34;
             // 
             // label12
@@ -256,11 +256,11 @@
             // 
             comboBox5.Cursor = Cursors.Hand;
             comboBox5.FlatStyle = FlatStyle.Flat;
-            comboBox5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(446, 127);
+            comboBox5.Location = new Point(15, 187);
             comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(195, 28);
+            comboBox5.Size = new Size(195, 23);
             comboBox5.TabIndex = 32;
             // 
             // label10
@@ -277,19 +277,19 @@
             // 
             comboBox4.Cursor = Cursors.Hand;
             comboBox4.FlatStyle = FlatStyle.Flat;
-            comboBox4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(228, 127);
+            comboBox4.Location = new Point(446, 127);
             comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(195, 28);
+            comboBox4.Size = new Size(195, 23);
             comboBox4.TabIndex = 30;
             // 
             // textBox3
             // 
-            textBox3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             textBox3.Location = new Point(446, 187);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(195, 27);
+            textBox3.Size = new Size(195, 23);
             textBox3.TabIndex = 29;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
@@ -307,20 +307,20 @@
             // 
             comboBox3.Cursor = Cursors.Hand;
             comboBox3.FlatStyle = FlatStyle.Flat;
-            comboBox3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(228, 187);
+            comboBox3.Location = new Point(228, 127);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(195, 28);
+            comboBox3.Size = new Size(195, 23);
             comboBox3.TabIndex = 26;
             // 
-            // textBox2
+            // txtprodcode
             // 
-            textBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(228, 66);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(195, 27);
-            textBox2.TabIndex = 22;
+            txtprodcode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtprodcode.Location = new Point(228, 66);
+            txtprodcode.Name = "txtprodcode";
+            txtprodcode.Size = new Size(195, 23);
+            txtprodcode.TabIndex = 22;
             // 
             // AddProductForm
             // 
@@ -347,7 +347,7 @@
         private Panel panelBg;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
-        private TextBox textBox1;
+        private TextBox txtprodname;
         private Label label1;
         private Label label4;
         private Label label5;
@@ -356,7 +356,7 @@
         private Button saveProductBtn;
         private Button cancelBtn;
         private GroupBox groupBox1;
-        private TextBox textBox2;
+        private TextBox txtprodcode;
         private PictureBox pictureBox2;
         private ComboBox comboBox3;
         private TextBox textBox3;
