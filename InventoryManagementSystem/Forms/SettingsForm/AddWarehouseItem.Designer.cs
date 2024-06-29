@@ -33,20 +33,20 @@
             pictureBox2 = new PictureBox();
             label9 = new Label();
             groupBox1 = new GroupBox();
+            comboBox2 = new ComboBox();
             label8 = new Label();
-            textBox7 = new TextBox();
+            txtcurstock = new TextBox();
             label4 = new Label();
-            textBox4 = new TextBox();
+            txtretprice = new TextBox();
             label6 = new Label();
-            textBox5 = new TextBox();
+            txtorigprice = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            txtmaxstock = new TextBox();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtminstock = new TextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
             cancelBtn = new Button();
-            saveProductBtn = new Button();
+            saveItemBtn = new Button();
             label5 = new Label();
             comboBox1 = new ComboBox();
             panelBg.SuspendLayout();
@@ -88,20 +88,20 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(textBox7);
+            groupBox1.Controls.Add(txtcurstock);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(txtretprice);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(txtorigprice);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(txtmaxstock);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtminstock);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBox1);
             groupBox1.Controls.Add(cancelBtn);
-            groupBox1.Controls.Add(saveProductBtn);
+            groupBox1.Controls.Add(saveItemBtn);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -112,59 +112,70 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Add Warehouse Item";
             // 
+            // comboBox2
+            // 
+            comboBox2.Cursor = Cursors.Hand;
+            comboBox2.FlatStyle = FlatStyle.Flat;
+            comboBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(228, 66);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(195, 23);
+            comboBox2.TabIndex = 34;
+            // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(15, 225);
+            label8.Location = new Point(15, 166);
             label8.Name = "label8";
             label8.Size = new Size(79, 15);
             label8.TabIndex = 33;
             label8.Text = "Current Stock";
             // 
-            // textBox7
+            // txtcurstock
             // 
-            textBox7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox7.Location = new Point(15, 243);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(195, 27);
-            textBox7.TabIndex = 32;
+            txtcurstock.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtcurstock.Location = new Point(15, 184);
+            txtcurstock.Name = "txtcurstock";
+            txtcurstock.Size = new Size(195, 23);
+            txtcurstock.TabIndex = 32;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(228, 168);
+            label4.Location = new Point(15, 226);
             label4.Name = "label4";
             label4.Size = new Size(65, 15);
             label4.TabIndex = 31;
             label4.Text = "Retail Price";
             // 
-            // textBox4
+            // txtretprice
             // 
-            textBox4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox4.Location = new Point(228, 186);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(195, 27);
-            textBox4.TabIndex = 30;
+            txtretprice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtretprice.Location = new Point(15, 244);
+            txtretprice.Name = "txtretprice";
+            txtretprice.Size = new Size(195, 23);
+            txtretprice.TabIndex = 30;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(15, 168);
+            label6.Location = new Point(228, 166);
             label6.Name = "label6";
             label6.Size = new Size(78, 15);
             label6.TabIndex = 29;
             label6.Text = "Original Price";
             // 
-            // textBox5
+            // txtorigprice
             // 
-            textBox5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox5.Location = new Point(15, 186);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(195, 27);
-            textBox5.TabIndex = 28;
+            txtorigprice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtorigprice.Location = new Point(228, 184);
+            txtorigprice.Name = "txtorigprice";
+            txtorigprice.Size = new Size(195, 23);
+            txtorigprice.TabIndex = 28;
             // 
             // label3
             // 
@@ -176,13 +187,13 @@
             label3.TabIndex = 27;
             label3.Text = "Maximum Stock";
             // 
-            // textBox3
+            // txtmaxstock
             // 
-            textBox3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.Location = new Point(228, 125);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(195, 27);
-            textBox3.TabIndex = 26;
+            txtmaxstock.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtmaxstock.Location = new Point(228, 125);
+            txtmaxstock.Name = "txtmaxstock";
+            txtmaxstock.Size = new Size(195, 23);
+            txtmaxstock.TabIndex = 26;
             // 
             // label2
             // 
@@ -194,13 +205,13 @@
             label2.TabIndex = 25;
             label2.Text = "Minimum Stock";
             // 
-            // textBox2
+            // txtminstock
             // 
-            textBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(15, 125);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(195, 27);
-            textBox2.TabIndex = 24;
+            txtminstock.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtminstock.Location = new Point(15, 125);
+            txtminstock.Name = "txtminstock";
+            txtminstock.Size = new Size(195, 23);
+            txtminstock.TabIndex = 24;
             // 
             // label1
             // 
@@ -211,14 +222,6 @@
             label1.Size = new Size(84, 15);
             label1.TabIndex = 8;
             label1.Text = "Product Name";
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(228, 67);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(195, 27);
-            textBox1.TabIndex = 4;
             // 
             // cancelBtn
             // 
@@ -236,20 +239,20 @@
             cancelBtn.UseVisualStyleBackColor = false;
             cancelBtn.Click += cancelBtn_Click;
             // 
-            // saveProductBtn
+            // saveItemBtn
             // 
-            saveProductBtn.BackColor = Color.FromArgb(92, 184, 92);
-            saveProductBtn.Cursor = Cursors.Hand;
-            saveProductBtn.FlatAppearance.BorderSize = 0;
-            saveProductBtn.FlatStyle = FlatStyle.Flat;
-            saveProductBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            saveProductBtn.ForeColor = Color.WhiteSmoke;
-            saveProductBtn.Location = new Point(15, 295);
-            saveProductBtn.Name = "saveProductBtn";
-            saveProductBtn.Size = new Size(123, 31);
-            saveProductBtn.TabIndex = 22;
-            saveProductBtn.Text = "Save";
-            saveProductBtn.UseVisualStyleBackColor = false;
+            saveItemBtn.BackColor = Color.FromArgb(92, 184, 92);
+            saveItemBtn.Cursor = Cursors.Hand;
+            saveItemBtn.FlatAppearance.BorderSize = 0;
+            saveItemBtn.FlatStyle = FlatStyle.Flat;
+            saveItemBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            saveItemBtn.ForeColor = Color.WhiteSmoke;
+            saveItemBtn.Location = new Point(15, 295);
+            saveItemBtn.Name = "saveItemBtn";
+            saveItemBtn.Size = new Size(123, 31);
+            saveItemBtn.TabIndex = 22;
+            saveItemBtn.Text = "Save";
+            saveItemBtn.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -265,11 +268,11 @@
             // 
             comboBox1.Cursor = Cursors.Hand;
             comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(15, 66);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(195, 28);
+            comboBox1.Size = new Size(195, 23);
             comboBox1.TabIndex = 2;
             // 
             // AddWarehouseItem
@@ -299,20 +302,20 @@
         private Label label9;
         private GroupBox groupBox1;
         private Label label1;
-        private TextBox textBox1;
         private Button cancelBtn;
-        private Button saveProductBtn;
+        private Button saveItemBtn;
         private Label label5;
         private ComboBox comboBox1;
         private Label label8;
-        private TextBox textBox7;
+        private TextBox txtcurstock;
         private Label label4;
-        private TextBox textBox4;
+        private TextBox txtretprice;
         private Label label6;
-        private TextBox textBox5;
+        private TextBox txtorigprice;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox txtmaxstock;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtminstock;
+        private ComboBox comboBox2;
     }
 }

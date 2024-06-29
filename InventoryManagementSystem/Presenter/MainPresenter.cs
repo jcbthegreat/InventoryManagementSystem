@@ -23,6 +23,8 @@ namespace InventoryManagementSystem.Presenter
       
             _mainView.ShowSettings += ShowSettings;
             _mainView.ShowProfile += ShowProfile;
+            _mainView.ShowProduct += ShowProduct;
+
         }
 
         private void ShowSettings(object? sender, EventArgs e)
@@ -39,6 +41,16 @@ namespace InventoryManagementSystem.Presenter
             var editProfileForm = (Form)staffView;
             editProfileForm.Show();
         }
+
+    
+
+        private void ShowProduct(Object? sender, EventArgs e)
+        {
+            IShowProductControl showProductControl = new ProductUserControl();
+            new ShowProductPresenter(showProductControl, MainForm.Instance.FirstName, MainForm.Instance.Lastname, _sqlConnectionString);
+            _mainView.ShowProductControl(showProductControl);
+        }
+
     }
 }
     

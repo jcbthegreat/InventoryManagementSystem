@@ -56,6 +56,7 @@ namespace InventoryManagementSystem.Forms
             InitializeComponent();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
             pictureBox3.Click += delegate { ShowProfile?.Invoke(this, EventArgs.Empty); };
+            button2.Click += delegate { ShowProduct?.Invoke(this, EventArgs.Empty); };
             PanelBg = panelBg;
             PanelBg.BackColor = Color.DimGray;
             Instance = this;
@@ -106,6 +107,7 @@ namespace InventoryManagementSystem.Forms
 
         public event EventHandler ShowSettings;
         public event EventHandler ShowProfile;
+        public event EventHandler ShowProduct;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -119,6 +121,13 @@ namespace InventoryManagementSystem.Forms
             panel5.Controls.Clear();
             panel5.Controls.Add((Control)settingsUserControl);
         }
+
+        public void ShowProductControl(IShowProductControl showProductControl)
+        {
+            panel5.Controls.Clear();
+            panel5.Controls.Add((Control)showProductControl);
+        }
+
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class ProductUserControl : UserControl
+    public partial class ProductUserControl : UserControl, IShowProductControl
     {
         string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         private readonly SqlConnection connection;
@@ -20,7 +21,9 @@ namespace InventoryManagementSystem.Forms
         DataTable dt;
         public ProductUserControl()
         {
+           
             InitializeComponent();
+            additem.Click += delegate { ShowItem?.Invoke(this, EventArgs.Empty); };
             connection = new SqlConnection(connectionString);
             showdata();
         }
@@ -30,7 +33,9 @@ namespace InventoryManagementSystem.Forms
             AddProductForm addProductForm = new AddProductForm();
             addProductForm.ShowDialog();
         }
+        public event EventHandler ShowItem;
 
+       
         public void showdata()
         {
             try
@@ -83,6 +88,11 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+        public void RefreshDataGridView()
+        {
+            showdata();
+        }
+
         private void ProductUserControl_Load(object sender, EventArgs e)
         {
 
@@ -96,8 +106,8 @@ namespace InventoryManagementSystem.Forms
 
         private void additem_Click(object sender, EventArgs e)
         {
-            AddWarehouseItem additemForm = new AddWarehouseItem();
-            additemForm.ShowDialog();
+            //AddWarehouseItem additemForm = new AddWarehouseItem();
+            //additemForm.ShowDialog();
         }
     }
 }
