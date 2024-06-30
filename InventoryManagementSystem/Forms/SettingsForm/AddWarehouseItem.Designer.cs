@@ -219,9 +219,10 @@
             label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(228, 46);
             label1.Name = "label1";
-            label1.Size = new Size(84, 15);
+            label1.Size = new Size(79, 15);
             label1.TabIndex = 8;
-            label1.Text = "Product Name";
+            label1.Text = "Product Code";
+            label1.Click += label1_Click;
             // 
             // cancelBtn
             // 

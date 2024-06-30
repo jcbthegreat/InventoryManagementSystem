@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.Forms.SettingsForm;
+﻿using InventoryManagementSystem.Forms;
+using InventoryManagementSystem.Forms.SettingsForm;
 using InventoryManagementSystem.View;
 using Microsoft.VisualBasic;
 using System;
@@ -23,6 +24,7 @@ namespace InventoryManagementSystem.Presenter
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
             this._showProductControl.ShowItem += ShowItem;
+            this._showProductControl.ShowProduct += ShowProduct;
 
 
         }
@@ -35,8 +37,15 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var additemForm = (Form)warehouseItemView;
             additemForm.Show();
+        }
+        private void ShowProduct(Object? sender, EventArgs e)
+        {
+            IProductView productView = new AddProductForm();
+            new AddProductPresenter(productView, _sqlConnectionString);
 
-
+            // Show the AddCategory form
+            var addproductForm = (Form)productView;
+            addproductForm.Show();
         }
     }
 }

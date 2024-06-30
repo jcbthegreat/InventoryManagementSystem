@@ -174,7 +174,7 @@
             additem.ForeColor = Color.WhiteSmoke;
             additem.Image = (Image)resources.GetObject("additem.Image");
             additem.ImageAlign = ContentAlignment.MiddleLeft;
-            additem.Location = new Point(19, 21);
+            additem.Location = new Point(141, 21);
             additem.Name = "additem";
             additem.Size = new Size(116, 33);
             additem.TabIndex = 3;
@@ -210,7 +210,7 @@
             addBtnFrm.ForeColor = Color.WhiteSmoke;
             addBtnFrm.Image = (Image)resources.GetObject("addBtnFrm.Image");
             addBtnFrm.ImageAlign = ContentAlignment.MiddleLeft;
-            addBtnFrm.Location = new Point(141, 21);
+            addBtnFrm.Location = new Point(19, 21);
             addBtnFrm.Name = "addBtnFrm";
             addBtnFrm.Size = new Size(116, 33);
             addBtnFrm.TabIndex = 0;

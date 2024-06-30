@@ -41,7 +41,32 @@ namespace InventoryManagementSystem.Presenter
 
             if (string.IsNullOrEmpty(productid))
             {
-                MessageBox.Show("Product Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Product Code cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(currstock))
+            {
+                MessageBox.Show("Current Stock cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(minstock))
+            {
+                MessageBox.Show("Minimum Stock cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(maxstock))
+            {
+                MessageBox.Show("Maximum Stock cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(origprice))
+            {
+                MessageBox.Show("Original Price cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(retprice))
+            {
+                MessageBox.Show("Retail Price cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
