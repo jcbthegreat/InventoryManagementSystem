@@ -23,17 +23,20 @@ namespace InventoryManagementSystem.Forms
         {
            
             InitializeComponent();
-            additem.Click += delegate { ShowItem?.Invoke(this, EventArgs.Empty); };
+            additem.Click += delegate { ShowItem?.Invoke(this, EventArgs.Empty);};
+            addBtnFrm.Click += delegate { ShowProduct?.Invoke(this, EventArgs.Empty);};
             connection = new SqlConnection(connectionString);
             showdata();
+            ShowItem += (sender, args) => RefreshDataGridView();
         }
 
         private void addBtnFrm_Click(object sender, EventArgs e)
         {
-            AddProductForm addProductForm = new AddProductForm();
-            addProductForm.ShowDialog();
+            //AddProductForm addProductForm = new AddProductForm();
+            //addProductForm.ShowDialog();
         }
         public event EventHandler ShowItem;
+        public event EventHandler ShowProduct;
 
        
         public void showdata()
@@ -96,7 +99,7 @@ namespace InventoryManagementSystem.Forms
         private void ProductUserControl_Load(object sender, EventArgs e)
         {
 
-
+            showdata();
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)

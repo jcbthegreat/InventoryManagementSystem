@@ -80,7 +80,12 @@ namespace InventoryManagementSystem.Forms
             {
                 sqlConnection.Open(); // Buksan ang connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[Product]"; // Palitan ang 'Products' kung kinakailangan
+                string query = "SELECT COUNT(*) FROM [IV].[Product] p LEFT JOIN [IV].[brand] b ON p.brand_id = b.id " +
+                    " LEFT JOIN [IV].[Categories] c on p.category_id = c.id " +
+                    " LEFT JOIN [IV].[SubCategories] s on p.subcategory_id = s.ID " +
+                    " LEFT JOIN [IV].[Types] t on p.[type_id] = t.id LEFT JOIN [IV].[Variant] v on p.variant_id = v.id " +
+                    " LEFT JOIN [IV].[Measurement] m on p.unit_id = m.id LEFT JOIN [IV].[WarehouseItems] w on p.id = w.product_id " +
+                    " LEFT JOIN [IV].[Warehouse] wh on w.warehouse_id = wh.id "; 
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {

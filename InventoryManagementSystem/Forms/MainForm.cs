@@ -72,8 +72,8 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("TextBox 'txtUsername' is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
+            this.Resize += MainForm_Resize;
+            button1.PerformClick();
         }
 
         private void LoadProfileImage(string username)
@@ -100,6 +100,7 @@ namespace InventoryManagementSystem.Forms
                 pictureBox1.Image = Properties.Resources.user; // Set default profile image if image data is null or empty
             }
         }
+
         private UserControl currentControl = null;
         private bool isDragging;
         private Point lastCursor;
@@ -113,21 +114,55 @@ namespace InventoryManagementSystem.Forms
         {
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
             button1.PerformClick();
-
         }
 
         public void ShowSettingsUserControl(ISettingsUserControl settingsUserControl)
         {
-            panel5.Controls.Clear();
-            panel5.Controls.Add((Control)settingsUserControl);
+            try
+            {
+                panel5.Controls.Clear(); // Clear existing controls in panel5
+                if (settingsUserControl != null && settingsUserControl is Control control)
+                {
+                    // Set size and location manually
+                    control.Size = panel5.ClientSize; // Match control size to panel5
+                    control.Location = new Point(0, 0); // Position control at top-left corner
+
+                    panel5.Controls.Add(control); // Add the new control
+                }
+                else
+                {
+                    MessageBox.Show("Failed to load product control: Control is null or does not implement Control interface.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading product control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void ShowProductControl(IShowProductControl showProductControl)
         {
-            panel5.Controls.Clear();
-            panel5.Controls.Add((Control)showProductControl);
-        }
+            try
+            {
+                panel5.Controls.Clear(); // Clear existing controls in panel5
+                if (showProductControl != null && showProductControl is Control control)
+                {
+                    // Set size and location manually
+                    control.Size = panel5.ClientSize; // Match control size to panel5
+                    control.Location = new Point(0, 0); // Position control at top-left corner
 
+                    panel5.Controls.Add(control); // Add the new control
+                }
+                else
+                {
+                    MessageBox.Show("Failed to load product control: Control is null or does not implement Control interface.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading product control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
         {
@@ -183,9 +218,22 @@ namespace InventoryManagementSystem.Forms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             panel5.Hide(); // Itago ang panel5 bago isara ang form ng setting
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            // Adjust panel5 size when MainForm is resized
+            AdjustPanelSize();
+        }
+
+        private void AdjustPanelSize()
+        {
+            // Compute the size of panel5 based on MainForm's size
+            panel5.Size = new Size(this.ClientSize.Width - panel5.Location.X * 2, this.ClientSize.Height - panel5.Location.Y * 2);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -212,6 +260,7 @@ namespace InventoryManagementSystem.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
+            // Toggle maximize/restore button
             if (this.WindowState == FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Normal;
@@ -221,6 +270,8 @@ namespace InventoryManagementSystem.Forms
                 this.WindowState = FormWindowState.Maximized;
             }
         }
+
+  
 
         private void mainFormCloseBtn_Click(object sender, EventArgs e)
         {
@@ -252,6 +303,7 @@ namespace InventoryManagementSystem.Forms
         {
 
         }
+
         private void Logout()
         {
             DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

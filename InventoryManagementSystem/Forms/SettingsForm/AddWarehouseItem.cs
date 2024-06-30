@@ -22,7 +22,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private readonly SqlConnection connection;
         SqlDataAdapter adapter;
         DataTable dt;
-       
+
 
         public string Warehouse_Id
         {
@@ -97,12 +97,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandBrand = new SqlCommand("SELECT ID, [Name] FROM [IV].[Warehouse]", con);
+                    SqlCommand commandBrand = new SqlCommand("SELECT ID, [Address] FROM [IV].[Warehouse]", con);
                     SqlDataAdapter adapterBrand = new SqlDataAdapter(commandBrand);
                     DataTable dataTableBrand = new DataTable();
                     adapterBrand.Fill(dataTableBrand);
                     comboBox1.DataSource = dataTableBrand;
-                    comboBox1.DisplayMember = "Name";
+                    comboBox1.DisplayMember = "Address";
                     comboBox1.ValueMember = "ID";
                 }
 
@@ -110,12 +110,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Name FROM [IV].[Product]", con);
+                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product]", con);
                     SqlDataAdapter adapterCategory = new SqlDataAdapter(commandCategory);
                     DataTable dataTableCategory = new DataTable();
                     adapterCategory.Fill(dataTableCategory);
                     comboBox2.DataSource = dataTableCategory;
-                    comboBox2.DisplayMember = "Product_Name";
+                    comboBox2.DisplayMember = "Product_Code";
                     comboBox2.ValueMember = "ID";
                 }
             }
@@ -138,6 +138,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

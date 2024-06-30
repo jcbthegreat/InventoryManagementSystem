@@ -9,6 +9,7 @@ namespace InventoryManagementSystem.View
     public interface IShowProductControl
     {
         event EventHandler ShowItem;
+        event EventHandler ShowProduct;
 
         void RefreshDataGridView();
     }
