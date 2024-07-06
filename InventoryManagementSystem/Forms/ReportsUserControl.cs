@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class PurchaseOrderControl : UserControl
+    public partial class ReportsUserControl : UserControl
     {
-        public PurchaseOrderControl()
+        public ReportsUserControl()
         {
             InitializeComponent();
         }
 
-        private void PurchaseOrderControl_Load(object sender, EventArgs e)
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

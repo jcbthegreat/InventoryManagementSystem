@@ -82,6 +82,7 @@
             panelBg.Name = "panelBg";
             panelBg.Size = new Size(1435, 36);
             panelBg.TabIndex = 0;
+            panelBg.Paint += panelBg_Paint_1;
             panelBg.MouseDown += panel1_MouseDown;
             panelBg.MouseMove += panel1_MouseMove;
             panelBg.MouseUp += panel1_MouseUp;
@@ -379,7 +380,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            //pictureBox1.Click += pictureBox1_Click;
             // 
             // panel4
             // 

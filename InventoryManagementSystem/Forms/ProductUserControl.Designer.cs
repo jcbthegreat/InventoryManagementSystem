@@ -140,7 +140,9 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1172, 530);
             dataGridView1.TabIndex = 2;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
+            dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
+            dataGridView1.CellClick += DataGridView1_CellClick;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // panel3
             // 
@@ -235,6 +237,7 @@
             deleteProdBtn.Text = "Delete Product";
             deleteProdBtn.TextAlign = ContentAlignment.MiddleRight;
             deleteProdBtn.UseVisualStyleBackColor = false;
+            deleteProdBtn.Click += deleteProdBtn_Click;
             // 
             // ProductUserControl
             // 

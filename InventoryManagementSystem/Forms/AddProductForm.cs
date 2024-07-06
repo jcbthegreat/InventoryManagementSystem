@@ -250,12 +250,12 @@ namespace InventoryManagementSystem.Forms
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandUnit = new SqlCommand("SELECT ID, MeasurementName FROM [IV].[Measurement]", con);
+                    SqlCommand commandUnit = new SqlCommand("SELECT ID, MeasurementCode FROM [IV].[Measurement]", con);
                     SqlDataAdapter adapterUnit = new SqlDataAdapter(commandUnit);
                     DataTable dataUnit = new DataTable();
                     adapterUnit.Fill(dataUnit);
                     comboBox6.DataSource = dataUnit;
-                    comboBox6.DisplayMember = "MeasurementName";
+                    comboBox6.DisplayMember = "MeasurementCode";
                     comboBox6.ValueMember = "ID";
                 }
             }

@@ -166,7 +166,7 @@ namespace InventoryManagementSystem.Forms
 
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new PurchaseOrderControl());
+            LoadUserControl(new PurchaseOrderUserControl());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace InventoryManagementSystem.Forms
 
         private void userBtn_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new UserManageControl());
+            LoadUserControl(new ReportsUserControl());
         }
 
         private void settingsBtn_Click(object sender, EventArgs e)
@@ -271,7 +271,7 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
-  
+
 
         private void mainFormCloseBtn_Click(object sender, EventArgs e)
         {
@@ -356,6 +356,11 @@ namespace InventoryManagementSystem.Forms
             }
 
             return imageData;
+        }
+
+        private void panelBg_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

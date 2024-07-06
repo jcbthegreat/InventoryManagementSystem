@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem.Forms
 {
-    public partial class PurchaseOrderControl : UserControl
+    public partial class PurchaseOrder : Form
     {
-        public PurchaseOrderControl()
+        public PurchaseOrder()
         {
             InitializeComponent();
         }
 
-        private void PurchaseOrderControl_Load(object sender, EventArgs e)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
