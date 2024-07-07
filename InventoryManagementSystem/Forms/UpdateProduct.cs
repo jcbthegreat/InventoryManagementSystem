@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.View;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,27 +12,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace InventoryManagementSystem.Forms.SettingsForm
+namespace InventoryManagementSystem.Forms
 {
-    public partial class AddWarehouseItem : Form, IWarehouseItemView
+    public partial class UpdateProduct : Form, IUpdateWarehouseProduct
     {
         private const string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         public Panel PanelBg { get; set; }
         public System.Windows.Forms.ComboBox WarehouseComboBox { get; set; }
-        public static AddWarehouseItem Instance { get; private set; }
+        public static UpdateProduct Instance { get; private set; }
         private readonly SqlConnection connection;
         SqlDataAdapter adapter;
         DataTable dt;
-        private string _currentStock;
-
-        // Define the property with get and set accessors
-
-
-        public string Warehouse_Id
-        {
-            get { return comboBox1.SelectedValue?.ToString(); }
-            set { comboBox1.SelectedValue = value; }
-        }
 
         public string Product_Id
         {
@@ -65,56 +56,67 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             set { txtretprice.Text = value; }
         }
 
-        public AddWarehouseItem()
+        public UpdateProduct()
         {
             InitializeComponent();
             PanelBg = panelBg;
-            WarehouseComboBox = comboBox1;
+            //WarehouseComboBox = comboBox1;
             panelBg.BackColor = Color.DimGray;
             Instance = this;
             connection = new SqlConnection(connectionString);
             LoadComboBoxData();
+            LoadTextBoxData();
             Categories();
+            comboBox2.SelectedIndexChanged += ComboBox2_SelectedIndexChanged;
         }
 
-
-        public void RefreshDataGridView()
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            LoadTextBoxData();
         }
-        public void SetBindingItemSource(BindingSource login)
+        private void LoadTextBoxData()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("SELECT Min_Stock, Max_Stock, Current_Stock, Original_Price, Retail_Price FROM [IV].[WarehouseItems] WHERE Product_Id = @ProductId", con);
+                    command.Parameters.AddWithValue("@ProductId", comboBox2.SelectedValue); // Assuming comboBox2 is your product selection
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Min_Stock = reader["Min_Stock"].ToString();
+                        Max_Stock = reader["Max_Stock"].ToString();
+                        Current_Stock = reader["Current_Stock"].ToString();
+                        Original_Price = reader["Original_Price"].ToString();
+                        Retail_Price = reader["Retail_Price"].ToString();
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading data: " + ex.Message);
+            }
         }
         public void Categories()
         {
-            saveItemBtn.Click += delegate { Items?.Invoke(this, EventArgs.Empty); };
+            saveItemBtn.Click += delegate { UpdateItems?.Invoke(this, EventArgs.Empty); };
 
         }
-        public event EventHandler Items;
+        public event EventHandler UpdateItems;
 
         private void LoadComboBoxData()
         {
             try
             {
-                // Load Warehouse ComboBox
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    SqlCommand commandBrand = new SqlCommand("SELECT ID, [Address] FROM [IV].[Warehouse]", con);
-                    SqlDataAdapter adapterBrand = new SqlDataAdapter(commandBrand);
-                    DataTable dataTableBrand = new DataTable();
-                    adapterBrand.Fill(dataTableBrand);
-                    comboBox1.DataSource = dataTableBrand;
-                    comboBox1.DisplayMember = "Address";
-                    comboBox1.ValueMember = "ID";
-                }
-
                 // Load Product ComboBox
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product] WHERE NOT EXISTS (SELECT 1 FROM [IV].[WarehouseItems] WHERE Product_ID = [IV].[Product].ID)", con);
+                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product]", con);
                     SqlDataAdapter adapterCategory = new SqlDataAdapter(commandCategory);
                     DataTable dataTableCategory = new DataTable();
                     adapterCategory.Fill(dataTableCategory);
@@ -129,7 +131,16 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             }
         }
 
-        private void AddWarehouseItem_Load(object sender, EventArgs e)
+        public void RefreshDataGridView()
+        {
+
+        }
+        public void SetBindingItemsSource(BindingSource login)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdateProduct_Load(object sender, EventArgs e)
         {
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
@@ -139,16 +150,14 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             PanelBg.BackColor = color;
         }
 
-     
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cancelBtn_Click_1(object sender, EventArgs e)
+        private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
     }
 }

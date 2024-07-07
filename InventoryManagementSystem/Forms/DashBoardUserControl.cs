@@ -28,9 +28,10 @@ namespace InventoryManagementSystem.Forms
             ShowCategoriesCount();
             ShowProductCount();
             ShowCustomerCount();
+            ShowLowStockCount();
+            ShowLowStockCount1();
             GetCustomerCount();
-            GetRegisteredUsersByMonth();
-            ShowRegisteredUsersByMonth();
+            GetLowStockCount();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -131,6 +132,32 @@ namespace InventoryManagementSystem.Forms
 
             return count;
         }
+        private int GetLowStockCount()
+        {
+            int count = 0;
+
+            try
+            {
+                sqlConnection.Open(); // Buksan ang connection
+
+                string query = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE Current_Stock <= 5;"; // Palitan ang 'Products' kung kinakailangan
+
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    count = (int)command.ExecuteScalar(); // ExecuteScalar para makuha ang count
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving product count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlConnection.Close(); // Siguraduhing isara ang connection
+            }
+
+            return count;
+        }
         private void ShowCategoriesCount()
         {
             int categoryCount = GetCategoriesCount();
@@ -147,9 +174,30 @@ namespace InventoryManagementSystem.Forms
             int customerCount = GetCustomerCount();
             label8.Text = $" {customerCount}";
         }
-        private Dictionary<string, int> GetRegisteredUsersByMonth()
+
+        private void ShowLowStockCount()
         {
-            Dictionary<string, int> registeredUsersByMonth = new Dictionary<string, int>();
+            int lowStockCount = GetLowStockCount();
+
+            // Check if there are items with low stock
+            if (lowStockCount > 0)
+            {
+                // If there are low stock items, set label6's color to red
+                label6.Text = $"{lowStockCount}";
+                label6.ForeColor = Color.Red; // Set text color to red
+            }
+            else
+            {
+                // If there are no low stock items, set label6's color to white
+                label6.Text = "0";
+                label6.ForeColor = Color.White; // Set text color to white
+            }
+        }
+
+
+        private Dictionary<string, Tuple<string, int>> GetLowStockProducts()
+        {
+            Dictionary<string, Tuple<string, int>> lowStockProducts = new Dictionary<string, Tuple<string, int>>();
 
             try
             {
@@ -157,10 +205,11 @@ namespace InventoryManagementSystem.Forms
                 {
                     connection.Open();
 
-                    string query = "SELECT DATENAME(MONTH, CreatedDate) AS MonthName, COUNT(*) AS Count " +
-                                   "FROM IV.StaffAssignment " +
-                                   "WHERE YEAR(CreatedDate) = YEAR(GETDATE()) " + // Kunin lamang ang data para sa kasalukuyang taon
-                                   "GROUP BY DATENAME(MONTH, CreatedDate)"; // Group by month name
+                    string query = "SELECT p.product_name AS ProductName, p.product_code AS ProductCode, wi.Current_Stock AS StockCount " +
+                                   "FROM IV.WarehouseItems wi " +
+                                   "INNER JOIN IV.Product p ON wi.product_id = p.id " +
+                                   "WHERE wi.Current_Stock <= 5 " + // Filter for low stock items
+                                   "GROUP BY p.product_name, p.product_code, wi.Current_Stock"; // Group by product name, product code, and stock count
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -168,10 +217,12 @@ namespace InventoryManagementSystem.Forms
                         {
                             while (reader.Read())
                             {
-                                string monthName = reader.GetString(reader.GetOrdinal("MonthName"));
-                                int count = reader.GetInt32(reader.GetOrdinal("Count"));
+                                string productName = reader.GetString(reader.GetOrdinal("ProductName"));
+                                string productCode = reader.GetString(reader.GetOrdinal("ProductCode"));
+                                int stockCount = reader.GetInt32(reader.GetOrdinal("StockCount"));
 
-                                registeredUsersByMonth.Add(monthName, count);
+                                // Add product name, product code, and stock count to dictionary
+                                lowStockProducts.Add($"{productName} ({productCode})", Tuple.Create(productCode, stockCount));
                             }
                         }
                     }
@@ -179,43 +230,46 @@ namespace InventoryManagementSystem.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving registered users by month: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving low stock products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-               return registeredUsersByMonth;
-            }
-        private void ShowRegisteredUsersByMonth()
+            return lowStockProducts;
+        }
+        private void ShowLowStockCount1()
         {
             // Clear existing series and points
             chart1.Series.Clear();
 
             // Add series
-            Series series = chart1.Series.Add("Registered Users by Month");
+            Series series = chart1.Series.Add("Low Stock Products");
             series.ChartType = SeriesChartType.Pie;
             series.IsValueShownAsLabel = true; // Show values as labels
 
             // Get data
-            Dictionary<string, int> registeredUsersByMonth = GetRegisteredUsersByMonth();
+            Dictionary<string, Tuple<string, int>> lowStockProducts = GetLowStockProducts();
 
             // Calculate total count
-            int totalCount = registeredUsersByMonth.Values.Sum();
+            int totalCount = lowStockProducts.Count; // Total count is number of products
 
             // Add data points
-            foreach (var kvp in registeredUsersByMonth)
+            foreach (var kvp in lowStockProducts)
             {
-                string monthName = kvp.Key;
-                int userCount = kvp.Value;
+                string productNameWithCode = kvp.Key;
+                string productCode = kvp.Value.Item1; // Get product code from Tuple
+                int stockCount = kvp.Value.Item2; // Get stock count from Tuple
 
-                // Add data point with month name as X value and user count as Y value
-                DataPoint point = series.Points.Add(userCount);
-                point.AxisLabel = $"{monthName} ({((double)userCount / totalCount * 100).ToString("0.##")}%)";
-                //point.Label = $"{monthName} ({((double)userCount / totalCount * 100).ToString("0.##")}%)";
-                point.LabelToolTip = $"Count: {userCount}";
+                // Add data point with product name and product code as X value and stock count as Y value
+                DataPoint point = series.Points.Add(stockCount);
+                point.AxisLabel = $"{productNameWithCode} ({stockCount})";
+                point.LabelToolTip = $"Stock Count: {stockCount}";
+
+                // Add custom label for identification
+                point.Label = $"{productNameWithCode} ({stockCount})"; // Display product name, code, and stock count
             }
 
             // Set chart properties
-            chart1.ChartAreas[0].AxisX.Title = "Month";
-            chart1.ChartAreas[0].AxisY.Title = "Registered Users";
+            chart1.ChartAreas[0].AxisX.Title = "Product";
+            chart1.ChartAreas[0].AxisY.Title = "Stock Count of Low Stock Items";
         }
         private void chart1_Click(object sender, EventArgs e)
         {

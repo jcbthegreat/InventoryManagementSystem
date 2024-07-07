@@ -67,6 +67,11 @@ namespace InventoryManagementSystem.Forms
             set { comboBox5.SelectedValue = value; }
         }
 
+        public string Unit_Count
+        {
+            get { return unit_count.Text; }
+            set { unit_count.Text = value; }
+        }
 
         public AddProductForm()
         {
@@ -80,12 +85,12 @@ namespace InventoryManagementSystem.Forms
             LoadComboBoxData();
 
             Categories();
-         
-           
+
+
         }
         public void RefreshDataGridView()
         {
-            
+
         }
         public void SetBindingProductSource(BindingSource login)
         {
@@ -173,7 +178,7 @@ namespace InventoryManagementSystem.Forms
         public void Categories()
         {
             saveProductBtn.Click += delegate { Products?.Invoke(this, EventArgs.Empty); };
-            
+
         }
         public event EventHandler Products;
 
@@ -264,10 +269,7 @@ namespace InventoryManagementSystem.Forms
                 Console.WriteLine("Error loading data: " + ex.Message);
             }
         }
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
         private void AddProductForm_Load(object sender, EventArgs e)
         {
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
@@ -292,5 +294,14 @@ namespace InventoryManagementSystem.Forms
             PanelBg.BackColor = color;
         }
 
+        private void cancelBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

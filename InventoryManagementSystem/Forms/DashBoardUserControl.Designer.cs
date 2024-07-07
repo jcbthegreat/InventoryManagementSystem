@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
             label7 = new Label();
@@ -55,9 +55,9 @@
             Date = new Label();
             label9 = new Label();
             panel6 = new Panel();
-            label10 = new Label();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             timer1 = new System.Windows.Forms.Timer(components);
+            groupBox1 = new GroupBox();
             tableLayoutPanel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -71,6 +71,7 @@
             panel7.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -171,7 +172,7 @@
             label6.Name = "label6";
             label6.Size = new Size(38, 41);
             label6.TabIndex = 3;
-            label6.Text = "2";
+            label6.Text = "0";
             // 
             // pictureBox3
             // 
@@ -326,8 +327,7 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(label10);
-            panel6.Controls.Add(chart1);
+            panel6.Controls.Add(groupBox1);
             panel6.Controls.Add(tableLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 0);
@@ -336,39 +336,29 @@
             panel6.TabIndex = 2;
             panel6.Paint += panel6_Paint;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(52, 284);
-            label10.Name = "label10";
-            label10.Size = new Size(77, 15);
-            label10.TabIndex = 2;
-            label10.Text = "Register Staff";
-            // 
             // chart1
             // 
             chart1.BackColor = Color.Transparent;
             chart1.BorderlineColor = Color.Transparent;
-            chartArea1.BackColor = Color.Transparent;
-            chartArea1.BackSecondaryColor = Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
-            legend1.BackSecondaryColor = Color.Transparent;
-            legend1.BorderColor = Color.Transparent;
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
-            chart1.Location = new Point(52, 270);
+            chartArea3.BackColor = Color.Transparent;
+            chartArea3.BackSecondaryColor = Color.Transparent;
+            chartArea3.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea3);
+            legend3.BackSecondaryColor = Color.Transparent;
+            legend3.BorderColor = Color.Transparent;
+            legend3.Name = "Legend1";
+            chart1.Legends.Add(legend3);
+            chart1.Location = new Point(83, 12);
             chart1.Name = "chart1";
-            series1.BackImageTransparentColor = Color.Transparent;
-            series1.BackSecondaryColor = Color.Transparent;
-            series1.BorderColor = Color.Transparent;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
+            series3.BackImageTransparentColor = Color.Transparent;
+            series3.BackSecondaryColor = Color.Transparent;
+            series3.BorderColor = Color.Transparent;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            chart1.Series.Add(series3);
             chart1.Size = new Size(365, 268);
             chart1.TabIndex = 1;
             chart1.Text = "chart1";
@@ -376,6 +366,17 @@
             // timer1
             // 
             timer1.Tick += timer1_Tick;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(chart1);
+            groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.Location = new Point(52, 270);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(481, 286);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Low Stock Item";
             // 
             // DashBoardUserControl
             // 
@@ -403,8 +404,8 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
-            panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -435,6 +436,6 @@
         private Label Date;
         private Panel panel7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private Label label10;
+        private GroupBox groupBox1;
     }
 }

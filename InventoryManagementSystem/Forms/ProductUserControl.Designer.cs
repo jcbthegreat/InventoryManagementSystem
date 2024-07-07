@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductUserControl));
@@ -40,9 +41,10 @@
             panel3 = new Panel();
             panel4 = new Panel();
             additem = new Button();
-            button1 = new Button();
+            updateProd = new Button();
             addBtnFrm = new Button();
             deleteProdBtn = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -142,6 +144,7 @@
             dataGridView1.TabIndex = 2;
             dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
             dataGridView1.CellClick += DataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // panel3
@@ -156,7 +159,7 @@
             // panel4
             // 
             panel4.Controls.Add(additem);
-            panel4.Controls.Add(button1);
+            panel4.Controls.Add(updateProd);
             panel4.Controls.Add(addBtnFrm);
             panel4.Controls.Add(deleteProdBtn);
             panel4.Dock = DockStyle.Right;
@@ -184,23 +187,23 @@
             additem.UseVisualStyleBackColor = false;
             additem.Click += additem_Click;
             // 
-            // button1
+            // updateProd
             // 
-            button1.BackColor = Color.FromArgb(91, 192, 222);
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.WhiteSmoke;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(263, 21);
-            button1.Name = "button1";
-            button1.Size = new Size(115, 33);
-            button1.TabIndex = 2;
-            button1.Text = "  Update Product";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            updateProd.BackColor = Color.FromArgb(91, 192, 222);
+            updateProd.Cursor = Cursors.Hand;
+            updateProd.FlatAppearance.BorderSize = 0;
+            updateProd.FlatStyle = FlatStyle.Flat;
+            updateProd.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            updateProd.ForeColor = Color.WhiteSmoke;
+            updateProd.Image = (Image)resources.GetObject("updateProd.Image");
+            updateProd.ImageAlign = ContentAlignment.MiddleLeft;
+            updateProd.Location = new Point(263, 21);
+            updateProd.Name = "updateProd";
+            updateProd.Size = new Size(115, 33);
+            updateProd.TabIndex = 2;
+            updateProd.Text = "  Update Product";
+            updateProd.TextAlign = ContentAlignment.MiddleRight;
+            updateProd.UseVisualStyleBackColor = false;
             // 
             // addBtnFrm
             // 
@@ -247,7 +250,7 @@
             Controls.Add(panel1);
             Name = "ProductUserControl";
             Size = new Size(1172, 658);
-            Load += ProductUserControl_Load;
+            //Load += ProductUserControl_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -270,7 +273,8 @@
         private Button addBtnFrm;
         private DataGridView dataGridView1;
         private Panel panel4;
-        private Button button1;
+        private Button updateProd;
         private Button additem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
