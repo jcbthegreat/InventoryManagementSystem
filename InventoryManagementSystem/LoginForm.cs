@@ -88,24 +88,23 @@ namespace InventoryManagementSystem
 
         }
 
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
 
         public void SetBindingLoginSource(BindingSource login)
         {
             throw new NotImplementedException();
         }
 
-        private void closeBtn_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void closeBtn_Click_2(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

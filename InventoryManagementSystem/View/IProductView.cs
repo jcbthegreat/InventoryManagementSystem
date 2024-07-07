@@ -17,6 +17,7 @@ namespace InventoryManagementSystem.View
         string Type_Id { get; set; }
         string Unit_Id { get; set; }
         string Variant_Id { get; set; }
+        string Unit_Count { get; set; }
 
 
         event EventHandler Products;

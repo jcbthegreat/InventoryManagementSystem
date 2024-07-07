@@ -25,6 +25,7 @@ namespace InventoryManagementSystem.Presenter
             _sqlConnectionString = sqlConnectionString;
             this._showProductControl.ShowItem += ShowItem;
             this._showProductControl.ShowProduct += ShowProduct;
+            this._showProductControl.ShowUpdateProduct += ShowUpdateProduct;
 
 
         }
@@ -46,6 +47,15 @@ namespace InventoryManagementSystem.Presenter
             // Show the AddCategory form
             var addproductForm = (Form)productView;
             addproductForm.Show();
+        }
+        private void ShowUpdateProduct(Object? sender, EventArgs e)
+        {
+            IUpdateWarehouseProduct updateWarehouseProduct = new UpdateProduct();
+            new UpdateProductPresenter(updateWarehouseProduct, _sqlConnectionString);
+
+            // Show the AddCategory form
+            var updateitemForm = (Form)updateWarehouseProduct;
+            updateitemForm.Show();
         }
     }
 }

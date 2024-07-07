@@ -17,6 +17,7 @@ namespace InventoryManagementSystem.Model
         private string type_id;
         private string unit_id;
         private string variant_id;
+        private string unit_count;
 
         public int ID
         {
@@ -64,6 +65,11 @@ namespace InventoryManagementSystem.Model
         {
             get { return variant_id; }
             set { variant_id = value; }
+        }
+        public string Unit_Count
+        {
+            get { return unit_count; }
+            set { unit_count = value; }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace InventoryManagementSystem.Forms
             // Attach events
             additem.Click += delegate { ShowItem?.Invoke(this, EventArgs.Empty); };
             addBtnFrm.Click += delegate { ShowProduct?.Invoke(this, EventArgs.Empty); };
+            updateProd.Click += delegate { ShowUpdateProduct?.Invoke(this, EventArgs.Empty); };
 
             // Initialize connection
             connection = new SqlConnection(connectionString);
@@ -38,7 +39,7 @@ namespace InventoryManagementSystem.Forms
             dataGridView1.CellClick += DataGridView1_CellClick;
 
             // Load data into DataGridView
-            showdata();
+            ShowDataAsync();
 
             // Handle event to refresh DataGridView
             ShowItem += (sender, args) => RefreshDataGridView();
@@ -52,8 +53,9 @@ namespace InventoryManagementSystem.Forms
 
         public event EventHandler ShowItem;
         public event EventHandler ShowProduct;
+        public event EventHandler ShowUpdateProduct;
 
-        public void showdata()
+        public async Task ShowDataAsync()
         {
             try
             {
@@ -65,7 +67,7 @@ namespace InventoryManagementSystem.Forms
                 connection.Open();
 
                 adapter = new SqlDataAdapter("SELECT p.ID as ID, wh.[Name] as [Warehouse Name], p.product_code as [Product Code], p.product_name as [Product Name], b.BrandName as [Brand Name], c.CategoryName as [Category Name], " +
-                    " s.subcategoryname as [Sub Category Name], t.typename as [Type Name], v.variantname as [Variant Name], m.measurementname as [Measurement Name], " +
+                    " s.subcategoryname as [Sub Category Name], t.typename as [Type Name], v.variantname as [Variant Name], m.measurementname as [Measurement Name],p.unit_count as [Measurement Count], " +
                     " w.current_stock as [Current Stock], w.min_stock as [Minimun Stock], w.max_stock as [Maximum Stock], w.original_price as [Original Price], w.retail_price as [Retail Price] " +
                     " FROM [IV].[Product] p LEFT JOIN [IV].[brand] b ON p.brand_id = b.id " +
                     " LEFT JOIN [IV].[Categories] c on p.category_id = c.id LEFT JOIN [IV].[SubCategories] s on p.subcategory_id = s.ID " +
@@ -76,35 +78,38 @@ namespace InventoryManagementSystem.Forms
                     " ORDER BY p.ID ASC", connection);
 
                 dt = new DataTable();
-                adapter.Fill(dt);
-                dataGridView1.DataSource = dt;
+                await Task.Run(() => adapter.Fill(dt)); // Asynchronous fill of DataTable
 
-                // Customize DataGridView appearance and behavior
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    column.DefaultCellStyle.Padding = new Padding(0);
+                dataGridView1.Invoke((MethodInvoker)delegate {
+                    dataGridView1.DataSource = dt;
 
-                    // Hide ID column
-                    if (column.HeaderText == "ID")
+                    // Customize DataGridView appearance and behavior
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
                     {
-                        column.Visible = false;
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        column.DefaultCellStyle.Padding = new Padding(0);
+
+                        // Hide ID column
+                        if (column.HeaderText == "ID")
+                        {
+                            column.Visible = false;
+                        }
+
+                        // Set columns to be editable based on editableColumns list
+                        if (editableColumns.Contains(column.HeaderText))
+                        {
+                            column.ReadOnly = false;
+                        }
+                        else
+                        {
+                            column.ReadOnly = true;
+                        }
                     }
 
-                    // Set columns to be editable based on editableColumns list
-                    if (editableColumns.Contains(column.HeaderText))
-                    {
-                        column.ReadOnly = false;
-                    }
-                    else
-                    {
-                        column.ReadOnly = true;
-                    }
-                }
-
-                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                    dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                });
             }
             catch (Exception ex)
             {
@@ -121,13 +126,10 @@ namespace InventoryManagementSystem.Forms
 
         public void RefreshDataGridView()
         {
-            showdata();
+            ShowDataAsync();
         }
 
-        private void ProductUserControl_Load(object sender, EventArgs e)
-        {
-            showdata();
-        }
+      
 
         private void additem_Click(object sender, EventArgs e)
         {
@@ -180,7 +182,7 @@ namespace InventoryManagementSystem.Forms
                         transaction.Commit();
                         MessageBox.Show("Product deleted successfully.");
 
-                        showdata();
+                        ShowDataAsync();
                     }
                     catch (Exception ex)
                     {
@@ -229,6 +231,15 @@ namespace InventoryManagementSystem.Forms
             {
                 e.Cancel = true; // Cancel edit based on condition
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private async void ProductUserControl_Load(object sender, EventArgs e)
+        {
+            await ShowDataAsync();
         }
     }
 }

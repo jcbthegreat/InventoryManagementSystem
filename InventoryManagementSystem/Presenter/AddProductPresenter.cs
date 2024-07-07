@@ -32,6 +32,7 @@ namespace InventoryManagementSystem.Presenter
             string type_id = _productView.Type_Id;
             string unit_id = _productView.Unit_Id;
             string variant_id = _productView.Variant_Id;
+            string unit_count = _productView.Unit_Count;
 
 
             if (string.IsNullOrEmpty(product_code))
@@ -75,14 +76,19 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show("Variant Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(unit_count))
+            {
+                MessageBox.Show("Unit Count cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Insert data into the database
-            InsertCategory(product_code, product_name, brand_id, category_id, subcategory_id, type_id, unit_id, variant_id);
+            InsertCategory(product_code, product_name, brand_id, category_id, subcategory_id, type_id, unit_id, variant_id,unit_count);
 
             _productView.RefreshDataGridView();
         }
 
-        private void InsertCategory(string product_code, string product_name, string brand_id, string category_id, string subcategory_id, string type_id, string unit_id, string variant_id )
+        private void InsertCategory(string product_code, string product_name, string brand_id, string category_id, string subcategory_id, string type_id, string unit_id, string variant_id, string unit_count )
         {
             try
             {
@@ -92,8 +98,8 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[Product] (Product_Code, Product_Name,Brand_Id,Category_Id,Subcategory_Id,Type_Id,Unit_Id,Variant_Id) VALUES (@Product_Code, @Product_Name, @Brand_Id, @Category_Id, @Subcategory_Id, " +
-                        " @Type_Id, @Unit_Id, @Variant_Id)";
+                    string query = "INSERT INTO [IV].[Product] (Product_Code, Product_Name,Brand_Id,Category_Id,Subcategory_Id,Type_Id,Unit_Id,Variant_Id,Unit_Count) VALUES (@Product_Code, @Product_Name, @Brand_Id, @Category_Id, @Subcategory_Id, " +
+                        " @Type_Id, @Unit_Id, @Variant_Id, @Unit_Count)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Product_Code", product_code);
@@ -104,6 +110,7 @@ namespace InventoryManagementSystem.Presenter
                         command.Parameters.AddWithValue("@Type_Id", type_id);
                         command.Parameters.AddWithValue("@Unit_Id", unit_id);
                         command.Parameters.AddWithValue("@Variant_Id", variant_id);
+                        command.Parameters.AddWithValue("@Unit_Count", unit_count);
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
