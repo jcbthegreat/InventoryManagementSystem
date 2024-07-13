@@ -80,7 +80,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         public void RefreshDataGridView()
         {
-
+            
         }
         public void SetBindingItemSource(BindingSource login)
         {
@@ -88,7 +88,14 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         }
         public void Categories()
         {
-            saveItemBtn.Click += delegate { Items?.Invoke(this, EventArgs.Empty); };
+            saveItemBtn.Click += (sender, e) =>
+            {
+                // Save item logic here
+
+                // Notify subscribers that an item has been saved
+                Items?.Invoke(this, EventArgs.Empty);
+                this.Close(); // Close the form after saving
+            };
 
         }
         public event EventHandler Items;

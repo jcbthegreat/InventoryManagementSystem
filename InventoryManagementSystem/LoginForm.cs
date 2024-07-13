@@ -73,7 +73,20 @@ namespace InventoryManagementSystem
 
         public void LoginUser()
         {
-            loginBtn.Click += delegate { Login?.Invoke(this, EventArgs.Empty); };
+            loginBtn.Click += (s, e) => Login?.Invoke(this, EventArgs.Empty);
+
+            // Add event handlers for Enter key on both TextBoxes
+            inputUsername.KeyDown += TextBox_KeyDown;
+            inputPassword.KeyDown += TextBox_KeyDown;
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Trigger Login event when Enter key is pressed
+                Login?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public event EventHandler Login;

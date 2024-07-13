@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,13 @@ namespace InventoryManagementSystem.Forms
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void repProduct_Click(object sender, EventArgs e)
+        {
+
+            ProductReport report = new ProductReport();
+            report.ShowDialog();
         }
     }
 }
