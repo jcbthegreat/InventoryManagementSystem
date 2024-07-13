@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.View;
+﻿using InventoryManagementSystem.Forms.SettingsForm;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,8 +21,24 @@ namespace InventoryManagementSystem.Presenter
   
             _sqlConnectionString = sqlConnectionString;
             _warehouseitemView.Items += CategoryEvent;
-        }
 
+            if (_warehouseitemView is Form form)
+            {
+                form.Load += OnFormLoad;
+            }
+        }
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            if (_warehouseitemView is AddWarehouseItem addItemView)
+            {
+                addItemView.Items += (s, ea) =>
+                {
+                    // Handle the event and refresh the DataGridView
+                    // Assuming you have a way to refresh the DataGridView in the context
+                    _warehouseitemView.RefreshDataGridView();
+                };
+            }
+        }
         private void CategoryEvent(object? sender, EventArgs e)
         {
             string warehouseid = _warehouseitemView.Warehouse_Id;

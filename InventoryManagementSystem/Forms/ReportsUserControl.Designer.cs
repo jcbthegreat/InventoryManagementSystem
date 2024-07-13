@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportsUserControl));
             panel1 = new Panel();
             label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            repProduct = new Button();
             panel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -55,12 +58,32 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.Controls.Add(repProduct);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 41);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1006, 597);
             flowLayoutPanel1.TabIndex = 23;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
+            // 
+            // repProduct
+            // 
+            repProduct.BackColor = SystemColors.Control;
+            repProduct.Cursor = Cursors.Hand;
+            repProduct.Dock = DockStyle.Top;
+            repProduct.FlatAppearance.BorderSize = 0;
+            repProduct.FlatStyle = FlatStyle.Flat;
+            repProduct.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            repProduct.Image = (Image)resources.GetObject("repProduct.Image");
+            repProduct.Location = new Point(3, 3);
+            repProduct.Name = "repProduct";
+            repProduct.Padding = new Padding(0, 0, 0, 10);
+            repProduct.Size = new Size(200, 149);
+            repProduct.TabIndex = 4;
+            repProduct.Text = "Products";
+            repProduct.TextAlign = ContentAlignment.BottomCenter;
+            repProduct.UseVisualStyleBackColor = false;
+            repProduct.Click += repProduct_Click;
             // 
             // ReportsUserControl
             // 
@@ -72,6 +95,7 @@
             Size = new Size(1006, 638);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -80,5 +104,6 @@
         private Panel panel1;
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Button repProduct;
     }
 }
