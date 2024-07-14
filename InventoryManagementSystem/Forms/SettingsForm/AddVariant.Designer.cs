@@ -152,7 +152,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ControlLight;
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -216,7 +216,7 @@
             comboBox3.Location = new Point(18, 147);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(204, 23);
-            comboBox3.TabIndex = 33;
+            comboBox3.TabIndex = 2;
             // 
             // label10
             // 
@@ -264,7 +264,7 @@
             comboBox2.Location = new Point(18, 101);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(204, 23);
-            comboBox2.TabIndex = 28;
+            comboBox2.TabIndex = 1;
             // 
             // label4
             // 
@@ -303,7 +303,7 @@
             comboBox1.Location = new Point(18, 55);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
-            comboBox1.TabIndex = 23;
+            comboBox1.TabIndex = 0;
             // 
             // label5
             // 
@@ -327,7 +327,7 @@
             addBtn.Location = new Point(18, 316);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(90, 27);
-            addBtn.TabIndex = 12;
+            addBtn.TabIndex = 5;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
             // 
@@ -354,7 +354,7 @@
             VarName.Location = new Point(18, 191);
             VarName.Name = "VarName";
             VarName.Size = new Size(204, 23);
-            VarName.TabIndex = 7;
+            VarName.TabIndex = 3;
             // 
             // DescTxt
             // 
@@ -363,7 +363,7 @@
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.Size = new Size(204, 72);
-            DescTxt.TabIndex = 9;
+            DescTxt.TabIndex = 4;
             // 
             // AddVariant
             // 

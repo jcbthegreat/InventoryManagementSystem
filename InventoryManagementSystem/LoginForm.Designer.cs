@@ -118,13 +118,16 @@
             // 
             // loginBtn
             // 
+            loginBtn.BackColor = Color.FromArgb(0, 133, 216);
             loginBtn.Cursor = Cursors.Hand;
+            loginBtn.FlatStyle = FlatStyle.Flat;
+            loginBtn.ForeColor = Color.Transparent;
             loginBtn.Location = new Point(390, 296);
             loginBtn.Name = "loginBtn";
             loginBtn.Size = new Size(283, 39);
             loginBtn.TabIndex = 13;
             loginBtn.Text = "Login";
-            loginBtn.UseVisualStyleBackColor = true;
+            loginBtn.UseVisualStyleBackColor = false;
             // 
             // pictureBox4
             // 

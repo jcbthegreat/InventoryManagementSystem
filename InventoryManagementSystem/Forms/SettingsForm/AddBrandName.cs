@@ -177,12 +177,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT ct.CategoryName as [Category Name], sb.SubCategoryName as [Sub Category Name], ty.TypeName as [Type Name], vr.VariantName as [Variant Name], br.BrandName as [Brand Name],br.Description " +
-                     " FROM [IV].[SubCategories] sb INNER JOIN [IV].[Categories] ct ON sb.MainCategoryID = ct.ID" +
-                     " INNER JOIN [IV].[Types] ty on sb.ID = ty.SubCategoryID " +
-                     " inner join[IV].[Variant] vr on vr.TypeID = ty.ID " +
-                     " INNER JOIN[IV].[Brand] br on br.VariantID = vr.ID " +
-                    " ORDER BY vr.ID ASC", connection);
+                adapter = new SqlDataAdapter("SELECT BrandName as [Brand Name],Description" +
+                     " FROM [IV].[Brand]  " +
+                    " order by ID asc", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;

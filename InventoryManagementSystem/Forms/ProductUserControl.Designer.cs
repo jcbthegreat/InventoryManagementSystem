@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductUserControl));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductUserControl));
             panel1 = new Panel();
+            button1 = new Button();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             label9 = new Label();
@@ -55,6 +56,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label9);
@@ -63,6 +65,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 51);
             panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(80, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 33);
+            button1.TabIndex = 4;
+            button1.Text = "Upload product";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
@@ -84,6 +103,7 @@
             textBox1.PlaceholderText = "Quick Search";
             textBox1.Size = new Size(325, 18);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label9
             // 
@@ -250,7 +270,6 @@
             Controls.Add(panel1);
             Name = "ProductUserControl";
             Size = new Size(1172, 658);
-            //Load += ProductUserControl_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -276,5 +295,6 @@
         private Button updateProd;
         private Button additem;
         private System.Windows.Forms.Timer timer1;
+        private Button button1;
     }
 }

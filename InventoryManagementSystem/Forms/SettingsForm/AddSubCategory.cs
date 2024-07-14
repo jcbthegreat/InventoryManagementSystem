@@ -121,8 +121,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT ct.CategoryName as [Category Name], sb.SubCategoryName as [Sub Category Name], sb.Description " +
-                     " FROM [IV].[SubCategories] sb INNER JOIN [IV].[Categories] ct ON sb.MainCategoryID = ct.ID " +
+                adapter = new SqlDataAdapter("SELECT sb.SubCategoryName as [Sub Category Name], sb.Description " +
+                     " FROM [IV].[SubCategories] sb " +
                     " ORDER BY sb.ID ASC", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);

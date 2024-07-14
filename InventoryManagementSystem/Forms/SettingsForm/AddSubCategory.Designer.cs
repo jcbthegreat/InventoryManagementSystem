@@ -145,7 +145,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ControlLight;
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -234,7 +234,7 @@
             comboBox1.Location = new Point(18, 55);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
-            comboBox1.TabIndex = 23;
+            comboBox1.TabIndex = 0;
             // 
             // label5
             // 
@@ -258,7 +258,7 @@
             addBtn.Location = new Point(18, 233);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(90, 27);
-            addBtn.TabIndex = 12;
+            addBtn.TabIndex = 3;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
             // 
@@ -285,7 +285,7 @@
             SubCategName.Location = new Point(18, 101);
             SubCategName.Name = "SubCategName";
             SubCategName.Size = new Size(204, 23);
-            SubCategName.TabIndex = 7;
+            SubCategName.TabIndex = 1;
             // 
             // DescTxt
             // 
@@ -294,7 +294,7 @@
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.Size = new Size(204, 72);
-            DescTxt.TabIndex = 9;
+            DescTxt.TabIndex = 2;
             // 
             // AddSubCategory
             // 

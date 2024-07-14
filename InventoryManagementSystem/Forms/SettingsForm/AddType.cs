@@ -41,7 +41,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         public AddType()
         {
             InitializeComponent();
-            CategoryComboBox = comboBox1; 
+            CategoryComboBox = comboBox1;
             PanelBg = panelBg;
             panelBg.BackColor = Color.DimGray;
             Instance = this;
@@ -139,10 +139,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT ct.CategoryName as [Category Name], sb.SubCategoryName as [Sub Category Name], ty.TypeName as [Type Name], ty.Description " +
-                     " FROM [IV].[SubCategories] sb INNER JOIN [IV].[Categories] ct ON sb.MainCategoryID = ct.ID" +
-                     " INNER JOIN [IV].[Types] ty on sb.ID = ty.SubCategoryID " +
-                    " ORDER BY sb.ID ASC", connection);
+                adapter = new SqlDataAdapter("SELECT  ty.TypeName as [Type Name], ty.Description " +
+                     " from [IV].[Types] ty " +
+                    " ORDER BY ty.ID ASC", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
@@ -205,6 +204,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 Console.WriteLine("Error saving data: " + ex.Message);
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

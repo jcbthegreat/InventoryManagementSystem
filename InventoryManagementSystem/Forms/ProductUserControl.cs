@@ -61,7 +61,7 @@ namespace InventoryManagementSystem.Forms
 
         public async Task ShowDataAsync()
         {
-            DataTable dt = new DataTable();
+            dt = new DataTable();
 
             try
             {
@@ -92,7 +92,7 @@ namespace InventoryManagementSystem.Forms
                         }
                     }
                 }
-                
+
 
                 // Use Invoke to update UI controls on the UI thread
                 dataGridView1.Invoke((MethodInvoker)delegate
@@ -140,7 +140,7 @@ namespace InventoryManagementSystem.Forms
 
         private void additem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -246,6 +246,30 @@ namespace InventoryManagementSystem.Forms
         private async void ProductUserControl_Load(object sender, EventArgs e)
         {
             await ShowDataAsync();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = textBox1.Text;
+
+
+            DataView productView = new DataView(dt);
+
+
+            string filterExpression = string.Format(
+                "[Product Name] LIKE '%{0}%' OR [Product Code] LIKE '%{0}%' OR [Warehouse Name] LIKE '%{0}%'",
+                filterText
+            );
+
+            productView.RowFilter = filterExpression;
+
+            dataGridView1.DataSource = productView;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UploadProduct uploadproduct = new UploadProduct();
+            uploadproduct.ShowDialog();
         }
     }
 }

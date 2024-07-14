@@ -8,6 +8,6 @@ namespace InventoryManagementSystem.Model
 {
     public interface ICustomerRepository
     {
-        IEnumerable<CustomerModel> GetByValue(string Name,string Email, string Address, string Discount, string Is_Supplier);
+        IEnumerable<CustomerModel> GetByValue(string Name,string Email, string Contact, string Address, string Discount, string Is_Supplier);
     }
 }
