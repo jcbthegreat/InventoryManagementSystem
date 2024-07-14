@@ -19,7 +19,7 @@ namespace InventoryManagementSystem.Repositories
 
 
 
-        public IEnumerable<CustomerModel> GetByValue(string name,string email, string address,string discount,string issupplier)
+        public IEnumerable<CustomerModel> GetByValue(string name,string email, string Contact, string address,string discount,string issupplier)
         {
             var customers = new List<CustomerModel>();
             using (var cmd = new SqlCommand())

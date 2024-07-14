@@ -13,6 +13,7 @@ namespace InventoryManagementSystem.Model
         private int id;
         private string name;
         private string email;
+        private string contact;
         private string address;
         private string discount;
         private string is_suplier;
@@ -35,6 +36,11 @@ namespace InventoryManagementSystem.Model
         {
             get { return email; }
             set { email = value; }
+        }
+        public string Contact
+        {
+            get { return contact; }
+            set { contact = value; }
         }
         public string Address
         {

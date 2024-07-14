@@ -8,8 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>logo_Dux_icon.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
-    <AssemblyVersion>1.0.0.26</AssemblyVersion>
-    <FileVersion>1.0.0.26</FileVersion>
+    <AssemblyVersion>1.0.0.27</AssemblyVersion>
+    <FileVersion>1.0.0.27</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,6 +51,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.2.1" />
+    <PackageReference Include="ExcelDna.Interop" Version="15.0.1" />
+    <PackageReference Include="Microsoft.Office.Excel" Version="14.0.4760.1000" />
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
   </ItemGroup>

@@ -108,12 +108,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandBrand = new SqlCommand("SELECT ID, [Address] FROM [IV].[Warehouse]", con);
+                    SqlCommand commandBrand = new SqlCommand("SELECT ID, [Name] FROM [IV].[Warehouse]", con);
                     SqlDataAdapter adapterBrand = new SqlDataAdapter(commandBrand);
                     DataTable dataTableBrand = new DataTable();
                     adapterBrand.Fill(dataTableBrand);
                     comboBox1.DataSource = dataTableBrand;
-                    comboBox1.DisplayMember = "Address";
+                    comboBox1.DisplayMember = "Name";
                     comboBox1.ValueMember = "ID";
                 }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace InventoryManagementSystem.Presenter
 {
     public class CustomerPresenter
@@ -27,14 +28,22 @@ namespace InventoryManagementSystem.Presenter
         private void CategoryEvent(object? sender, EventArgs e)
         {
             string customerName = _customerView.Name;
-            string email = _customerView.Address;
+            string email = _customerView.Email;
             string address = _customerView.Address;
+            string contact = _customerView.Contact;
             string discount = _customerView.Discount;
             string issupplier = _customerView.Is_Supplier;
 
+            // Input validation
             if (string.IsNullOrEmpty(customerName))
             {
-                MessageBox.Show("Warehouse Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Customer/Supplier Name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Email cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -43,9 +52,9 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show("Address cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(contact))
             {
-                MessageBox.Show("Email cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contact Number cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(issupplier))
@@ -53,15 +62,44 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show("Is Supplier cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-         
+
+            // Check if the customer already exists
+            if (CheckIfCustomerExists(customerName, email))
+            {
+                MessageBox.Show("Customer with the same name or email already exists.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Insert data into the database
-            InsertCategory(customerName, email, address, discount, issupplier);
+            InsertCategory(customerName, email,contact, address, discount, issupplier);
 
             _customerView.RefreshDataGridView();
         }
 
-        private void InsertCategory(string customerName, string email,string address, string discount, string issupplier)
+        private bool CheckIfCustomerExists(string customerName, string email)
+        {
+            bool exists = false;
+
+            using (SqlConnection connection = new SqlConnection(_sqlConnectionString))
+            {
+                connection.Open();
+
+                // Check for duplicate by either Name or Email
+                string query = "SELECT COUNT(*) FROM [IV].[Customer] WHERE Name = @Name OR Email = @Email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", customerName);
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    int count = (int)command.ExecuteScalar();
+                    exists = count > 0;
+                }
+            }
+
+            return exists;
+        }
+
+        private void InsertCategory(string customerName, string email, string contact, string address, string discount, string issupplier)
         {
             try
             {
@@ -71,26 +109,25 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[Customer] (Name,Email, Address,Discount,Is_Supplier ) VALUES (@Name, @Email,@Address,@Discount,@Is_Supplier)";
+                    string query = "INSERT INTO [IV].[Customer] (Name, Email, Contact, Address, Discount, Is_Supplier) VALUES (@Name, @Email,@Contact, @Address, @Discount, @Is_Supplier)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Name", customerName);
                         command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@Contact", contact);
                         command.Parameters.AddWithValue("@Address", address);
                         command.Parameters.AddWithValue("@Discount", discount);
                         command.Parameters.AddWithValue("@Is_Supplier", issupplier);
 
-                      
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)
                         {
-                            MessageBox.Show("Customer added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                            MessageBox.Show("Customer/Supplier added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Error adding Warehouse.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error adding Customer/Supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

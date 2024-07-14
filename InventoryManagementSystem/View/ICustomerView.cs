@@ -11,6 +11,7 @@ namespace InventoryManagementSystem.View
         string Name { get; set; }
         string Email { get; set; }
         string Address { get; set; }
+        string Contact { get; set; }
         string Discount { get; set; }
         string Is_Supplier { get; set; }
 

@@ -121,7 +121,7 @@
             comboBox1.Location = new Point(16, 46);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
-            comboBox1.TabIndex = 3;
+            comboBox1.TabIndex = 0;
             // 
             // txtDesc
             // 
@@ -129,14 +129,14 @@
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
             txtDesc.Size = new Size(204, 80);
-            txtDesc.TabIndex = 8;
+            txtDesc.TabIndex = 5;
             // 
             // txtBrand
             // 
             txtBrand.Location = new Point(16, 157);
             txtBrand.Name = "txtBrand";
             txtBrand.Size = new Size(204, 23);
-            txtBrand.TabIndex = 9;
+            txtBrand.TabIndex = 4;
             // 
             // addBtn
             // 
@@ -149,7 +149,7 @@
             addBtn.Location = new Point(371, 256);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(76, 27);
-            addBtn.TabIndex = 13;
+            addBtn.TabIndex = 6;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
             // 
@@ -236,7 +236,7 @@
             comboBox4.Location = new Point(243, 100);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(204, 23);
-            comboBox4.TabIndex = 29;
+            comboBox4.TabIndex = 3;
             // 
             // label10
             // 
@@ -264,7 +264,7 @@
             comboBox3.Location = new Point(16, 100);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(204, 23);
-            comboBox3.TabIndex = 26;
+            comboBox3.TabIndex = 2;
             // 
             // label8
             // 
@@ -292,7 +292,7 @@
             comboBox2.Location = new Point(243, 46);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(204, 23);
-            comboBox2.TabIndex = 23;
+            comboBox2.TabIndex = 1;
             // 
             // label7
             // 
@@ -342,7 +342,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ControlLight;
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;

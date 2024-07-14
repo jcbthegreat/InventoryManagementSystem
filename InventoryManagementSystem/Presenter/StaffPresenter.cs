@@ -38,6 +38,7 @@ namespace InventoryManagementSystem.Presenter
             string password = _staffView.Password;
             string imgpath = _staffView.ImgPath != null ? Convert.ToBase64String(_staffView.ImgPath) : null;
 
+            // Input validation
             if (string.IsNullOrEmpty(staffNo))
             {
                 MessageBox.Show("Staff No cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -52,7 +53,6 @@ namespace InventoryManagementSystem.Presenter
             {
                 MessageBox.Show("Position cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
             }
             if (string.IsNullOrEmpty(firstname))
             {
@@ -90,10 +90,38 @@ namespace InventoryManagementSystem.Presenter
                 return;
             }
 
+            // Check if the staff already exists
+            if (CheckIfStaffExists(staffNo))
+            {
+                MessageBox.Show("Staff No already exists.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Insert data into the database
             InsertCategory(staffNo, roletype, position, firstname, middlename, lastname, email, contactno, username, password, imgpath);
 
             _staffView.RefreshDataGridView();
+        }
+
+        private bool CheckIfStaffExists(string staffNo)
+        {
+            bool exists = false;
+
+            using (SqlConnection connection = new SqlConnection(_sqlConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM IV.StaffAssignment WHERE StaffNo = @StaffNo";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@StaffNo", staffNo);
+
+                    int count = (int)command.ExecuteScalar();
+                    exists = count > 0;
+                }
+            }
+
+            return exists;
         }
 
         private void InsertCategory(string staffNo, string roletype, string position, string firstname, string middlename, string lastname, string email, string contactno, string username, string password, string imgpath)
@@ -106,9 +134,7 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO IV.StaffAssignment (StaffNo, RoleType, Position,FirstName,MiddleName,Lastname," +
-                        " Email,ContactNo,Username,Password,ImgPath,CreatedBy,CreatedDate) VALUES (@StaffNo, @RoleType,@Position,@FirstName,@MiddleName,@Lastname,@Email," +
-                        " @ContactNo, @Username, @Password,CONVERT(varbinary(max), @ImgPath),@CreatedBy, @CreatedDate)";
+                    string query = "INSERT INTO IV.StaffAssignment (StaffNo, RoleType, Position, FirstName, MiddleName, Lastname, Email, ContactNo, Username, Password, ImgPath, CreatedBy, CreatedDate) VALUES (@StaffNo, @RoleType, @Position, @FirstName, @MiddleName, @Lastname, @Email, @ContactNo, @Username, @Password, CONVERT(varbinary(max), @ImgPath), @CreatedBy, @CreatedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@StaffNo", staffNo);
@@ -136,11 +162,10 @@ namespace InventoryManagementSystem.Presenter
                         if (result > 0)
                         {
                             MessageBox.Show("Staff added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         }
                         else
                         {
-                            MessageBox.Show("Error adding category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error adding staff.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

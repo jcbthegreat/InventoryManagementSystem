@@ -233,7 +233,7 @@
             comboBox2.Location = new Point(234, 69);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(204, 25);
-            comboBox2.TabIndex = 37;
+            comboBox2.TabIndex = 5;
             // 
             // label20
             // 
@@ -360,7 +360,7 @@
             txtposition.Location = new Point(9, 123);
             txtposition.Name = "txtposition";
             txtposition.Size = new Size(203, 25);
-            txtposition.TabIndex = 18;
+            txtposition.TabIndex = 1;
             // 
             // btnGeneratepass
             // 
@@ -389,7 +389,7 @@
             txtPassword.Location = new Point(235, 301);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(203, 25);
-            txtPassword.TabIndex = 14;
+            txtPassword.TabIndex = 9;
             // 
             // label9
             // 
@@ -406,7 +406,7 @@
             txtusername.Location = new Point(235, 242);
             txtusername.Name = "txtusername";
             txtusername.Size = new Size(203, 25);
-            txtusername.TabIndex = 12;
+            txtusername.TabIndex = 8;
             // 
             // label7
             // 
@@ -423,7 +423,7 @@
             txtfirstname.Location = new Point(8, 181);
             txtfirstname.Name = "txtfirstname";
             txtfirstname.Size = new Size(203, 25);
-            txtfirstname.TabIndex = 10;
+            txtfirstname.TabIndex = 2;
             // 
             // label6
             // 
@@ -441,7 +441,7 @@
             txtcontact.MaxLength = 11;
             txtcontact.Name = "txtcontact";
             txtcontact.Size = new Size(203, 25);
-            txtcontact.TabIndex = 8;
+            txtcontact.TabIndex = 7;
             // 
             // label5
             // 
@@ -492,7 +492,7 @@
             txtmiddlename.Location = new Point(9, 239);
             txtmiddlename.Name = "txtmiddlename";
             txtmiddlename.Size = new Size(203, 25);
-            txtmiddlename.TabIndex = 2;
+            txtmiddlename.TabIndex = 3;
             // 
             // label2
             // 

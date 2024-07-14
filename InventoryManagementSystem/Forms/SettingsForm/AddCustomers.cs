@@ -15,7 +15,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 {
     public partial class AddCustomers : Form, ICustomerView
     {
-    
+
 
         string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         public Panel PanelBg { get; set; }
@@ -24,6 +24,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         SqlDataAdapter adapter;
         DataTable dt;
 
+        public string ID;
         public string Name
         {
             get { return txtname.Text; }
@@ -33,6 +34,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             get { return txtemail.Text; }
             set { txtemail.Text = value; }
+        }
+        public string Contact
+        {
+            get { return txtcontact.Text; }
+            set { txtcontact.Text = value; }
         }
         public string Address
         {
@@ -164,7 +170,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 connection.Open();
 
 
-                using (SqlCommand command = new SqlCommand("SELECT [Name],ID FROM [IV].[Supplier]", connection))
+                using (SqlCommand command = new SqlCommand("SELECT ID,Name FROM [IV].[Supplier]", connection))
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
 
@@ -178,7 +184,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     comboBox1.DataSource = dataTable;
 
 
-                    comboBox1.DisplayMember = "[Name]";
+                    comboBox1.DisplayMember = "Name";
 
 
                     comboBox1.ValueMember = "ID";
@@ -193,7 +199,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("select c.[name] as [Full name], c.Email, c.[Address],c.Discount,s.[name] as [Is Supplier?] " +
+                adapter = new SqlDataAdapter("select c.[name] as [Full name], c.Email,c.Contact, c.[Address],c.Discount,s.[name] as [Is Supplier?] " +
                      " from [IV].[Customer] c inner join [IV].[Supplier] s on c.is_supplier = s.id " +
                     " order by c.ID asc", connection);
                 dt = new DataTable();
@@ -263,6 +269,30 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void label17_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+
+                txtname.Text = row.Cells["Full name"].Value?.ToString();
+                txtemail.Text = row.Cells["Email"].Value?.ToString();
+                txtcontact.Text = row.Cells["Contact"].Value?.ToString();
+                txtaddress.Text = row.Cells["Address"].Value?.ToString();
+                txtdiscount.Text = row.Cells["Discount"].Value?.ToString();
+
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
         }
     }
 }

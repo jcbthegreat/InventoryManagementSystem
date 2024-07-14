@@ -100,7 +100,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = SystemColors.ControlLight;
+            dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -131,6 +131,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(362, 216);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // groupBox1
             // 
@@ -160,7 +161,7 @@
             txtType.Location = new Point(18, 150);
             txtType.Name = "txtType";
             txtType.Size = new Size(204, 23);
-            txtType.TabIndex = 31;
+            txtType.TabIndex = 2;
             // 
             // label8
             // 
@@ -188,7 +189,7 @@
             comboBox2.Location = new Point(18, 101);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(204, 23);
-            comboBox2.TabIndex = 28;
+            comboBox2.TabIndex = 1;
             // 
             // label4
             // 
@@ -227,7 +228,7 @@
             comboBox1.Location = new Point(18, 55);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
-            comboBox1.TabIndex = 23;
+            comboBox1.TabIndex = 0;
             // 
             // label5
             // 
@@ -251,7 +252,7 @@
             addBtn.Location = new Point(18, 271);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(90, 27);
-            addBtn.TabIndex = 12;
+            addBtn.TabIndex = 4;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
             // 
@@ -280,7 +281,7 @@
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.Size = new Size(204, 72);
-            DescTxt.TabIndex = 9;
+            DescTxt.TabIndex = 3;
             // 
             // panelBg
             // 
