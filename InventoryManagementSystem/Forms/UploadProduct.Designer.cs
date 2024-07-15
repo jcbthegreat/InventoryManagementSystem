@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadProduct));
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -51,10 +51,10 @@
             button1 = new Button();
             btnSaveExcel = new Button();
             openFileDialog1 = new OpenFileDialog();
-            button2 = new Button();
+            btnDLTemplate = new Button();
             panel1 = new Panel();
-            closeBtn = new Button();
             label1 = new Label();
+            closeBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -69,14 +69,14 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.DimGray;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Gainsboro;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Gainsboro;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, WAREHOUSENAME, PRODUCTCODE, PRODUCTNAME, BRANDNAME, CATEGORYNAME, SUBCATEGORYNAME, TYPENAME, VARIANTNAME, MEASUREMENT, MEASUREMENTCOUNT, CURRENTSTOCK, MINIMUMSTOCK, MAXIMUMSTOCK, ORIGINALPRICE, RETAILPRICE });
             dataGridView1.Cursor = Cursors.Hand;
@@ -86,12 +86,12 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.DimGray;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.DimGray;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1078, 430);
@@ -262,20 +262,21 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button2
+            // btnDLTemplate
             // 
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(839, 58);
-            button2.Name = "button2";
-            button2.Size = new Size(88, 35);
-            button2.TabIndex = 6;
-            button2.Text = "Template";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = true;
+            btnDLTemplate.Cursor = Cursors.Hand;
+            btnDLTemplate.FlatAppearance.BorderSize = 0;
+            btnDLTemplate.FlatStyle = FlatStyle.Flat;
+            btnDLTemplate.Image = (Image)resources.GetObject("btnDLTemplate.Image");
+            btnDLTemplate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDLTemplate.Location = new Point(839, 58);
+            btnDLTemplate.Name = "btnDLTemplate";
+            btnDLTemplate.Size = new Size(88, 35);
+            btnDLTemplate.TabIndex = 6;
+            btnDLTemplate.Text = "Template";
+            btnDLTemplate.TextAlign = ContentAlignment.MiddleRight;
+            btnDLTemplate.UseVisualStyleBackColor = true;
+            btnDLTemplate.Click += button2_Click;
             // 
             // panel1
             // 
@@ -287,6 +288,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1102, 34);
             panel1.TabIndex = 7;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Upload Product";
             // 
             // closeBtn
             // 
@@ -304,23 +315,13 @@
             closeBtn.UseVisualStyleBackColor = false;
             closeBtn.Click += closeBtn_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(90, 15);
-            label1.TabIndex = 6;
-            label1.Text = "Upload Product";
-            // 
             // UploadProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1102, 541);
             Controls.Add(panel1);
-            Controls.Add(button2);
+            Controls.Add(btnDLTemplate);
             Controls.Add(btnSaveExcel);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
@@ -328,6 +329,7 @@
             Name = "UploadProduct";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += UploadProduct_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -356,7 +358,7 @@
         private DataGridViewTextBoxColumn MAXIMUMSTOCK;
         private DataGridViewTextBoxColumn ORIGINALPRICE;
         private DataGridViewTextBoxColumn RETAILPRICE;
-        private Button button2;
+        private Button btnDLTemplate;
         private Panel panel1;
         private Button closeBtn;
         private Label label1;

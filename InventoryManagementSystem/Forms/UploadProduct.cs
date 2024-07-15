@@ -27,6 +27,7 @@ namespace InventoryManagementSystem.Forms
             connection = new SqlConnection(connectionString);
             InitializeDataGridView();
             this.Load += new System.EventHandler(this.UploadProduct_Load);
+            OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
         }
 
 
@@ -342,6 +343,61 @@ namespace InventoryManagementSystem.Forms
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void UploadProduct_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var package = new ExcelPackage())
+                {
+                    var worksheet = package.Workbook.Worksheets.Add("Template");
+
+                    // Define headers
+                    worksheet.Cells[1, 1].Value = "Warehouse Name";
+                    worksheet.Cells[1, 2].Value = "Product Code";
+                    worksheet.Cells[1, 3].Value = "Product Name";
+                    worksheet.Cells[1, 4].Value = "Brand Name";
+                    worksheet.Cells[1, 5].Value = "Category Name";
+                    worksheet.Cells[1, 6].Value = "Sub Category Name";
+                    worksheet.Cells[1, 7].Value = "Type Name";
+                    worksheet.Cells[1, 8].Value = "Variant Name";
+                    worksheet.Cells[1, 9].Value = "Measurement Name";
+                    worksheet.Cells[1, 10].Value = "Measurement Count";
+                    worksheet.Cells[1, 11].Value = "Current Stock";
+                    worksheet.Cells[1, 12].Value = "Minimum Stock";
+                    worksheet.Cells[1, 13].Value = "Maximum Stock";
+                    worksheet.Cells[1, 14].Value = "Original Price";
+                    worksheet.Cells[1, 15].Value = "Retail Price";
+
+                    // Auto-fit columns
+                    worksheet.Cells.AutoFitColumns();
+
+                    // Save the file
+                    using (var saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "Excel Files|*.xlsx";
+                        saveFileDialog.Title = "Save Template";
+                        saveFileDialog.FileName = "ProductTemplate.xlsx";
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            FileInfo fi = new FileInfo(saveFileDialog.FileName);
+                            package.SaveAs(fi);
+                            MessageBox.Show("Template saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the template: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
