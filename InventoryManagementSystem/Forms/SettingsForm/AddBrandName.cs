@@ -98,8 +98,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] WHERE MainCategoryID = @categoryId", con);
-                        command.Parameters.AddWithValue("@categoryId", categoryId);
+                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] ", con);
+                        //command.Parameters.AddWithValue("@categoryId", categoryId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -125,8 +125,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, TypeName FROM [IV].[Types] WHERE SubCategoryID = @subCategoryId", con);
-                        command.Parameters.AddWithValue("@subCategoryId", subCategoryId);
+                        SqlCommand command = new SqlCommand("SELECT ID, TypeName FROM [IV].[Types]", con);
+                        //command.Parameters.AddWithValue("@subCategoryId", subCategoryId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -152,8 +152,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, VariantName FROM [IV].[Variant] WHERE TypeID = @typeid", con);
-                        command.Parameters.AddWithValue("@typeid", typeId);
+                        SqlCommand command = new SqlCommand("SELECT ID, VariantName FROM [IV].[Variant] ", con);
+                        //command.Parameters.AddWithValue("@typeid", typeId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -177,9 +177,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT BrandName as [Brand Name],Description" +
-                     " FROM [IV].[Brand]  " +
-                    " order by ID asc", connection);
+                adapter = new SqlDataAdapter("SELECT v.VariantName as [Variant Name], b.BrandName as [Brand Name],b.Description" +
+                     " FROM [IV].[Brand] b" +
+                     " left join [IV].[Variant] v on b.variantid = v.id " +
+                    " order by b.ID asc", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;

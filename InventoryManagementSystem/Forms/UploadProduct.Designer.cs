@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadProduct));
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -69,14 +69,14 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.DimGray;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle3.SelectionForeColor = Color.Gainsboro;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.DimGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Gainsboro;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, WAREHOUSENAME, PRODUCTCODE, PRODUCTNAME, BRANDNAME, CATEGORYNAME, SUBCATEGORYNAME, TYPENAME, VARIANTNAME, MEASUREMENT, MEASUREMENTCOUNT, CURRENTSTOCK, MINIMUMSTOCK, MAXIMUMSTOCK, ORIGINALPRICE, RETAILPRICE });
             dataGridView1.Cursor = Cursors.Hand;
@@ -86,12 +86,12 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.DimGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1078, 430);
@@ -232,12 +232,10 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(933, 58);
+            button1.Location = new Point(1005, 58);
             button1.Name = "button1";
-            button1.Size = new Size(75, 35);
+            button1.Size = new Size(39, 35);
             button1.TabIndex = 4;
-            button1.Text = "Import";
             button1.TextAlign = ContentAlignment.MiddleRight;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -248,12 +246,10 @@
             btnSaveExcel.FlatAppearance.BorderSize = 0;
             btnSaveExcel.FlatStyle = FlatStyle.Flat;
             btnSaveExcel.Image = (Image)resources.GetObject("btnSaveExcel.Image");
-            btnSaveExcel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSaveExcel.Location = new Point(1014, 58);
+            btnSaveExcel.Location = new Point(1050, 58);
             btnSaveExcel.Name = "btnSaveExcel";
-            btnSaveExcel.Size = new Size(75, 35);
+            btnSaveExcel.Size = new Size(38, 35);
             btnSaveExcel.TabIndex = 5;
-            btnSaveExcel.Text = "Upload";
             btnSaveExcel.TextAlign = ContentAlignment.MiddleRight;
             btnSaveExcel.UseVisualStyleBackColor = true;
             btnSaveExcel.Click += btnSaveExcel_Click;
@@ -268,13 +264,11 @@
             btnDLTemplate.FlatAppearance.BorderSize = 0;
             btnDLTemplate.FlatStyle = FlatStyle.Flat;
             btnDLTemplate.Image = (Image)resources.GetObject("btnDLTemplate.Image");
-            btnDLTemplate.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDLTemplate.Location = new Point(839, 58);
+            btnDLTemplate.Location = new Point(962, 58);
             btnDLTemplate.Name = "btnDLTemplate";
-            btnDLTemplate.Size = new Size(88, 35);
+            btnDLTemplate.Size = new Size(37, 35);
             btnDLTemplate.TabIndex = 6;
-            btnDLTemplate.Text = "Template";
-            btnDLTemplate.TextAlign = ContentAlignment.MiddleRight;
+            btnDLTemplate.TextAlign = ContentAlignment.BottomCenter;
             btnDLTemplate.UseVisualStyleBackColor = true;
             btnDLTemplate.Click += button2_Click;
             // 

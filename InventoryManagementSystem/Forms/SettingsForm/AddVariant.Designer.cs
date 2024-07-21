@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddVariant));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
@@ -73,7 +73,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(952, 36);
+            panelBg.Size = new Size(617, 36);
             panelBg.TabIndex = 28;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -95,7 +95,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(920, 0);
+            closeBtn.Location = new Point(585, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -118,7 +118,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.search;
-            pictureBox2.Location = new Point(697, 58);
+            pictureBox2.Location = new Point(363, 58);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(26, 25);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -129,7 +129,7 @@
             // 
             textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.ForeColor = SystemColors.WindowText;
-            textBox1.Location = new Point(726, 58);
+            textBox1.Location = new Point(392, 58);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search";
             textBox1.Size = new Size(212, 25);
@@ -141,7 +141,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(279, 89);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(661, 349);
+            groupBox2.Size = new Size(326, 308);
             groupBox2.TabIndex = 30;
             groupBox2.TabStop = false;
             groupBox2.Text = "List Of Types";
@@ -152,36 +152,38 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.DimGray;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.DimGray;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Orange;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Location = new Point(23, 43);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = Color.DimGray;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.Location = new Point(6, 22);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(632, 300);
+            dataGridView1.Size = new Size(310, 267);
             dataGridView1.TabIndex = 0;
             // 
             // groupBox1
@@ -369,7 +371,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(952, 463);
+            ClientSize = new Size(617, 452);
             Controls.Add(pictureBox2);
             Controls.Add(textBox1);
             Controls.Add(groupBox2);

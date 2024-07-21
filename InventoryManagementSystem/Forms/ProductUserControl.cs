@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.Forms.SettingsForm;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using InventoryManagementSystem.Forms.SettingsForm;
 using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
@@ -34,15 +35,20 @@ namespace InventoryManagementSystem.Forms
             connection = new SqlConnection(connectionString);
 
             // Set DataGridView properties
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
-            dataGridView1.CellClick += DataGridView1_CellClick;
+            //dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+            //dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            //dataGridView1.CellClick += DataGridView1_CellClick;
 
             // Load data into DataGridView
             ShowDataAsync();
 
             // Handle event to refresh DataGridView
             ShowItem += (sender, args) => RefreshDataGridView();
+
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.SetToolTip(button3, "Upload Product");
+            ToolTip toolTip2 = new ToolTip();
+            toolTip2.SetToolTip(button1, "Refresh");
         }
 
         private void addBtnFrm_Click(object sender, EventArgs e)
@@ -102,8 +108,7 @@ namespace InventoryManagementSystem.Forms
                     // Customize DataGridView appearance and behavior
                     foreach (DataGridViewColumn column in dataGridView1.Columns)
                     {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        column.DefaultCellStyle.Padding = new Padding(0);
+
 
                         // Hide ID column
                         if (column.HeaderText == "ID")
@@ -112,19 +117,9 @@ namespace InventoryManagementSystem.Forms
                         }
 
                         // Set columns to be editable based on editableColumns list
-                        if (editableColumns.Contains(column.HeaderText))
-                        {
-                            column.ReadOnly = false;
-                        }
-                        else
-                        {
-                            column.ReadOnly = true;
-                        }
+
                     }
 
-                    dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                    dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 });
             }
             catch (Exception ex)
@@ -138,27 +133,22 @@ namespace InventoryManagementSystem.Forms
             ShowDataAsync();
         }
 
-        private void additem_Click(object sender, EventArgs e)
-        {
+        //private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+        //    {
+        //        string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
 
-        }
-
-        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
-
-                if (editableColumns.Contains(columnName))
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = false;
-                }
-                else
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
-                }
-            }
-        }
+        //        if (editableColumns.Contains(columnName))
+        //        {
+        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = false;
+        //        }
+        //        else
+        //        {
+        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+        //        }
+        //    }
+        //}
 
         private void deleteProdBtn_Click(object sender, EventArgs e)
         {
@@ -213,31 +203,31 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
+        //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+        //    {
+        //        string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
 
-                if (editableColumns.Contains(columnName))
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = false;
-                }
-                else
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
-                }
-            }
-        }
+        //        if (editableColumns.Contains(columnName))
+        //        {
+        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = false;
+        //        }
+        //        else
+        //        {
+        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+        //        }
+        //    }
+        //}
 
-        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
-            if (!editableColumns.Contains(columnName))
-            {
-                e.Cancel = true; // Cancel edit based on condition
-            }
-        }
+        //private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        //{
+        //    string columnName = dataGridView1.Columns[e.ColumnIndex].HeaderText.Trim();
+        //    if (!editableColumns.Contains(columnName))
+        //    {
+        //        e.Cancel = true; // Cancel edit based on condition
+        //    }
+        //}
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -270,6 +260,21 @@ namespace InventoryManagementSystem.Forms
         {
             UploadProduct uploadproduct = new UploadProduct();
             uploadproduct.ShowDialog();
+        }
+
+        private void additem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            RefreshDataGridView();
         }
     }
 }

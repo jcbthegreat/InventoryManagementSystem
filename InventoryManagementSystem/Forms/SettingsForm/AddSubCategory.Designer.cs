@@ -66,7 +66,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(751, 36);
+            panelBg.Size = new Size(634, 36);
             panelBg.TabIndex = 2;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -88,7 +88,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(719, 0);
+            closeBtn.Location = new Point(602, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -111,7 +111,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.search;
-            pictureBox2.Location = new Point(496, 61);
+            pictureBox2.Location = new Point(385, 61);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(26, 25);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -122,7 +122,7 @@
             // 
             textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.ForeColor = SystemColors.WindowText;
-            textBox1.Location = new Point(525, 61);
+            textBox1.Location = new Point(414, 61);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search";
             textBox1.Size = new Size(212, 25);
@@ -134,7 +134,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(272, 92);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(469, 277);
+            groupBox2.Size = new Size(356, 277);
             groupBox2.TabIndex = 20;
             groupBox2.TabStop = false;
             groupBox2.Text = "List Of Sub Categories";
@@ -145,6 +145,8 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -167,14 +169,14 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Location = new Point(15, 22);
+            dataGridView1.Location = new Point(6, 16);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(438, 249);
+            dataGridView1.Size = new Size(342, 255);
             dataGridView1.TabIndex = 0;
             // 
             // groupBox1
@@ -300,7 +302,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(751, 381);
+            ClientSize = new Size(634, 381);
             Controls.Add(pictureBox2);
             Controls.Add(textBox1);
             Controls.Add(groupBox2);

@@ -92,8 +92,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] WHERE MainCategoryID = @categoryId", con);
-                        command.Parameters.AddWithValue("@categoryId", categoryId);
+                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] ", con);
+                        //command.Parameters.AddWithValue("@ID", categoryId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -139,8 +139,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT  ty.TypeName as [Type Name], ty.Description " +
+                adapter = new SqlDataAdapter("SELECT sb.SubcategoryName as [Sub Category Name], ty.TypeName as [Type Name], ty.Description " +
                      " from [IV].[Types] ty " +
+                     " left join [IV].[SubCategories] sb on ty.SubCategoryId = sb.Id " +
                     " ORDER BY ty.ID ASC", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);

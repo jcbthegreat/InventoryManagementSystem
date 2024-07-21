@@ -93,8 +93,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories] WHERE MainCategoryID = @categoryId", con);
-                        command.Parameters.AddWithValue("@categoryId", categoryId);
+                        SqlCommand command = new SqlCommand("SELECT ID, SubCategoryName FROM [IV].[SubCategories]", con);
+                        //command.Parameters.AddWithValue("@categoryId", categoryId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -119,8 +119,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlCommand command = new SqlCommand("SELECT ID, TypeName FROM [IV].[Types] WHERE SubCategoryID = @subCategoryId", con);
-                        command.Parameters.AddWithValue("@subCategoryId", subCategoryId);
+                        SqlCommand command = new SqlCommand("SELECT ID, TypeName FROM [IV].[Types] ", con);
+                        //command.Parameters.AddWithValue("@subCategoryId", subCategoryId);
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -145,9 +145,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT vr.VariantName as [Variant Name],vr.Description " +
+                adapter = new SqlDataAdapter("SELECT ty.TypeName as [Type Name],vr.VariantName as [Variant Name],vr.Description " +
                      " FROM " +
                      " [IV].[Variant] vr " +
+                     " LEFT JOIN [IV].[Types] ty on vr.TypeId = ty.ID" +
                     " ORDER BY vr.ID ASC", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
