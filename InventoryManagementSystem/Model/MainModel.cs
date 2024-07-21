@@ -13,6 +13,8 @@ namespace InventoryManagementSystem.Model
         private string position;
         private string lastname, firstname;
 
+        private int moduleid;
+
         public string StaffNo
         {
             get { return staffno; }
@@ -37,6 +39,12 @@ namespace InventoryManagementSystem.Model
         {
             get { return firstname; }
             set { firstname = value; }
+        }
+
+        public int ModuleID
+        {
+            get { return moduleid; }
+            set { moduleid = value; }
         }
     }
 }
