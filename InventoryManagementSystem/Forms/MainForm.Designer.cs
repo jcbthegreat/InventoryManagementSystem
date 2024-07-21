@@ -37,6 +37,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.settingsBtn = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.reportBtn = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -51,12 +53,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.reportBtn = new System.Windows.Forms.Button();
             this.panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -64,7 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBg
@@ -114,6 +114,7 @@
             this.button6.Size = new System.Drawing.Size(32, 36);
             this.button6.TabIndex = 1;
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // mainFormCloseBtn
             // 
@@ -128,6 +129,7 @@
             this.mainFormCloseBtn.Size = new System.Drawing.Size(32, 36);
             this.mainFormCloseBtn.TabIndex = 0;
             this.mainFormCloseBtn.UseVisualStyleBackColor = true;
+            this.mainFormCloseBtn.Click += new System.EventHandler(this.mainFormCloseBtn_Click);
             // 
             // panel2
             // 
@@ -169,6 +171,33 @@
             this.settingsBtn.Text = "                Settings";
             this.settingsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.settingsBtn.UseVisualStyleBackColor = true;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.reportBtn);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 382);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(263, 49);
+            this.panel11.TabIndex = 4;
+            // 
+            // reportBtn
+            // 
+            this.reportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.reportBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportBtn.FlatAppearance.BorderSize = 0;
+            this.reportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.reportBtn.Image = ((System.Drawing.Image)(resources.GetObject("reportBtn.Image")));
+            this.reportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportBtn.Location = new System.Drawing.Point(0, 0);
+            this.reportBtn.Name = "reportBtn";
+            this.reportBtn.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.reportBtn.Size = new System.Drawing.Size(263, 49);
+            this.reportBtn.TabIndex = 0;
+            this.reportBtn.Text = "                Reports";
+            this.reportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportBtn.UseVisualStyleBackColor = true;
             // 
             // panel9
             // 
@@ -250,6 +279,7 @@
             this.button1.Text = "               Dashboard";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel3
             // 
@@ -341,33 +371,6 @@
             this.panel5.Size = new System.Drawing.Size(1172, 664);
             this.panel5.TabIndex = 3;
             // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.reportBtn);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 382);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(263, 49);
-            this.panel11.TabIndex = 4;
-            // 
-            // reportBtn
-            // 
-            this.reportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.reportBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportBtn.FlatAppearance.BorderSize = 0;
-            this.reportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reportBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.reportBtn.Image = ((System.Drawing.Image)(resources.GetObject("reportBtn.Image")));
-            this.reportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.reportBtn.Location = new System.Drawing.Point(0, 0);
-            this.reportBtn.Name = "reportBtn";
-            this.reportBtn.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.reportBtn.Size = new System.Drawing.Size(263, 49);
-            this.reportBtn.TabIndex = 0;
-            this.reportBtn.Text = "                Reports";
-            this.reportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.reportBtn.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -387,6 +390,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -396,7 +400,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
