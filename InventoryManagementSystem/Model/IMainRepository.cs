@@ -9,5 +9,7 @@ namespace InventoryManagementSystem.Model
     public interface IMainRepository
     {
         IEnumerable<MainModel> GetByValue(string StaffNo);
+
+        IEnumerable<MainModel> GetRoleModuleAccess(string RoleType);
     }
 }

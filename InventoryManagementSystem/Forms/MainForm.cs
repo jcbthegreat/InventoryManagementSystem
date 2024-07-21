@@ -22,6 +22,7 @@ namespace InventoryManagementSystem.Forms
         private string _position;
 
         private string staffno, roletype, position, lastname, firstname;
+        private int moduleid;
         string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
         public static MainForm Instance { get; private set; }
         public string StaffNo
@@ -51,7 +52,13 @@ namespace InventoryManagementSystem.Forms
             set { firstname = value; }
         }
 
-        public MainForm(string firstname, string lastname, string postion, string username)
+        int IMainView.ModuleId 
+        {
+            get { return moduleid; }
+            set { moduleid = value; }
+        }
+
+        public MainForm(string firstname, string lastname, string postion, string username, string RoleType)
         {
             InitializeComponent();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
@@ -63,6 +70,8 @@ namespace InventoryManagementSystem.Forms
             _fullName = $"{firstname} {lastname}";
             _position = $"{postion}";
             LoadProfileImage(username);
+
+            roletype = RoleType;
             if (txtUsername != null)
             {
                 txtUsername.Text = _fullName;
@@ -361,6 +370,46 @@ namespace InventoryManagementSystem.Forms
         private void panelBg_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        void IMainView.HideSettingsBtn()
+        {
+            this.panel12.Visible = false;
+        }
+
+        void IMainView.ShowSettingsBtn()
+        {
+            this.panel12.Visible = true;
+        }
+
+        void IMainView.HidePurchaseOrderBtn()
+        {
+            this.panel6.Visible = false;
+        }
+
+        void IMainView.HideProductsBtn()
+        {
+            this.panel9.Visible = false;
+        }
+
+        void IMainView.HideReportsBtn()
+        {
+            this.panel11.Visible = false;
+        }
+
+        void IMainView.ShowPurchaseOrderBtn()
+        {
+            this.panel6.Visible = true;
+        }
+
+        void IMainView.ShowProductsBtn()
+        {
+            this.panel9.Visible = true;
+        }
+
+        void IMainView.ShowReportsBtn()
+        {
+            this.panel11.Visible = true;
         }
     }
 }
