@@ -28,6 +28,14 @@ namespace InventoryManagementSystem.Forms
             InitializeDataGridView();
             this.Load += new System.EventHandler(this.UploadProduct_Load);
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.SetToolTip(btnDLTemplate, "Download Template");
+            ToolTip toolTip2 = new ToolTip();
+            toolTip2.SetToolTip(button1, "Import Template");
+            ToolTip toolTip3 = new ToolTip();
+            toolTip3.SetToolTip(btnSaveExcel, "Upload Template");
+
         }
 
 
@@ -126,15 +134,15 @@ namespace InventoryManagementSystem.Forms
                 {
                     // Define SQL queries
                     string checkProductExistsQuery = "SELECT COUNT(*) FROM [IV].[Product] WHERE product_code = @ProductCode";
-                    string insertProductQuery = "INSERT INTO [IV].[Product] (product_code, product_name, brand_id, category_id, subcategory_id, type_id, variant_id, unit_id, unit_count) " +
-                                                "VALUES (@ProductCode, @ProductName, @BrandId, @CategoryId, @SubCategoryId, @TypeId, @VariantId, @UnitId, @UnitCount); SELECT SCOPE_IDENTITY();";
+                    string insertProductQuery = "INSERT INTO [IV].[Product] (product_code, product_name, brand_id, category_id, subcategory_id, type_id, variant_id, unit_id, unit_count,AddedDate) " +
+                                                "VALUES (@ProductCode, @ProductName, @BrandId, @CategoryId, @SubCategoryId, @TypeId, @VariantId, @UnitId, @UnitCount,GETDATE()); SELECT SCOPE_IDENTITY();";
                     string getProductIdQuery = "SELECT ID FROM [IV].[Product] WHERE product_code = @ProductCode";
 
                     string checkWarehouseExistsQuery = "SELECT COUNT(*) FROM [IV].[Warehouse] WHERE Name = @WarehouseName";
                     string getWarehouseIdQuery = "SELECT ID FROM [IV].[Warehouse] WHERE Name = @WarehouseName";
                     string checkWarehouseItemExistsQuery = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE product_id = @ProductId AND warehouse_id = @WarehouseId";
-                    string insertWarehouseItemQuery = "INSERT INTO [IV].[WarehouseItems] (product_id, warehouse_id, current_stock, min_stock, max_stock, original_price, retail_price) " +
-                                                       "VALUES (@ProductId, @WarehouseId, @CurrentStock, @MinStock, @MaxStock, @OriginalPrice, @RetailPrice);";
+                    string insertWarehouseItemQuery = "INSERT INTO [IV].[WarehouseItems] (product_id, warehouse_id, current_stock, min_stock, max_stock, original_price, retail_price,AddedDate) " +
+                                                       "VALUES (@ProductId, @WarehouseId, @CurrentStock, @MinStock, @MaxStock, @OriginalPrice, @RetailPrice,GETDATE());";
 
                     // Prepare commands
                     using (var checkProductCommand = new SqlCommand(checkProductExistsQuery, connection, transaction))

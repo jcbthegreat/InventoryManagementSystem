@@ -75,7 +75,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(1060, 36);
+            panelBg.Size = new Size(884, 36);
             panelBg.TabIndex = 2;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -97,7 +97,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(1028, 0);
+            closeBtn.Location = new Point(852, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -333,7 +333,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(493, 105);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(555, 367);
+            groupBox2.Size = new Size(383, 293);
             groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             groupBox2.Text = "List Of Brand";
@@ -342,6 +342,8 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -355,13 +357,14 @@
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.Location = new Point(13, 38);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(3, 19);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(530, 314);
+            dataGridView1.Size = new Size(377, 271);
             dataGridView1.TabIndex = 0;
             // 
             // pictureBox2
@@ -369,7 +372,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = Properties.Resources.search;
-            pictureBox2.Location = new Point(805, 74);
+            pictureBox2.Location = new Point(634, 74);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(26, 25);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -380,7 +383,7 @@
             // 
             textBox3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox3.ForeColor = SystemColors.WindowText;
-            textBox3.Location = new Point(834, 74);
+            textBox3.Location = new Point(663, 74);
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Search Brand";
             textBox3.Size = new Size(212, 25);
@@ -390,7 +393,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1060, 496);
+            ClientSize = new Size(884, 415);
             Controls.Add(pictureBox2);
             Controls.Add(textBox3);
             Controls.Add(groupBox2);

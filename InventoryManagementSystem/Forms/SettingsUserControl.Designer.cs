@@ -64,7 +64,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1172, 41);
+            panel1.Size = new Size(1180, 41);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -106,7 +106,7 @@
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 41);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1172, 617);
+            flowLayoutPanel1.Size = new Size(1180, 617);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -153,7 +153,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Image = Properties.Resources.product_management1;
+            button1.Image = (Image)resources.GetObject("button1.Image");
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
             button1.Padding = new Padding(0, 0, 0, 10);
@@ -281,7 +281,7 @@
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Image = Properties.Resources.add_location__1_;
+            button4.Image = (Image)resources.GetObject("button4.Image");
             button4.Location = new Point(415, 135);
             button4.Name = "button4";
             button4.Padding = new Padding(0, 0, 0, 10);
@@ -299,7 +299,7 @@
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Image = Properties.Resources.management;
+            button2.Image = (Image)resources.GetObject("button2.Image");
             button2.Location = new Point(621, 135);
             button2.Name = "button2";
             button2.Padding = new Padding(0, 0, 0, 10);
@@ -353,7 +353,7 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel1);
             Name = "SettingsUserControl";
-            Size = new Size(1172, 658);
+            Size = new Size(1180, 658);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

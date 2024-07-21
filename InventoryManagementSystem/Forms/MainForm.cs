@@ -20,7 +20,7 @@ namespace InventoryManagementSystem.Forms
         public Panel PanelBg { get; set; }
         private string _fullName;
         private string _position;
-
+        private Size previousSize;
         private string staffno, roletype, position, lastname, firstname;
         private int moduleid;
         string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
@@ -52,7 +52,7 @@ namespace InventoryManagementSystem.Forms
             set { firstname = value; }
         }
 
-        int IMainView.ModuleId 
+        int IMainView.ModuleId
         {
             get { return moduleid; }
             set { moduleid = value; }
@@ -83,6 +83,7 @@ namespace InventoryManagementSystem.Forms
             }
             this.Resize += MainForm_Resize;
             button1.PerformClick();
+
         }
 
         private void LoadProfileImage(string username)
@@ -137,15 +138,18 @@ namespace InventoryManagementSystem.Forms
                     control.Location = new Point(0, 0); // Position control at top-left corner
 
                     panel5.Controls.Add(control); // Add the new control
+
+                    // Dock the control to fill the panel
+                    control.Dock = DockStyle.Fill;
                 }
                 else
                 {
-                    MessageBox.Show("Failed to load product control: Control is null or does not implement Control interface.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to load settings control: Control is null or does not implement Control interface.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading product control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading settings control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -161,6 +165,9 @@ namespace InventoryManagementSystem.Forms
                     control.Location = new Point(0, 0); // Position control at top-left corner
 
                     panel5.Controls.Add(control); // Add the new control
+
+                    // Dock the control to fill the panel
+                    control.Dock = DockStyle.Fill;
                 }
                 else
                 {
@@ -188,14 +195,13 @@ namespace InventoryManagementSystem.Forms
             LoadUserControl(new ProductUserControl());
         }
 
-        private void userBtn_Click(object sender, EventArgs e)
-        {
-            LoadUserControl(new ReportsUserControl());
-        }
-
         private void settingsBtn_Click(object sender, EventArgs e)
         {
             LoadUserControl(new SettingsUserControl());
+        }
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new ReportsUserControl());
         }
 
         private void LoadUserControl(UserControl control)
@@ -235,10 +241,31 @@ namespace InventoryManagementSystem.Forms
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            // Adjust panel5 size when MainForm is resized
             AdjustPanelSize();
-        }
 
+            // Refresh the current UserControl inside panel5
+            RefreshCurrentControl();
+        }
+        private void RefreshCurrentControl()
+        {
+            try
+            {
+                // Check if there is a current control loaded
+                if (currentControl != null)
+                {
+                    // Resize and reposition the control
+                    currentControl.Size = panel5.ClientSize; // Match control size to panel5
+                    currentControl.Location = new Point(0, 0); // Position control at top-left corner
+
+                    // Ensure the control is docked properly
+                    currentControl.Dock = DockStyle.Fill;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error refreshing control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void AdjustPanelSize()
         {
             // Compute the size of panel5 based on MainForm's size
@@ -269,13 +296,16 @@ namespace InventoryManagementSystem.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // Toggle maximize/restore button
             if (this.WindowState == FormWindowState.Maximized)
             {
+                // Restore from Maximized to Normal
                 this.WindowState = FormWindowState.Normal;
+                this.Size = previousSize; // I-restore ang naunang size bago mag-Maximize
             }
             else
             {
+                // Maximize from Normal
+                previousSize = this.Size; // I-record ang kasalukuyang size bago mag-Maximize
                 this.WindowState = FormWindowState.Maximized;
             }
         }
@@ -370,6 +400,16 @@ namespace InventoryManagementSystem.Forms
         private void panelBg_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void settingsBtn_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelBg_Paint_2(object sender, PaintEventArgs e)
+        {
+            PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
 
         void IMainView.HideSettingsBtn()
