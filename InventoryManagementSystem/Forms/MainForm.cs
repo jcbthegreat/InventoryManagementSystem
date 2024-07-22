@@ -122,7 +122,12 @@ namespace InventoryManagementSystem.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            PanelBg.BackColor = Properties.Settings.Default.MyColor;
+            Color panelColor = Properties.Settings.Default.MyColor;
+            if (panelColor == Color.Empty)
+            {
+                panelColor = Color.DimGray; // Fallback color
+            }
+            PanelBg.BackColor = panelColor;
             button1.PerformClick();
         }
 
@@ -347,19 +352,26 @@ namespace InventoryManagementSystem.Forms
         {
             DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            // Check if the user clicked Yes
             if (result == DialogResult.Yes)
             {
-                // Reset the FirstName and LastName properties
                 MainForm.Instance.FirstName = string.Empty;
                 MainForm.Instance.Lastname = string.Empty;
 
-                // Close the main form
                 MainForm.Instance.Close();
 
-                // Show the login form
                 LoginForm loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
-                loginForm?.Show(); // Show the login form if it is not null
+                if (loginForm != null)
+                {
+                    loginForm.ResetFields(); // Reset the login form fields
+                    loginForm.Show(); // Show the login form
+                }
+                else
+                {
+                    // If no LoginForm is currently open, create a new instance
+                    loginForm = new LoginForm();
+                    loginForm.ResetFields();
+                    loginForm.Show();
+                }
             }
         }
 

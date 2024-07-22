@@ -100,8 +100,12 @@ namespace InventoryManagementSystem
         {
 
         }
+        public void ResetFields()
+        {
+            inputUsername.Text = string.Empty;
+            inputPassword.Text = string.Empty;
+        }
 
-       
 
         public void SetBindingLoginSource(BindingSource login)
         {
