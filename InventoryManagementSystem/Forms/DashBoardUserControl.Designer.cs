@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoardUserControl));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
             label7 = new Label();
@@ -57,7 +58,7 @@
             panel6 = new Panel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             timer1 = new System.Windows.Forms.Timer(components);
-            groupBox1 = new GroupBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -71,7 +72,7 @@
             panel7.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
-            groupBox1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -95,7 +96,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.SteelBlue;
+            panel5.BackColor = Color.DarkCyan;
             panel5.Controls.Add(label7);
             panel5.Controls.Add(label8);
             panel5.Controls.Add(pictureBox4);
@@ -130,7 +131,7 @@
             // pictureBox4
             // 
             pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox4.Image = Properties.Resources.group;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(127, 26);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(112, 108);
@@ -140,7 +141,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.Orange;
+            panel4.BackColor = Color.LightCoral;
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(pictureBox3);
@@ -153,7 +154,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.Orange;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
             label5.Location = new Point(12, 109);
@@ -165,7 +166,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.BackColor = Color.Orange;
+            label6.BackColor = Color.Transparent;
             label6.Font = new Font("Century Gothic", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
             label6.Location = new Point(12, 38);
@@ -177,7 +178,7 @@
             // pictureBox3
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox3.Image = Properties.Resources.arrow;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(127, 26);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(112, 108);
@@ -222,7 +223,7 @@
             // pictureBox2
             // 
             pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox2.Image = Properties.Resources.box__1_;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(127, 26);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(112, 108);
@@ -233,7 +234,7 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.DodgerBlue;
+            panel2.BackColor = Color.CornflowerBlue;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(pictureBox1);
@@ -267,7 +268,7 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox1.Image = Properties.Resources.menu1;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(127, 26);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(112, 108);
@@ -327,7 +328,7 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(groupBox1);
+            panel6.Controls.Add(tableLayoutPanel2);
             panel6.Controls.Add(tableLayoutPanel1);
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 0);
@@ -340,26 +341,28 @@
             // 
             chart1.BackColor = Color.Transparent;
             chart1.BorderlineColor = Color.Transparent;
-            chartArea3.BackColor = Color.Transparent;
-            chartArea3.BackSecondaryColor = Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea3);
-            legend3.BackSecondaryColor = Color.Transparent;
-            legend3.BorderColor = Color.Transparent;
-            legend3.Name = "Legend1";
-            chart1.Legends.Add(legend3);
-            chart1.Location = new Point(83, 12);
+            chartArea1.BackColor = Color.Transparent;
+            chartArea1.BackSecondaryColor = Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            legend1.BackSecondaryColor = Color.Transparent;
+            legend1.BorderColor = Color.Transparent;
+            legend1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(3, 3);
             chart1.Name = "chart1";
-            series3.BackImageTransparentColor = Color.Transparent;
-            series3.BackSecondaryColor = Color.Transparent;
-            series3.BorderColor = Color.Transparent;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chart1.Series.Add(series3);
-            chart1.Size = new Size(365, 268);
+            series1.BackImageTransparentColor = Color.Transparent;
+            series1.BackSecondaryColor = Color.Transparent;
+            series1.BorderColor = Color.Transparent;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new Font("Arial Narrow", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(334, 184);
             chart1.TabIndex = 1;
             chart1.Text = "chart1";
             // 
@@ -367,16 +370,20 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
-            // groupBox1
+            // tableLayoutPanel2
             // 
-            groupBox1.Controls.Add(chart1);
-            groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(52, 270);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(481, 286);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Low Stock Item";
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.6133652F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.3866348F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 339F));
+            tableLayoutPanel2.Controls.Add(chart1, 0, 0);
+            tableLayoutPanel2.Location = new Point(52, 270);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 49.35065F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50.64935F));
+            tableLayoutPanel2.Size = new Size(1054, 385);
+            tableLayoutPanel2.TabIndex = 3;
             // 
             // DashBoardUserControl
             // 
@@ -405,7 +412,7 @@
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
-            groupBox1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -436,6 +443,6 @@
         private Label Date;
         private Panel panel7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private GroupBox groupBox1;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }

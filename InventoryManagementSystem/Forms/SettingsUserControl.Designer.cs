@@ -126,7 +126,7 @@
             paymentMethodBtn.FlatAppearance.BorderSize = 0;
             paymentMethodBtn.FlatStyle = FlatStyle.Flat;
             paymentMethodBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            paymentMethodBtn.Image = Properties.Resources.add_payment;
+            paymentMethodBtn.Image = (Image)resources.GetObject("paymentMethodBtn.Image");
             paymentMethodBtn.Location = new Point(0, 0);
             paymentMethodBtn.Name = "paymentMethodBtn";
             paymentMethodBtn.Padding = new Padding(0, 0, 0, 10);

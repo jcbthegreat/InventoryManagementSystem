@@ -412,6 +412,11 @@ namespace InventoryManagementSystem.Forms
             PanelBg.BackColor = Properties.Settings.Default.MyColor;
         }
 
+        private void panel5_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
         void IMainView.HideSettingsBtn()
         {
             this.panel12.Visible = false;

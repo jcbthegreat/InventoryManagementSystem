@@ -260,15 +260,15 @@ namespace InventoryManagementSystem.Forms
 
                 // Add data point with product name and product code as X value and stock count as Y value
                 DataPoint point = series.Points.Add(stockCount);
-                point.AxisLabel = $"{productNameWithCode} ({stockCount})";
+                point.AxisLabel = $"{productCode} ({stockCount})";
                 point.LabelToolTip = $"Stock Count: {stockCount}";
 
                 // Add custom label for identification
-                point.Label = $"{productNameWithCode} ({stockCount})"; // Display product name, code, and stock count
+                //point.Label = $"{productNameWithCode} ({stockCount})"; // Display product name, code, and stock count
             }
 
             // Set chart properties
-            chart1.ChartAreas[0].AxisX.Title = "Product";
+           // chart1.ChartAreas[0].AxisX.Title = "Product";
             chart1.ChartAreas[0].AxisY.Title = "Stock Count of Low Stock Items";
         }
         private void chart1_Click(object sender, EventArgs e)
