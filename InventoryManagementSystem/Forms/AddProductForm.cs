@@ -79,7 +79,7 @@ namespace InventoryManagementSystem.Forms
             InitializeComponent();
             BrandComboBox = comboBox1;
             PanelBg = panelBg;
-            panelBg.BackColor = Color.DimGray;
+            //panelBg.BackColor = Color.DimGray;
             Instance = this;
             connection = new SqlConnection(connectionString);
             LoadComboBoxData();
@@ -287,7 +287,19 @@ namespace InventoryManagementSystem.Forms
 
         private void panelBg_Paint(object sender, PaintEventArgs e)
         {
-
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void ChangePanelColor3(Color color)
         {

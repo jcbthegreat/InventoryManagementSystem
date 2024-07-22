@@ -60,7 +60,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             InitializeComponent();
             PanelBg = panelBg;
-            panelBg.BackColor = Color.DimGray;
+            //panelBg.BackColor = Color.DimGray;
             Instance = this;
             connection = new SqlConnection(connectionString);
             Categorie();
@@ -258,7 +258,19 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void panelBg_Paint(object sender, PaintEventArgs e)
         {
-
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void ChangePanelColor5(Color color)

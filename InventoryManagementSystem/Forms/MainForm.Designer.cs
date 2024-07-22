@@ -390,6 +390,7 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
+            Load += MainForm_Load_1;
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

@@ -65,7 +65,6 @@ namespace InventoryManagementSystem.Forms
             pictureBox3.Click += delegate { ShowProfile?.Invoke(this, EventArgs.Empty); };
             button2.Click += delegate { ShowProduct?.Invoke(this, EventArgs.Empty); };
             PanelBg = panelBg;
-            PanelBg.BackColor = Color.DimGray;
             Instance = this;
             _fullName = $"{firstname} {lastname}";
             _position = $"{postion}";
@@ -421,12 +420,41 @@ namespace InventoryManagementSystem.Forms
 
         private void panelBg_Paint_2(object sender, PaintEventArgs e)
         {
-            PanelBg.BackColor = Properties.Settings.Default.MyColor;
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void panel5_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void IMainView.HideSettingsBtn()

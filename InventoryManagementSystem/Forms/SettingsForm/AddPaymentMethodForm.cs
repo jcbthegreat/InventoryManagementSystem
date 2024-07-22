@@ -11,13 +11,15 @@ using InventoryManagementSystem.Forms;
 
 namespace InventoryManagementSystem.Forms.SettingsForm
 {
-    
+
     public partial class AddPaymentMethodForm : Form
     {
+        public Panel PanelBg { get; set; }
         public AddPaymentMethodForm()
         {
             InitializeComponent();
- 
+            PanelBg = PanelBg;
+
         }
         #region FormShadow
 
@@ -107,6 +109,23 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void AddPaymentMethodForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

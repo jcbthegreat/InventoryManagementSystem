@@ -70,7 +70,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             InitializeComponent();
             PanelBg = panelBg;
             WarehouseComboBox = comboBox1;
-            panelBg.BackColor = Color.DimGray;
+            //panelBg.BackColor = Color.DimGray;
             Instance = this;
             connection = new SqlConnection(connectionString);
             LoadComboBoxData();
@@ -80,7 +80,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         public void RefreshDataGridView()
         {
-            
+
         }
         public void SetBindingItemSource(BindingSource login)
         {
@@ -146,7 +146,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             PanelBg.BackColor = color;
         }
 
-     
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -156,6 +156,23 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void cancelBtn_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panelBg_Paint(object sender, PaintEventArgs e)
+        {
+            if (PanelBg != null)
+            {
+                Color panelColor = Properties.Settings.Default.MyColor;
+                if (panelColor == Color.Empty)
+                {
+                    panelColor = Color.DimGray; // Fallback color
+                }
+                PanelBg.BackColor = panelColor;
+            }
+            else
+            {
+                MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
