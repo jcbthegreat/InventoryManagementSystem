@@ -67,6 +67,7 @@
             panelBg.Name = "panelBg";
             panelBg.Size = new Size(339, 36);
             panelBg.TabIndex = 5;
+            panelBg.Paint += panelBg_Paint;
             // 
             // pictureBox1
             // 
