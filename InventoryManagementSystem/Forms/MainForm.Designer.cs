@@ -374,6 +374,7 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(1172, 664);
             panel5.TabIndex = 3;
+            panel5.Paint += panel5_Paint_1;
             // 
             // MainForm
             // 

@@ -53,7 +53,7 @@
             panelBg.Dock = DockStyle.Top;
             panelBg.Location = new Point(0, 0);
             panelBg.Name = "panelBg";
-            panelBg.Size = new Size(663, 36);
+            panelBg.Size = new Size(571, 36);
             panelBg.TabIndex = 29;
             panelBg.Paint += panelBg_Paint;
             // 
@@ -75,7 +75,7 @@
             closeBtn.Dock = DockStyle.Right;
             closeBtn.FlatAppearance.BorderSize = 0;
             closeBtn.FlatStyle = FlatStyle.Flat;
-            closeBtn.Location = new Point(631, 0);
+            closeBtn.Location = new Point(539, 0);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(32, 36);
             closeBtn.TabIndex = 1;
@@ -99,7 +99,7 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(8, 50);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(335, 307);
+            groupBox1.Size = new Size(253, 307);
             groupBox1.TabIndex = 30;
             groupBox1.TabStop = false;
             groupBox1.Text = "List of Employees";
@@ -109,24 +109,24 @@
             listBox1.BackColor = SystemColors.Control;
             listBox1.BorderStyle = BorderStyle.None;
             listBox1.Cursor = Cursors.Hand;
-            listBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            listBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Items.AddRange(new object[] { "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2", "Employee 3", "Employee 4", "Employee 5", "Employee 1", "Employee 2" });
-            listBox1.Location = new Point(6, 22);
+            listBox1.ItemHeight = 17;
+            listBox1.Location = new Point(10, 25);
             listBox1.Margin = new Padding(30);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(323, 270);
+            listBox1.Size = new Size(234, 272);
             listBox1.TabIndex = 0;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(addBtn);
             groupBox2.Controls.Add(comboBox1);
             groupBox2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.Location = new Point(370, 50);
+            groupBox2.Location = new Point(285, 50);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(271, 166);
+            groupBox2.Size = new Size(271, 136);
             groupBox2.TabIndex = 31;
             groupBox2.TabStop = false;
             groupBox2.Text = "Choose Role";
@@ -139,27 +139,28 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(145, 122);
+            addBtn.Location = new Point(149, 91);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(116, 30);
             addBtn.TabIndex = 40;
             addBtn.Text = "Save";
             addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Admin", "User" });
             comboBox1.Location = new Point(6, 44);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(255, 25);
             comboBox1.TabIndex = 0;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // RoleAssignment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(663, 388);
+            ClientSize = new Size(571, 374);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(panelBg);
