@@ -16,13 +16,15 @@ namespace InventoryManagementSystem.Presenter
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
         private readonly string _sqlConnectionString;
+        private readonly string _staffNo;
 
-        public ShowProductPresenter(IShowProductControl settingsUserControl, string createdByFirstName, string createdByLastName, string sqlConnectionString)
+        public ShowProductPresenter(IShowProductControl settingsUserControl, string createdByFirstName, string createdByLastName, string sqlConnectionString,string staffNo)
         {
             _showProductControl = settingsUserControl;
             _createdByFirstName = createdByFirstName;
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
+            _staffNo = staffNo;
             this._showProductControl.ShowItem += ShowItem;
             this._showProductControl.ShowProduct += ShowProduct;
             this._showProductControl.ShowUpdateProduct += ShowUpdateProduct;
@@ -42,7 +44,7 @@ namespace InventoryManagementSystem.Presenter
         private void ShowProduct(Object? sender, EventArgs e)
         {
             IProductView productView = new AddProductForm();
-            new AddProductPresenter(productView, _sqlConnectionString);
+            new AddProductPresenter(productView, _sqlConnectionString, _staffNo);
 
             // Show the AddCategory form
             var addproductForm = (Form)productView;

@@ -56,9 +56,9 @@
             Date = new Label();
             label9 = new Label();
             panel6 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             timer1 = new System.Windows.Forms.Timer(components);
-            tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -71,8 +71,8 @@
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -285,6 +285,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 48);
             panel1.TabIndex = 1;
+            panel1.Paint += panel1_Paint;
             // 
             // panel7
             // 
@@ -337,6 +338,21 @@
             panel6.TabIndex = 2;
             panel6.Paint += panel6_Paint;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.6133652F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.3866348F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 339F));
+            tableLayoutPanel2.Controls.Add(chart1, 0, 0);
+            tableLayoutPanel2.Location = new Point(52, 270);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 49.35065F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50.64935F));
+            tableLayoutPanel2.Size = new Size(1054, 385);
+            tableLayoutPanel2.TabIndex = 3;
+            // 
             // chart1
             // 
             chart1.BackColor = Color.Transparent;
@@ -370,21 +386,6 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.6133652F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.3866348F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 339F));
-            tableLayoutPanel2.Controls.Add(chart1, 0, 0);
-            tableLayoutPanel2.Location = new Point(52, 270);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 49.35065F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50.64935F));
-            tableLayoutPanel2.Size = new Size(1054, 385);
-            tableLayoutPanel2.TabIndex = 3;
-            // 
             // DashBoardUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -411,8 +412,8 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 

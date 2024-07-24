@@ -86,7 +86,7 @@
             btn_close.Location = new Point(52, 449);
             btn_close.Name = "btn_close";
             btn_close.Size = new Size(208, 37);
-            btn_close.TabIndex = 3;
+            btn_close.TabIndex = 4;
             btn_close.Text = "Close";
             btn_close.UseVisualStyleBackColor = false;
             btn_close.Click += btn_close_Click;
@@ -119,7 +119,7 @@
             btn_save.Location = new Point(52, 406);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(208, 37);
-            btn_save.TabIndex = 2;
+            btn_save.TabIndex = 3;
             btn_save.Text = "Save";
             btn_save.UseVisualStyleBackColor = false;
             // 
@@ -156,7 +156,7 @@
             txtnewpass.Name = "txtnewpass";
             txtnewpass.PasswordChar = '*';
             txtnewpass.Size = new Size(208, 25);
-            txtnewpass.TabIndex = 3;
+            txtnewpass.TabIndex = 2;
             // 
             // npassword
             // 

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static InventoryManagementSystem.LoginForm;
 
 namespace InventoryManagementSystem.Forms
 {
@@ -90,6 +91,7 @@ namespace InventoryManagementSystem.Forms
                         "LEFT JOIN [IV].[Measurement] m on p.unit_id = m.id " +
                         "LEFT JOIN [IV].[WarehouseItems] w on p.id = w.product_id " +
                         "LEFT JOIN [IV].[Warehouse] wh on w.warehouse_id = wh.id " +
+                        " where (p.isdeleted IS NULL OR p.isdeleted = 0) " +
                         "ORDER BY p.ID ASC", connection))
                     {
                         using (var reader = await command.ExecuteReaderAsync())
@@ -161,23 +163,35 @@ namespace InventoryManagementSystem.Forms
                     {
                         var selectedRow = dataGridView1.SelectedRows[0];
                         int productId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-
+                        string staffNo = MainForm.Instance.StaffNo;
+                        if (string.IsNullOrEmpty(staffNo))
+                        {
+                            MessageBox.Show("Staff number is not set. Please log in again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         connection.Open();
                         transaction = connection.BeginTransaction();
 
-                        string deleteWarehouseItemsQuery = "DELETE FROM [IV].[WarehouseItems] WHERE product_id = @ProductId";
-                        SqlCommand warehouseItemsCommand = new SqlCommand(deleteWarehouseItemsQuery, connection, transaction);
+                        // Update the isdeleted, modifiedby, and modifieddate columns in the WarehouseItems table
+                        string updateWarehouseItemsQuery = "UPDATE [IV].[WarehouseItems] SET isdeleted = 1, modifiedby = @ModifiedBy, modifieddate = @ModifiedDate WHERE product_id = @ProductId";
+                        SqlCommand warehouseItemsCommand = new SqlCommand(updateWarehouseItemsQuery, connection, transaction);
                         warehouseItemsCommand.Parameters.AddWithValue("@ProductId", productId);
+                        warehouseItemsCommand.Parameters.AddWithValue("@ModifiedBy", staffNo);
+                        warehouseItemsCommand.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
                         warehouseItemsCommand.ExecuteNonQuery();
 
-                        string deleteProductQuery = "DELETE FROM [IV].[Product] WHERE id = @ProductId";
-                        SqlCommand productCommand = new SqlCommand(deleteProductQuery, connection, transaction);
+                        // Update the isdeleted, modifiedby, and modifieddate columns in the Product table
+                        string updateProductQuery = "UPDATE [IV].[Product] SET isdeleted = 1, modifiedby = @ModifiedBy, modifieddate = @ModifiedDate WHERE id = @ProductId";
+                        SqlCommand productCommand = new SqlCommand(updateProductQuery, connection, transaction);
                         productCommand.Parameters.AddWithValue("@ProductId", productId);
+                        productCommand.Parameters.AddWithValue("@ModifiedBy", staffNo);
+                        productCommand.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
                         productCommand.ExecuteNonQuery();
 
                         transaction.Commit();
                         MessageBox.Show("Product deleted successfully.");
 
+                        // Refresh the data grid view to remove the deleted product
                         ShowDataAsync();
                     }
                     catch (Exception ex)
@@ -202,6 +216,7 @@ namespace InventoryManagementSystem.Forms
                 MessageBox.Show("Please select a product to delete.");
             }
         }
+
 
         //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         //{

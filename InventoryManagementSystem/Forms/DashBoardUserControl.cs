@@ -86,7 +86,7 @@ namespace InventoryManagementSystem.Forms
                     " LEFT JOIN [IV].[SubCategories] s on p.subcategory_id = s.ID " +
                     " LEFT JOIN [IV].[Types] t on p.[type_id] = t.id LEFT JOIN [IV].[Variant] v on p.variant_id = v.id " +
                     " LEFT JOIN [IV].[Measurement] m on p.unit_id = m.id LEFT JOIN [IV].[WarehouseItems] w on p.id = w.product_id " +
-                    " LEFT JOIN [IV].[Warehouse] wh on w.warehouse_id = wh.id "; 
+                    " LEFT JOIN [IV].[Warehouse] wh on w.warehouse_id = wh.id  where (p.isdeleted is null or p.isdeleted = 0)";
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
@@ -268,7 +268,7 @@ namespace InventoryManagementSystem.Forms
             }
 
             // Set chart properties
-           // chart1.ChartAreas[0].AxisX.Title = "Product";
+            // chart1.ChartAreas[0].AxisX.Title = "Product";
             chart1.ChartAreas[0].AxisY.Title = "Stock Count of Low Stock Items";
         }
         private void chart1_Click(object sender, EventArgs e)
@@ -277,6 +277,11 @@ namespace InventoryManagementSystem.Forms
         }
 
         private void chart1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -18,6 +18,7 @@ namespace InventoryManagementSystem.Presenter
         private readonly string _sqlConnectionString;
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
+        private readonly string _staffNo;
         public MainPresenter(IMainView mainView, string sqlConnectionString)
         {
             _mainView = mainView;
@@ -87,7 +88,7 @@ namespace InventoryManagementSystem.Presenter
         private void ShowProduct(Object? sender, EventArgs e)
         {
             IShowProductControl showProductControl = new ProductUserControl();
-            new ShowProductPresenter(showProductControl, MainForm.Instance.FirstName, MainForm.Instance.Lastname, _sqlConnectionString);
+            new ShowProductPresenter(showProductControl, MainForm.Instance.FirstName, MainForm.Instance.Lastname, _sqlConnectionString, _staffNo);
             _mainView.ShowProductControl(showProductControl);
         }
 

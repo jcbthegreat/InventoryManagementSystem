@@ -116,7 +116,7 @@ namespace InventoryManagementSystem.Forms
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product]", con);
+                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product] where (isdeleted is null or isdeleted = 0)", con);
                     SqlDataAdapter adapterCategory = new SqlDataAdapter(commandCategory);
                     DataTable dataTableCategory = new DataTable();
                     adapterCategory.Fill(dataTableCategory);
@@ -170,6 +170,11 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
