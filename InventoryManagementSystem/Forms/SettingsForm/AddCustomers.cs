@@ -27,8 +27,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         public string ID;
         public string Name
         {
-            get { return txtname.Text; }
-            set { txtname.Text = value; }
+            get { return textfullname.Text; }
+            set { textfullname.Text = value; }
         }
         public string Email
         {
@@ -65,89 +65,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             connection = new SqlConnection(connectionString);
             Categorie();
             showdata();
+            textfullname.Text = "";
             LoadCategoriesFromDatabase();
 
+
         }
 
-        #region FormShadow
-
-        private const int WM_NCHITTEST = 0x84;
-        private const int HTCLIENT = 0x1;
-        private const int HTCAPTION = 0x2;
-
-        private bool m_aeroEnabled;
-
-        private const int CS_DROPSHADOW = 0x00020000;
-        private const int WM_NCPAINT = 0x0085;
-        private const int WM_ACTIVATEAPP = 0x001C;
-
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-
-        public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
-        [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-            );
-
-        public struct MARGINS
-        {
-            public int leftWidth;
-            public int rightWidth;
-            public int topHeight;
-            public int bottomHeight;
-        }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                m_aeroEnabled = CheckAeroEnabled();
-                CreateParams cp = base.CreateParams;
-                if (!m_aeroEnabled)
-                    cp.ClassStyle |= CS_DROPSHADOW; return cp;
-            }
-        }
-        private bool CheckAeroEnabled()
-        {
-            if (Environment.OSVersion.Version.Major >= 6)
-            {
-                int enabled = 0; DwmIsCompositionEnabled(ref enabled);
-                return (enabled == 1) ? true : false;
-            }
-            return false;
-        }
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case WM_NCPAINT:
-                    if (m_aeroEnabled)
-                    {
-                        var v = 2;
-                        DwmSetWindowAttribute(this.Handle, 2, ref v, 4);
-                        MARGINS margins = new MARGINS()
-                        {
-                            bottomHeight = 1,
-                            leftWidth = 0,
-                            rightWidth = 0,
-                            topHeight = 0
-                        }; DwmExtendFrameIntoClientArea(this.Handle, ref margins);
-                    }
-                    break;
-                default: break;
-            }
-            base.WndProc(ref m);
-            if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT) m.Result = (IntPtr)HTCAPTION;
-        }
-        #endregion
 
         public void Categorie()
         {
@@ -199,25 +122,20 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("select c.[name] as [Full name], c.Email,c.Contact, c.[Address],c.Discount,s.[name] as [Is Supplier?] " +
-                     " from [IV].[Customer] c inner join [IV].[Supplier] s on c.is_supplier = s.id " +
+                adapter = new SqlDataAdapter("select c.ID, c.[name] as [Full name], c.Email, c.Contact, c.[Address], c.Discount, s.[name] as [Is Supplier?] " +
+                    " from [IV].[Customer] c inner join [IV].[Supplier] s on c.is_supplier = s.id " +
                     " order by c.ID asc", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
 
+                // Hide the ID column
+                dataGridView1.Columns["ID"].Visible = false;
+
                 // Resize the columns based on the content
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-
-                dataGridView1.AutoResizeColumns();
-
-                // Remove padding from the cells
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.DefaultCellStyle.Padding = new Padding(0);
                 }
 
                 // Resize the column headers
@@ -227,8 +145,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                // Optionally, adjust the last column to fill the remaining space
+                // Adjust the last column to fill the remaining space
                 dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                // Ensure horizontal scrolling
+                dataGridView1.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -240,7 +161,6 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 connection.Close();
             }
         }
-
         public void RefreshDataGridView()
         {
             showdata();
@@ -293,8 +213,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-
-                txtname.Text = row.Cells["Full name"].Value?.ToString();
+                ID = row.Cells["ID"].Value?.ToString();
+                textfullname.Text = row.Cells["Full name"].Value?.ToString();
+                comboBox1.Text = row.Cells["Is Supplier?"].Value?.ToString();
                 txtemail.Text = row.Cells["Email"].Value?.ToString();
                 txtcontact.Text = row.Cells["Contact"].Value?.ToString();
                 txtaddress.Text = row.Cells["Address"].Value?.ToString();
@@ -305,6 +226,164 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            UpdateCustomerDetails();
+        }
+        private void UpdateCustomerDetails()
+        {
+            // Confirm the update operation
+            DialogResult result = MessageBox.Show("Are you sure you want to update the customer details?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                // User clicked No or closed the dialog, so abort the operation
+                return;
+            }
+
+            // Validate input fields
+            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Contact) || string.IsNullOrWhiteSpace(Address) ||
+                string.IsNullOrWhiteSpace(Discount))
+            {
+                MessageBox.Show("All fields are required. Please fill out all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate email format
+            if (!IsValidEmail(Email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate contact number (you can customize the regex pattern as needed)
+            if (!IsValidContactNumber(Contact))
+            {
+                MessageBox.Show("Please enter a valid contact number (only digits allowed).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    int supplierId;
+                    using (SqlCommand command = new SqlCommand("SELECT ID FROM [IV].[Supplier] WHERE Name = @Name", connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", comboBox1.Text);
+                        supplierId = (int)command.ExecuteScalar();
+                    }
+
+                    using (SqlCommand command = new SqlCommand("UPDATE [IV].[Customer] SET Name = @Name, Email = @Email, Contact = @Contact, " +
+                        "Address = @Address, Discount = @Discount, is_supplier = @IsSupplier WHERE ID = @ID", connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", ID);
+                        command.Parameters.AddWithValue("@Name", Name);
+                        command.Parameters.AddWithValue("@Email", Email);
+                        command.Parameters.AddWithValue("@Contact", Contact);
+                        command.Parameters.AddWithValue("@Address", Address);
+                        command.Parameters.AddWithValue("@Discount", Discount);
+                        command.Parameters.AddWithValue("@IsSupplier", supplierId);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Customer details updated successfully.");
+                            RefreshDataGridView();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No customer found with the given ID.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while updating the customer details: " + ex.Message);
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsValidContactNumber(string contactNumber)
+        {
+            // This regex checks if the contact number contains only digits
+            return System.Text.RegularExpressions.Regex.IsMatch(contactNumber, @"^\d+$");
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            // Call showdata with the filter text
+            showdata(txtFilter.Text);
+        }
+
+        public void showdata(string filter = "")
+        {
+            try
+            {
+                // Open the connection
+                connection.Open();
+
+                // SQL query with a filter parameter
+                string query = "SELECT c.ID, c.[name] AS [Full name], c.Email, c.Contact, c.[Address], c.Discount, s.[name] AS [Is Supplier?] " +
+                               "FROM [IV].[Customer] c " +
+                               "INNER JOIN [IV].[Supplier] s ON c.is_supplier = s.id " +
+                               "WHERE c.[name] LIKE @Filter OR c.Email LIKE @Filter OR c.Contact LIKE @Filter " +
+                               "ORDER BY c.ID ASC";
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    // Add filter parameter
+                    adapter.SelectCommand.Parameters.AddWithValue("@Filter", "%" + filter + "%");
+
+                    dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView1.DataSource = dt;
+
+                    // Hide the ID column
+                    dataGridView1.Columns["ID"].Visible = false;
+
+                    // Resize the columns based on the content
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    }
+
+                    // Resize the column headers
+                    dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                    // Ensure all rows are visible
+                    dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                    // Adjust the last column to fill the remaining space
+                    dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                    // Ensure horizontal scrolling
+                    dataGridView1.ScrollBars = ScrollBars.Both;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                connection.Close();
+            }
         }
     }
 }

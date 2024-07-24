@@ -108,6 +108,7 @@
             groupBox1.TabIndex = 27;
             groupBox1.TabStop = false;
             groupBox1.Text = "Update Product Item";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // comboBox2
             // 

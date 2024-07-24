@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.Forms.SettingsForm;
+﻿using InventoryManagementSystem.Forms;
+using InventoryManagementSystem.Forms.SettingsForm;
 using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,11 @@ namespace InventoryManagementSystem.Presenter
         private IWarehouseItemView _warehouseitemView;
 
         private readonly string _sqlConnectionString;
-
+        private readonly string _staffNo; // Staff number of the user adding the product
         public WarehouseItemPresenter(IWarehouseItemView warehouseView, string sqlConnectionString)
         {
             _warehouseitemView = warehouseView;
-  
+            _staffNo = MainForm.Instance.StaffNo;
             _sqlConnectionString = sqlConnectionString;
             _warehouseitemView.Items += CategoryEvent;
 
@@ -88,12 +89,12 @@ namespace InventoryManagementSystem.Presenter
             }
 
             // Insert data into the database
-            InsertCategory(warehouseid, productid, currstock, minstock, maxstock, origprice, retprice);
+            InsertCategory(warehouseid, productid, currstock, minstock, maxstock, origprice, retprice, _staffNo, DateTime.Now);
 
             _warehouseitemView.RefreshDataGridView();
         }
 
-        private void InsertCategory(string warehouseid, string productid, string currstock, string minstock, string maxstock, string origprice, string retprice)
+        private void InsertCategory(string warehouseid, string productid, string currstock, string minstock, string maxstock, string origprice, string retprice, string addedBy, DateTime addedDate)
         {
             try
             {
@@ -103,8 +104,8 @@ namespace InventoryManagementSystem.Presenter
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[WarehouseItems] (Warehouse_Id, Product_Id,Current_Stock,Min_Stock,Max_Stock,Original_Price,Retail_Price) VALUES (@Warehouse_Id, @Product_Id, @Current_Stock, @Min_Stock, @Max_Stock, " +
-                        " @Original_Price, @Retail_Price)";
+                    string query = "INSERT INTO [IV].[WarehouseItems] (Warehouse_Id, Product_Id,Current_Stock,Min_Stock,Max_Stock,Original_Price,Retail_Price,AddedBy, AddedDate) VALUES (@Warehouse_Id, @Product_Id, @Current_Stock, @Min_Stock, @Max_Stock, " +
+                        " @Original_Price, @Retail_Price,@AddedBy, @AddedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Warehouse_Id", warehouseid);
@@ -114,6 +115,8 @@ namespace InventoryManagementSystem.Presenter
                         command.Parameters.AddWithValue("@Max_Stock", maxstock);
                         command.Parameters.AddWithValue("@Original_Price", origprice);
                         command.Parameters.AddWithValue("@Retail_Price", retprice);
+                        command.Parameters.AddWithValue("@AddedBy", addedBy);
+                        command.Parameters.AddWithValue("@AddedDate", addedDate);
                         int result = command.ExecuteNonQuery();
 
                         if (result > 0)

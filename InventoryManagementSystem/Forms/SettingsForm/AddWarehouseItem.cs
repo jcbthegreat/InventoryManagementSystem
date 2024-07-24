@@ -121,7 +121,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product] WHERE NOT EXISTS (SELECT 1 FROM [IV].[WarehouseItems] WHERE Product_ID = [IV].[Product].ID)", con);
+                    SqlCommand commandCategory = new SqlCommand("SELECT ID, Product_Code FROM [IV].[Product] WHERE NOT EXISTS (SELECT 1 FROM [IV].[WarehouseItems] WHERE Product_ID = [IV].[Product].ID) and (isdeleted is null or isdeleted = 0)", con);
                     SqlDataAdapter adapterCategory = new SqlDataAdapter(commandCategory);
                     DataTable dataTableCategory = new DataTable();
                     adapterCategory.Fill(dataTableCategory);

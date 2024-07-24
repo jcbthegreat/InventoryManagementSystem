@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static InventoryManagementSystem.LoginForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace InventoryManagementSystem.Forms
@@ -58,7 +59,7 @@ namespace InventoryManagementSystem.Forms
             set { moduleid = value; }
         }
 
-        public MainForm(string firstname, string lastname, string postion, string username, string RoleType)
+        public MainForm(string firstname, string lastname, string postion, string username,string StaffNo, string RoleType)
         {
             InitializeComponent();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
@@ -69,7 +70,7 @@ namespace InventoryManagementSystem.Forms
             _fullName = $"{firstname} {lastname}";
             _position = $"{postion}";
             LoadProfileImage(username);
-
+            staffno = StaffNo;
             roletype = RoleType;
             if (txtUsername != null)
             {
@@ -82,6 +83,7 @@ namespace InventoryManagementSystem.Forms
             }
             this.Resize += MainForm_Resize;
             button1.PerformClick();
+            this.Load += MainForm_Load;
 
         }
 
@@ -455,6 +457,7 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            LoadUserControl(new DashBoardUserControl());
         }
 
         void IMainView.HideSettingsBtn()

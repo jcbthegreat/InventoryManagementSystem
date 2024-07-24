@@ -125,24 +125,25 @@ namespace InventoryManagementSystem.Forms
             }
 
             bool dataSavedSuccessfully = false;
-            bool hasErrors = false; // Declare hasErrors here
+            bool hasErrors = false;
+            string staffNo = MainForm.Instance.StaffNo;
 
             try
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    // Define SQL queries
-                    string checkProductExistsQuery = "SELECT COUNT(*) FROM [IV].[Product] WHERE product_code = @ProductCode";
-                    string insertProductQuery = "INSERT INTO [IV].[Product] (product_code, product_name, brand_id, category_id, subcategory_id, type_id, variant_id, unit_id, unit_count,AddedDate) " +
-                                                "VALUES (@ProductCode, @ProductName, @BrandId, @CategoryId, @SubCategoryId, @TypeId, @VariantId, @UnitId, @UnitCount,GETDATE()); SELECT SCOPE_IDENTITY();";
-                    string getProductIdQuery = "SELECT ID FROM [IV].[Product] WHERE product_code = @ProductCode";
+                    // Define SQL queries with isdeleted check
+                    string checkProductExistsQuery = "SELECT COUNT(*) FROM [IV].[Product] WHERE product_code = @ProductCode AND (isdeleted IS NULL OR isdeleted = 0)";
+                    string insertProductQuery = "INSERT INTO [IV].[Product] (product_code, product_name, brand_id, category_id, subcategory_id, type_id, variant_id, unit_id, unit_count, AddedDate, addedby, isdeleted) " +
+                                                "VALUES (@ProductCode, @ProductName, @BrandId, @CategoryId, @SubCategoryId, @TypeId, @VariantId, @UnitId, @UnitCount, GETDATE(), @AddedBy, 0); SELECT SCOPE_IDENTITY();";
+                    string getProductIdQuery = "SELECT ID FROM [IV].[Product] WHERE product_code = @ProductCode AND isdeleted IS NULL";
 
-                    string checkWarehouseExistsQuery = "SELECT COUNT(*) FROM [IV].[Warehouse] WHERE Name = @WarehouseName";
-                    string getWarehouseIdQuery = "SELECT ID FROM [IV].[Warehouse] WHERE Name = @WarehouseName";
-                    string checkWarehouseItemExistsQuery = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE product_id = @ProductId AND warehouse_id = @WarehouseId";
-                    string insertWarehouseItemQuery = "INSERT INTO [IV].[WarehouseItems] (product_id, warehouse_id, current_stock, min_stock, max_stock, original_price, retail_price,AddedDate) " +
-                                                       "VALUES (@ProductId, @WarehouseId, @CurrentStock, @MinStock, @MaxStock, @OriginalPrice, @RetailPrice,GETDATE());";
+                    string checkWarehouseExistsQuery = "SELECT COUNT(*) FROM [IV].[Warehouse] WHERE Name = @WarehouseName ";
+                    string getWarehouseIdQuery = "SELECT ID FROM [IV].[Warehouse] WHERE Name = @WarehouseName ";
+                    string checkWarehouseItemExistsQuery = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE product_id = @ProductId AND warehouse_id = @WarehouseId AND (isdeleted IS NULL OR isdeleted = 0)";
+                    string insertWarehouseItemQuery = "INSERT INTO [IV].[WarehouseItems] (product_id, warehouse_id, current_stock, min_stock, max_stock, original_price, retail_price, AddedDate, addedby, isdeleted) " +
+                                                      "VALUES (@ProductId, @WarehouseId, @CurrentStock, @MinStock, @MaxStock, @OriginalPrice, @RetailPrice, GETDATE(), @AddedBy, 0);";
 
                     // Prepare commands
                     using (var checkProductCommand = new SqlCommand(checkProductExistsQuery, connection, transaction))
@@ -176,6 +177,7 @@ namespace InventoryManagementSystem.Forms
                         insertProductCommand.Parameters.Add("@VariantId", SqlDbType.Int);
                         insertProductCommand.Parameters.Add("@UnitId", SqlDbType.Int);
                         insertProductCommand.Parameters.Add("@UnitCount", SqlDbType.Int);
+                        insertProductCommand.Parameters.Add("@AddedBy", SqlDbType.VarChar);
                         getProductIdCommand.Parameters.Add("@ProductCode", SqlDbType.VarChar);
 
                         // Add parameters for warehouse commands
@@ -190,6 +192,7 @@ namespace InventoryManagementSystem.Forms
                         insertWarehouseItemCommand.Parameters.Add("@MaxStock", SqlDbType.Int);
                         insertWarehouseItemCommand.Parameters.Add("@OriginalPrice", SqlDbType.Decimal);
                         insertWarehouseItemCommand.Parameters.Add("@RetailPrice", SqlDbType.Decimal);
+                        insertWarehouseItemCommand.Parameters.Add("@AddedBy", SqlDbType.VarChar);
 
                         bool hasDataToSave = false;
 
@@ -229,6 +232,7 @@ namespace InventoryManagementSystem.Forms
                                     insertProductCommand.Parameters["@VariantId"].Value = GetOrInsertId(variantLookupCommand, GetCellValue(row, "VARIANTNAME"));
                                     insertProductCommand.Parameters["@UnitId"].Value = GetOrInsertId(measurementLookupCommand, measurementName);
                                     insertProductCommand.Parameters["@UnitCount"].Value = GetUnitCount(measurementName);
+                                    insertProductCommand.Parameters["@AddedBy"].Value = staffNo;
 
                                     productId = Convert.ToInt32(insertProductCommand.ExecuteScalar());
                                 }
@@ -248,7 +252,8 @@ namespace InventoryManagementSystem.Forms
                                 {
                                     // If warehouse doesn't exist, handle the case
                                     hasErrors = true;
-                                    continue;
+                                    MessageBox.Show($"Warehouse '{warehouseName}' does not exist.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    break;
                                 }
                                 else
                                 {
@@ -262,6 +267,9 @@ namespace InventoryManagementSystem.Forms
                                 checkWarehouseItemCommand.Parameters["@WarehouseId"].Value = warehouseId;
                                 int warehouseItemExists = (int)checkWarehouseItemCommand.ExecuteScalar();
 
+                                // Debugging information
+                                Console.WriteLine($"Product ID: {productId}, Warehouse ID: {warehouseId}, Warehouse Item Exists: {warehouseItemExists}");
+
                                 if (warehouseItemExists == 0)
                                 {
                                     // Insert into WarehouseItems table
@@ -272,21 +280,23 @@ namespace InventoryManagementSystem.Forms
                                     insertWarehouseItemCommand.Parameters["@MaxStock"].Value = maxStock;
                                     insertWarehouseItemCommand.Parameters["@OriginalPrice"].Value = originalPrice;
                                     insertWarehouseItemCommand.Parameters["@RetailPrice"].Value = retailPrice;
+                                    insertWarehouseItemCommand.Parameters["@AddedBy"].Value = staffNo;
 
                                     insertWarehouseItemCommand.ExecuteNonQuery();
-                                    hasDataToSave = true; // Set this flag if at least one record is saved
+                                    hasDataToSave = true;
                                 }
                                 else
                                 {
-                                    // Handle duplicate entry scenario
-                                    MessageBox.Show($"Product Code already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show($"Product '{productCode}' already exists in warehouse '{warehouseName}'.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    hasErrors = true;
+                                    break;
                                 }
                             }
                             catch (Exception ex)
                             {
                                 hasErrors = true;
                                 MessageBox.Show($"An error occurred while processing the row: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                // Optionally, log the error or handle it further
+                                break;
                             }
                         }
 
@@ -296,11 +306,10 @@ namespace InventoryManagementSystem.Forms
                             if (hasDataToSave)
                             {
                                 transaction.Commit();
-                                dataSavedSuccessfully = true; // Set success flag
+                                dataSavedSuccessfully = true;
                             }
                             else
                             {
-                                // If no data was actually saved
                                 MessageBox.Show("No new data was saved.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
@@ -325,7 +334,6 @@ namespace InventoryManagementSystem.Forms
                 }
             }
         }
-
         private int GetOrInsertId(SqlCommand command, string name)
         {
             command.Parameters["@Name"].Value = name;

@@ -70,7 +70,7 @@ namespace InventoryManagementSystem
             LoginUser();
 
         }
-
+       
         public void LoginUser()
         {
             loginBtn.Click += (s, e) => Login?.Invoke(this, EventArgs.Empty);

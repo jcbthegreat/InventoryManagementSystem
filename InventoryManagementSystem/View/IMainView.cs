@@ -10,6 +10,7 @@ namespace InventoryManagementSystem.View
     {
 
         string RoleType { get; set; }
+        string StaffNo { get; set; }
         int ModuleId { get; set; }
         event EventHandler ShowSettings;
         event EventHandler ShowProfile;

@@ -63,8 +63,8 @@ namespace InventoryManagementSystem.Forms
 
         public string Unit_Id
         {
-            get { return comboBox5.SelectedValue?.ToString(); }
-            set { comboBox5.SelectedValue = value; }
+            get { return comboBox6.SelectedValue?.ToString(); }
+            set { comboBox6.SelectedValue = value; }
         }
 
         public string Unit_Count
@@ -255,12 +255,12 @@ namespace InventoryManagementSystem.Forms
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand commandUnit = new SqlCommand("SELECT ID, MeasurementCode FROM [IV].[Measurement]", con);
+                    SqlCommand commandUnit = new SqlCommand("SELECT ID, MeasurementName FROM [IV].[Measurement]", con);
                     SqlDataAdapter adapterUnit = new SqlDataAdapter(commandUnit);
                     DataTable dataUnit = new DataTable();
                     adapterUnit.Fill(dataUnit);
                     comboBox6.DataSource = dataUnit;
-                    comboBox6.DisplayMember = "MeasurementCode";
+                    comboBox6.DisplayMember = "MeasurementName";
                     comboBox6.ValueMember = "ID";
                 }
             }

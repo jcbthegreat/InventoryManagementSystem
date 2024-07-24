@@ -49,7 +49,7 @@ namespace InventoryManagementSystem.Presenter
                         string position = user.Position;
 
                         // Create and show the main view
-                        IMainView mainView = new MainForm(firstName, lastName, position, userName, user.RoleType);
+                        IMainView mainView = new MainForm(firstName, lastName, position, userName,user.StaffNo, user.RoleType);
                         new MainPresenter(mainView, sqlConnectionString);
 
                         mainView.Show();
