@@ -175,6 +175,9 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
     }
 }
 

@@ -57,6 +57,10 @@
             label9 = new Label();
             panel6 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
+            panel8 = new Panel();
+            panel9 = new Panel();
+            panel10 = new Panel();
+            panel11 = new Panel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             timer1 = new System.Windows.Forms.Timer(components);
             tableLayoutPanel1.SuspendLayout();
@@ -72,6 +76,7 @@
             panel7.SuspendLayout();
             panel6.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
@@ -89,8 +94,9 @@
             tableLayoutPanel1.Controls.Add(panel2, 0, 0);
             tableLayoutPanel1.Location = new Point(52, 77);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(1054, 187);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -103,7 +109,7 @@
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(792, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(259, 181);
+            panel5.Size = new Size(259, 161);
             panel5.TabIndex = 3;
             // 
             // label7
@@ -132,7 +138,7 @@
             // 
             pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(127, 26);
+            pictureBox4.Location = new Point(134, 26);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(112, 108);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -148,7 +154,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(529, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(257, 181);
+            panel4.Size = new Size(257, 161);
             panel4.TabIndex = 2;
             // 
             // label5
@@ -179,7 +185,7 @@
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(127, 26);
+            pictureBox3.Location = new Point(133, 26);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(112, 108);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -195,7 +201,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(266, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(257, 181);
+            panel3.Size = new Size(257, 161);
             panel3.TabIndex = 1;
             // 
             // label3
@@ -224,7 +230,7 @@
             // 
             pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(127, 26);
+            pictureBox2.Location = new Point(130, 26);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(112, 108);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -240,7 +246,7 @@
             panel2.Controls.Add(pictureBox1);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(257, 181);
+            panel2.Size = new Size(257, 161);
             panel2.TabIndex = 0;
             // 
             // label2
@@ -269,7 +275,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(127, 26);
+            pictureBox1.Location = new Point(132, 26);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(112, 108);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -340,18 +346,60 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.6133652F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.3866348F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 339F));
-            tableLayoutPanel2.Controls.Add(chart1, 0, 0);
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 4;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.Controls.Add(panel8, 3, 0);
+            tableLayoutPanel2.Controls.Add(panel9, 2, 0);
+            tableLayoutPanel2.Controls.Add(panel10, 1, 0);
+            tableLayoutPanel2.Controls.Add(panel11, 0, 0);
             tableLayoutPanel2.Location = new Point(52, 270);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 49.35065F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50.64935F));
-            tableLayoutPanel2.Size = new Size(1054, 385);
-            tableLayoutPanel2.TabIndex = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.Size = new Size(1054, 187);
+            tableLayoutPanel2.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.Transparent;
+            panel8.Dock = DockStyle.Fill;
+            panel8.Location = new Point(792, 3);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(259, 161);
+            panel8.TabIndex = 3;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.Transparent;
+            panel9.Dock = DockStyle.Fill;
+            panel9.Location = new Point(529, 3);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(257, 161);
+            panel9.TabIndex = 2;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.Transparent;
+            panel10.Dock = DockStyle.Fill;
+            panel10.Location = new Point(266, 3);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(257, 161);
+            panel10.TabIndex = 1;
+            // 
+            // panel11
+            // 
+            panel11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel11.BackColor = Color.Transparent;
+            panel11.Controls.Add(chart1);
+            panel11.Location = new Point(3, 3);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(257, 161);
+            panel11.TabIndex = 0;
             // 
             // chart1
             // 
@@ -361,13 +409,14 @@
             chartArea1.BackSecondaryColor = Color.Transparent;
             chartArea1.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea1);
+            chart1.Dock = DockStyle.Fill;
             legend1.BackSecondaryColor = Color.Transparent;
             legend1.BorderColor = Color.Transparent;
             legend1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             legend1.IsTextAutoFit = false;
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(3, 3);
+            chart1.Location = new Point(0, 0);
             chart1.Name = "chart1";
             series1.BackImageTransparentColor = Color.Transparent;
             series1.BackSecondaryColor = Color.Transparent;
@@ -378,7 +427,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chart1.Series.Add(series1);
-            chart1.Size = new Size(334, 184);
+            chart1.Size = new Size(257, 161);
             chart1.TabIndex = 1;
             chart1.Text = "chart1";
             // 
@@ -413,6 +462,7 @@
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
+            panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
@@ -420,14 +470,10 @@
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel5;
         private Panel panel4;
         private Panel panel3;
         private Panel panel2;
         private Panel panel1;
-        private Label label7;
-        private Label label8;
-        private PictureBox pictureBox4;
         private Label label5;
         private Label label6;
         private PictureBox pictureBox3;
@@ -443,7 +489,16 @@
         private Label Time;
         private Label Date;
         private Panel panel7;
+        private Panel panel5;
+        private Label label7;
+        private Label label8;
+        private PictureBox pictureBox4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel8;
+        private Panel panel9;
+        private Panel panel10;
+        private Panel panel11;
+        private ListView listViewNotifications;
     }
 }

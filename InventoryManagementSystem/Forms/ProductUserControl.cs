@@ -101,27 +101,49 @@ namespace InventoryManagementSystem.Forms
                     }
                 }
 
-
                 // Use Invoke to update UI controls on the UI thread
                 dataGridView1.Invoke((MethodInvoker)delegate
                 {
                     dataGridView1.DataSource = dt;
 
                     // Customize DataGridView appearance and behavior
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dataGridView1.AllowUserToOrderColumns = true;
+                    dataGridView1.AllowUserToResizeColumns = true;
+                    dataGridView1.AllowUserToResizeRows = true;
+                    dataGridView1.RowHeadersVisible = false;
+                    dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+                    dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                    dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
+                    dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                    dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(242, 242, 242);
+                    dataGridView1.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(210, 210, 210);
+
                     foreach (DataGridViewColumn column in dataGridView1.Columns)
                     {
-
-
                         // Hide ID column
                         if (column.HeaderText == "ID")
                         {
                             column.Visible = false;
                         }
 
-                        // Set columns to be editable based on editableColumns list
-
+                        // Set specific column widths
+                        if (column.HeaderText == "Product Name")
+                        {
+                            column.Width = 150;
+                        }
+                        else if (column.HeaderText == "Warehouse Name")
+                        {
+                            column.Width = 120;
+                        }
+                        else if (column.HeaderText == "Current Stock")
+                        {
+                            column.Width = 100;
+                        }
                     }
-
                 });
             }
             catch (Exception ex)
@@ -290,6 +312,11 @@ namespace InventoryManagementSystem.Forms
         private void button1_Click_1(object sender, EventArgs e)
         {
             RefreshDataGridView();
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

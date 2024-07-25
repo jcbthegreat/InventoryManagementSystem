@@ -275,6 +275,7 @@
             groupBox1.TabIndex = 26;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add Warehouse Item";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // AddWarehouseItem
             // 

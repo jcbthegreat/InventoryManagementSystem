@@ -174,5 +174,10 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 MessageBox.Show("PanelBg is null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

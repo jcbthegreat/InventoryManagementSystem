@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace InventoryManagementSystem.Forms
 {
@@ -18,11 +17,33 @@ namespace InventoryManagementSystem.Forms
     {
         string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         private readonly SqlConnection sqlConnection;
+
         public DashBoardUserControl()
         {
-            InitializeComponent();
+            InitializeComponent(); // Ensure controls are initialized
+      
+            SetupChart();
+            sqlConnection = new SqlConnection(connectionString);
+            LoadData();
+        }
+
+     
+
+        private void SetupChart()
+        {
+            if (chart1 != null)
+            {
+                chart1.Series.Clear();
+                Series series = chart1.Series.Add("Low Stock Products");
+                series.ChartType = SeriesChartType.Pie;
+                series.IsValueShownAsLabel = true;
+                chart1.Click += new EventHandler(this.chart1_Click);
+            }
+        }
+
+        private void LoadData()
+        {
             timer1.Start();
-            sqlConnection = new SqlConnection(connectionString); // Pag-initialize ng SqlConnection
             GetCategoriesCount();
             GetProductCount();
             ShowCategoriesCount();
@@ -32,8 +53,10 @@ namespace InventoryManagementSystem.Forms
             ShowLowStockCount1();
             GetCustomerCount();
             GetLowStockCount();
+         
         }
 
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
             Date.Text = DateTime.Now.ToLongDateString();
@@ -42,44 +65,43 @@ namespace InventoryManagementSystem.Forms
 
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
-
+            // Handle painting if needed
         }
-        //Category
+
         private int GetCategoriesCount()
         {
             int count = 0;
 
             try
             {
-                sqlConnection.Open(); // Buksan ang connection
+                sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[Categories]"; // Palitan ang 'Products' kung kinakailangan
+                string query = "SELECT COUNT(*) FROM [IV].[Categories]"; // Use 'Categories' table
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
-                    count = (int)command.ExecuteScalar(); // ExecuteScalar para makuha ang count
+                    count = (int)command.ExecuteScalar(); // ExecuteScalar to get count
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving product count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving categories count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                sqlConnection.Close(); // Siguraduhing isara ang connection
+                sqlConnection.Close(); // Ensure connection is closed
             }
 
             return count;
         }
 
-        //Product
         private int GetProductCount()
         {
             int count = 0;
 
             try
             {
-                sqlConnection.Open(); // Buksan ang connection
+                sqlConnection.Open(); // Open connection
 
                 string query = "SELECT COUNT(*) FROM [IV].[Product] p LEFT JOIN [IV].[brand] b ON p.brand_id = b.id " +
                     " LEFT JOIN [IV].[Categories] c on p.category_id = c.id " +
@@ -90,7 +112,7 @@ namespace InventoryManagementSystem.Forms
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
-                    count = (int)command.ExecuteScalar(); // ExecuteScalar para makuha ang count
+                    count = (int)command.ExecuteScalar(); // ExecuteScalar to get count
                 }
             }
             catch (Exception ex)
@@ -99,101 +121,114 @@ namespace InventoryManagementSystem.Forms
             }
             finally
             {
-                sqlConnection.Close(); // Siguraduhing isara ang connection
+                sqlConnection.Close(); // Ensure connection is closed
             }
 
             return count;
         }
 
-        //Customer
         private int GetCustomerCount()
         {
             int count = 0;
 
             try
             {
-                sqlConnection.Open(); // Buksan ang connection
+                sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[Customer]"; // Palitan ang 'Products' kung kinakailangan
+                string query = "SELECT COUNT(*) FROM [IV].[Customer]"; // Use 'Customer' table
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
-                    count = (int)command.ExecuteScalar(); // ExecuteScalar para makuha ang count
+                    count = (int)command.ExecuteScalar(); // ExecuteScalar to get count
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving product count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving customer count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                sqlConnection.Close(); // Siguraduhing isara ang connection
+                sqlConnection.Close(); // Ensure connection is closed
             }
 
             return count;
         }
+
         private int GetLowStockCount()
         {
             int count = 0;
 
             try
             {
-                sqlConnection.Open(); // Buksan ang connection
+                sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE Current_Stock <= 5;"; // Palitan ang 'Products' kung kinakailangan
+                string query = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE Current_Stock <= 5;"; // Query for low stock
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
-                    count = (int)command.ExecuteScalar(); // ExecuteScalar para makuha ang count
+                    count = (int)command.ExecuteScalar(); // ExecuteScalar to get count
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving product count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving low stock count: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                sqlConnection.Close(); // Siguraduhing isara ang connection
+                sqlConnection.Close(); // Ensure connection is closed
             }
 
             return count;
         }
+
         private void ShowCategoriesCount()
         {
             int categoryCount = GetCategoriesCount();
-            label1.Text = $" {categoryCount}";
+            if (label1 != null)
+            {
+                label1.Text = $" {categoryCount}";
+            }
         }
 
         private void ShowProductCount()
         {
             int productCount = GetProductCount();
-            label4.Text = $" {productCount}";
+            if (label4 != null)
+            {
+                label4.Text = $" {productCount}";
+            }
         }
+
         private void ShowCustomerCount()
         {
             int customerCount = GetCustomerCount();
-            label8.Text = $" {customerCount}";
+            if (label8 != null)
+            {
+                label8.Text = $" {customerCount}";
+            }
         }
 
         private void ShowLowStockCount()
         {
             int lowStockCount = GetLowStockCount();
 
-            // Check if there are items with low stock
-            if (lowStockCount > 0)
+            if (label6 != null)
             {
-                // If there are low stock items, set label6's color to red
-                label6.Text = $"{lowStockCount}";
-                label6.ForeColor = Color.Red; // Set text color to red
-            }
-            else
-            {
-                // If there are no low stock items, set label6's color to white
-                label6.Text = "0";
-                label6.ForeColor = Color.White; // Set text color to white
+                // Check if there are items with low stock
+                if (lowStockCount > 0)
+                {
+                    // If there are low stock items, set label6's color to red
+                    label6.Text = $"{lowStockCount}";
+                    label6.ForeColor = Color.Red; // Set text color to red
+                }
+                else
+                {
+                    // If there are no low stock items, set label6's color to white
+                    label6.Text = "0";
+                    label6.ForeColor = Color.White; // Set text color to white
+                }
             }
         }
-
 
         private Dictionary<string, Tuple<string, int>> GetLowStockProducts()
         {
@@ -235,55 +270,63 @@ namespace InventoryManagementSystem.Forms
 
             return lowStockProducts;
         }
+
         private void ShowLowStockCount1()
         {
-            // Clear existing series and points
-            chart1.Series.Clear();
-
-            // Add series
-            Series series = chart1.Series.Add("Low Stock Products");
-            series.ChartType = SeriesChartType.Pie;
-            series.IsValueShownAsLabel = true; // Show values as labels
-
-            // Get data
-            Dictionary<string, Tuple<string, int>> lowStockProducts = GetLowStockProducts();
-
-            // Calculate total count
-            int totalCount = lowStockProducts.Count; // Total count is number of products
-
-            // Add data points
-            foreach (var kvp in lowStockProducts)
+            if (chart1 != null)
             {
-                string productNameWithCode = kvp.Key;
-                string productCode = kvp.Value.Item1; // Get product code from Tuple
-                int stockCount = kvp.Value.Item2; // Get stock count from Tuple
+                // Clear existing series and points
+                chart1.Series.Clear();
 
-                // Add data point with product name and product code as X value and stock count as Y value
-                DataPoint point = series.Points.Add(stockCount);
-                point.AxisLabel = $"{productCode} ({stockCount})";
-                point.LabelToolTip = $"Stock Count: {stockCount}";
+                // Add series
+                Series series = chart1.Series.Add("Low Stock Products");
+                series.ChartType = SeriesChartType.Pie;
+                series.IsValueShownAsLabel = true; // Show values as labels
 
-                // Add custom label for identification
-                //point.Label = $"{productNameWithCode} ({stockCount})"; // Display product name, code, and stock count
+                // Get data
+                Dictionary<string, Tuple<string, int>> lowStockProducts = GetLowStockProducts();
+
+                // Calculate total count
+                int totalCount = lowStockProducts.Count; // Total count is number of products
+
+                // Add data points
+                foreach (var kvp in lowStockProducts)
+                {
+                    string productNameWithCode = kvp.Key;
+                    string productCode = kvp.Value.Item1; // Get product code from Tuple
+                    int stockCount = kvp.Value.Item2; // Get stock count from Tuple
+
+                    // Add data point with product name and product code as X value and stock count as Y value
+                    DataPoint point = series.Points.Add(stockCount);
+                    point.AxisLabel = $"{productCode} ({stockCount})";
+                    point.LabelToolTip = $"Stock Count: {stockCount}";
+                }
+
+                // Set chart properties
+                chart1.ChartAreas[0].AxisY.Title = "Stock Count of Low Stock Items";
             }
-
-            // Set chart properties
-            // chart1.ChartAreas[0].AxisX.Title = "Product";
-            chart1.ChartAreas[0].AxisY.Title = "Stock Count of Low Stock Items";
         }
+
         private void chart1_Click(object sender, EventArgs e)
         {
-
+            // Handle chart click if needed
         }
 
         private void chart1_Click_1(object sender, EventArgs e)
         {
-
+            // Handle chart click if needed
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // Handle panel painting if needed
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Handle list view selection if needed
+        }
+
+     
     }
 }

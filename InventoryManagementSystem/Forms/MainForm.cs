@@ -130,6 +130,9 @@ namespace InventoryManagementSystem.Forms
             }
             PanelBg.BackColor = panelColor;
             button1.PerformClick();
+           
+
+
         }
 
         public void ShowSettingsUserControl(ISettingsUserControl settingsUserControl)
@@ -247,36 +250,24 @@ namespace InventoryManagementSystem.Forms
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            AdjustPanelSize();
+            //AdjustPanelSize();
 
-            // Refresh the current UserControl inside panel5
-            RefreshCurrentControl();
+            //// Refresh the current UserControl inside panel5
+            //RefreshCurrentControl();
         }
-        private void RefreshCurrentControl()
-        {
-            try
-            {
-                // Check if there is a current control loaded
-                if (currentControl != null)
-                {
-                    // Resize and reposition the control
-                    currentControl.Size = panel5.ClientSize; // Match control size to panel5
-                    currentControl.Location = new Point(0, 0); // Position control at top-left corner
-
-                    // Ensure the control is docked properly
-                    currentControl.Dock = DockStyle.Fill;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error refreshing control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void AdjustPanelSize()
-        {
-            // Compute the size of panel5 based on MainForm's size
-            panel5.Size = new Size(this.ClientSize.Width - panel5.Location.X * 2, this.ClientSize.Height - panel5.Location.Y * 2);
-        }
+        //private void RefreshCurrentControl()
+        //{
+        //    if (currentControl != null)
+        //    {
+        //        currentControl.Size = panel5.ClientSize;
+        //        currentControl.Location = new Point(0, 0);
+        //        currentControl.Dock = DockStyle.Fill;
+        //    }
+        //}
+        //private void AdjustPanelSize()
+        //{
+        //    panel5.Size = new Size(this.ClientSize.Width - panel5.Location.X * 2, this.ClientSize.Height - panel5.Location.Y * 2);
+        //}
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -304,14 +295,12 @@ namespace InventoryManagementSystem.Forms
         {
             if (this.WindowState == FormWindowState.Maximized)
             {
-                // Restore from Maximized to Normal
                 this.WindowState = FormWindowState.Normal;
-                this.Size = previousSize; // I-restore ang naunang size bago mag-Maximize
+                this.Size = previousSize;
             }
             else
             {
-                // Maximize from Normal
-                previousSize = this.Size; // I-record ang kasalukuyang size bago mag-Maximize
+                previousSize = this.Size;
                 this.WindowState = FormWindowState.Maximized;
             }
         }
@@ -499,5 +488,7 @@ namespace InventoryManagementSystem.Forms
         {
             this.panel11.Visible = true;
         }
+
+
     }
 }
