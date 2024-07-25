@@ -121,7 +121,7 @@ namespace InventoryManagementSystem.Presenter
 
                         if (result > 0)
                         {
-                            MessageBox.Show("Warehouse Item added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ShowToast("SUCCESS", "Warehouse Item Successfully Added");
 
                         }
                         else
@@ -135,6 +135,13 @@ namespace InventoryManagementSystem.Presenter
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void ShowToast(string type, string message)
+        {
+            // Assuming you have a method to show toast messages
+            // This could be implemented as a static method or a service
+            Toast toast = new Toast(type, message);
+            toast.Show();
         }
     }
 }

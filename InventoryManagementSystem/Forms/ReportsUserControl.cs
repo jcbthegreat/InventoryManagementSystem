@@ -22,7 +22,7 @@ namespace InventoryManagementSystem.Forms
         private DataTable dt = new DataTable();
         private int currentPageIndex = 0;
         private int pageSize = 20;
-       
+
         public ReportsUserControl()
         {
             InitializeComponent();
@@ -79,6 +79,7 @@ namespace InventoryManagementSystem.Forms
                                 "LEFT JOIN [IV].[Variant] v on p.variant_id = v.id " +
                                 "LEFT JOIN [IV].[Measurement] m on p.unit_id = m.id " +
                                 "LEFT JOIN [IV].[WarehouseItems] w on p.id = w.product_id " +
+                                "WHERE (p.isdeleted = 0 or p.isdeleted is null)" +
                                 "ORDER BY p.ID ASC";
                         break;
                     //case "Warehouse":
@@ -180,7 +181,7 @@ namespace InventoryManagementSystem.Forms
             if (selectedOption != "Choose Report")
             {
                 await GenerateReport(selectedOption);
-                
+
             }
             else
             {
@@ -344,7 +345,7 @@ namespace InventoryManagementSystem.Forms
 
                         // Load image from the Resources folder
                         string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "living-room.png");
-                       
+
 
                         if (File.Exists(imagePath))
                         {
@@ -400,5 +401,9 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

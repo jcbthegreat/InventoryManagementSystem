@@ -12,6 +12,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using System.Data.SqlClient;
+using InventoryManagementSystem.Model;
 namespace InventoryManagementSystem.Forms
 {
     public partial class UploadProduct : Form
@@ -120,7 +121,8 @@ namespace InventoryManagementSystem.Forms
         {
             if (dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("No data found.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("No data found.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowToast("WARNING", "No data found.");
                 return;
             }
 
@@ -287,7 +289,8 @@ namespace InventoryManagementSystem.Forms
                                 }
                                 else
                                 {
-                                    MessageBox.Show($"Product '{productCode}' already exists in warehouse '{warehouseName}'.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    //MessageBox.Show($"Product '{productCode}' already exists in warehouse '{warehouseName}'.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    ShowToast("WARNING", $"Product Code '{productCode}' already exists.");
                                     hasErrors = true;
                                     break;
                                 }
@@ -310,7 +313,8 @@ namespace InventoryManagementSystem.Forms
                             }
                             else
                             {
-                                MessageBox.Show("No new data was saved.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //MessageBox.Show("No new data was saved.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                ShowToast("ERROR", "No new data was saved.");
                             }
                         }
                         else
@@ -330,7 +334,7 @@ namespace InventoryManagementSystem.Forms
                 connection.Close();
                 if (dataSavedSuccessfully)
                 {
-                    MessageBox.Show("Data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowToast("SUCCESS", "Uploading successful!");
                 }
             }
         }
@@ -405,7 +409,7 @@ namespace InventoryManagementSystem.Forms
                         {
                             FileInfo fi = new FileInfo(saveFileDialog.FileName);
                             package.SaveAs(fi);
-                            MessageBox.Show("Template saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ShowToast("SUCCESS", "Successfully Download the Template!");
                         }
                     }
                 }
@@ -414,6 +418,14 @@ namespace InventoryManagementSystem.Forms
             {
                 MessageBox.Show($"An error occurred while saving the template: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ShowToast(string type, string message)
+        {
+            // Assuming you have a method to show toast messages
+            // This could be implemented as a static method or a service
+            Toast toast = new Toast(type, message);
+            toast.Show();
         }
     }
 }

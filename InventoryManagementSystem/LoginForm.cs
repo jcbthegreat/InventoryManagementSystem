@@ -70,7 +70,11 @@ namespace InventoryManagementSystem
             LoginUser();
 
         }
-       
+        public void showToast(string type, string message)
+        {
+            Toast toast = new Toast(type, message);
+            toast.Show();
+        }
         public void LoginUser()
         {
             loginBtn.Click += (s, e) => Login?.Invoke(this, EventArgs.Empty);
@@ -112,7 +116,7 @@ namespace InventoryManagementSystem
             throw new NotImplementedException();
         }
 
-       
+
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
@@ -122,6 +126,11 @@ namespace InventoryManagementSystem
         private void closeBtn_Click_2(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -71,6 +71,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 51);
             panel1.TabIndex = 22;
+            panel1.Paint += panel1_Paint;
             // 
             // ExportToPDF
             // 

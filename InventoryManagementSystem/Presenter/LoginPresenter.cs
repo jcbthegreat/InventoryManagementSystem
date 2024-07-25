@@ -27,7 +27,7 @@ namespace InventoryManagementSystem.Presenter
             // Check if username or password fields are empty
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Username and password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowToast("ERROR", "Username and password cannot be empty.");
                 return;
             }
 
@@ -49,14 +49,16 @@ namespace InventoryManagementSystem.Presenter
                         string position = user.Position;
 
                         // Create and show the main view
-                        IMainView mainView = new MainForm(firstName, lastName, position, userName,user.StaffNo, user.RoleType);
+                        IMainView mainView = new MainForm(firstName, lastName, position, userName, user.StaffNo, user.RoleType);
                         new MainPresenter(mainView, sqlConnectionString);
 
                         mainView.Show();
+
+                        ShowToast("SUCCESS", "Login successful!");
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ShowToast("ERROR", "Incorrect username or password.");
                         // Clear the fields after a failed attempt
                         _loginView.UserName = string.Empty;
                         _loginView.PassWord = string.Empty;
@@ -65,8 +67,16 @@ namespace InventoryManagementSystem.Presenter
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowToast("ERROR", $"An error occurred: {ex.Message}");
             }
+        }
+
+        private void ShowToast(string type, string message)
+        {
+            // Assuming you have a method to show toast messages
+            // This could be implemented as a static method or a service
+            Toast toast = new Toast(type, message);
+            toast.Show();
         }
     }
 }

@@ -103,7 +103,8 @@ namespace InventoryManagementSystem.Forms
         }
         public void Categories()
         {
-            saveItemBtn.Click += delegate { UpdateItems?.Invoke(this, EventArgs.Empty); };
+            saveItemBtn.Click += delegate { UpdateItems?.Invoke(this, EventArgs.Empty); this.Close(); };
+            
 
         }
         public event EventHandler UpdateItems;
@@ -176,5 +177,7 @@ namespace InventoryManagementSystem.Forms
         {
 
         }
+
+      
     }
 }

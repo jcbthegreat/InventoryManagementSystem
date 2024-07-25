@@ -177,7 +177,7 @@ namespace InventoryManagementSystem.Forms
         #endregion
         public void Categories()
         {
-            saveProductBtn.Click += delegate { Products?.Invoke(this, EventArgs.Empty); };
+            saveProductBtn.Click += delegate { Products?.Invoke(this, EventArgs.Empty); this.Close(); };
 
         }
         public event EventHandler Products;
