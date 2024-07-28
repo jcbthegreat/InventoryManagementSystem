@@ -168,6 +168,7 @@
             Name = "RoleAssignment";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RoleAssignment";
+            Load += RoleAssignment_Load;
             panelBg.ResumeLayout(false);
             panelBg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

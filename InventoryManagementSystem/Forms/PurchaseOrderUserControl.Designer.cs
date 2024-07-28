@@ -28,19 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             label1 = new Label();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1006, 638);
-            flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -61,12 +53,20 @@
             label1.TabIndex = 2;
             label1.Text = "Purchase Order";
             // 
+            // panel2
+            // 
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 41);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1006, 597);
+            panel2.TabIndex = 22;
+            // 
             // PurchaseOrderUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(flowLayoutPanel1);
             Name = "PurchaseOrderUserControl";
             Size = new Size(1006, 638);
             panel1.ResumeLayout(false);
@@ -75,9 +75,8 @@
         }
 
         #endregion
-
-        private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel1;
         private Label label1;
+        private Panel panel2;
     }
 }

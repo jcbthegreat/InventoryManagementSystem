@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCustomers));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelBg = new Panel();
             pictureBox1 = new PictureBox();
             closeBtn = new Button();
@@ -40,6 +42,9 @@
             pictureBox2 = new PictureBox();
             txtFilter = new TextBox();
             groupBox1 = new GroupBox();
+            comboBox2 = new ComboBox();
+            label4 = new Label();
+            label3 = new Label();
             btnUpdate = new Button();
             label21 = new Label();
             comboBox1 = new ComboBox();
@@ -120,7 +125,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semilight", 8.25F, FontStyle.Italic, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ControlDarkDark;
-            label10.Location = new Point(85, 383);
+            label10.Location = new Point(85, 359);
             label10.Name = "label10";
             label10.Size = new Size(52, 13);
             label10.TabIndex = 27;
@@ -141,22 +146,41 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.DimGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Gainsboro;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Cursor = Cursors.Hand;
-            dataGridView1.Location = new Point(8, 18);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.GridColor = SystemColors.Control;
+            dataGridView1.Location = new Point(3, 18);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Orange;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(540, 251);
-            dataGridView1.TabIndex = 7;
+            dataGridView1.Size = new Size(548, 254);
+            dataGridView1.TabIndex = 5;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // addBtn
@@ -167,7 +191,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             addBtn.ForeColor = Color.WhiteSmoke;
-            addBtn.Location = new Point(9, 446);
+            addBtn.Location = new Point(9, 478);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(79, 27);
             addBtn.TabIndex = 6;
@@ -199,6 +223,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox2);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(btnUpdate);
             groupBox1.Controls.Add(label21);
             groupBox1.Controls.Add(addBtn);
@@ -222,11 +249,40 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(12, 55);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(222, 488);
+            groupBox1.Size = new Size(222, 511);
             groupBox1.TabIndex = 28;
             groupBox1.TabStop = false;
             groupBox1.Text = "Register Customer";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(9, 437);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(204, 25);
+            comboBox2.TabIndex = 43;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(58, 419);
+            label4.Name = "label4";
+            label4.Size = new Size(13, 15);
+            label4.TabIndex = 42;
+            label4.Text = "*";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(9, 419);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 15);
+            label3.TabIndex = 40;
+            label3.Text = "IsActive";
             // 
             // btnUpdate
             // 
@@ -236,7 +292,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnUpdate.ForeColor = Color.WhiteSmoke;
-            btnUpdate.Location = new Point(102, 446);
+            btnUpdate.Location = new Point(102, 478);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(79, 27);
             btnUpdate.TabIndex = 7;
@@ -248,7 +304,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label21.Location = new Point(8, 103);
+            label21.Location = new Point(8, 79);
             label21.Name = "label21";
             label21.Size = new Size(30, 15);
             label21.TabIndex = 38;
@@ -257,7 +313,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(7, 123);
+            comboBox1.Location = new Point(7, 99);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 25);
             comboBox1.TabIndex = 1;
@@ -267,7 +323,7 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label20.ForeColor = Color.Red;
-            label20.Location = new Point(36, 103);
+            label20.Location = new Point(36, 79);
             label20.Name = "label20";
             label20.Size = new Size(13, 15);
             label20.TabIndex = 36;
@@ -278,7 +334,7 @@
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label16.ForeColor = Color.Red;
-            label16.Location = new Point(55, 274);
+            label16.Location = new Point(55, 250);
             label16.Name = "label16";
             label16.Size = new Size(13, 15);
             label16.TabIndex = 31;
@@ -289,7 +345,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = Color.Red;
-            label13.Location = new Point(101, 217);
+            label13.Location = new Point(101, 193);
             label13.Name = "label13";
             label13.Size = new Size(13, 15);
             label13.TabIndex = 28;
@@ -300,7 +356,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.Red;
-            label12.Location = new Point(41, 160);
+            label12.Location = new Point(41, 136);
             label12.Name = "label12";
             label12.Size = new Size(13, 15);
             label12.TabIndex = 27;
@@ -311,7 +367,7 @@
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label22.ForeColor = Color.Red;
-            label22.Location = new Point(95, 49);
+            label22.Location = new Point(95, 25);
             label22.Name = "label22";
             label22.Size = new Size(13, 15);
             label22.TabIndex = 26;
@@ -321,7 +377,7 @@
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label23.Location = new Point(8, 160);
+            label23.Location = new Point(8, 136);
             label23.Name = "label23";
             label23.Size = new Size(36, 15);
             label23.TabIndex = 19;
@@ -329,7 +385,7 @@
             // 
             // txtemail
             // 
-            txtemail.Location = new Point(8, 180);
+            txtemail.Location = new Point(8, 156);
             txtemail.Name = "txtemail";
             txtemail.Size = new Size(203, 25);
             txtemail.TabIndex = 2;
@@ -338,7 +394,7 @@
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label26.Location = new Point(8, 382);
+            label26.Location = new Point(8, 358);
             label26.Name = "label26";
             label26.Size = new Size(80, 15);
             label26.TabIndex = 11;
@@ -346,7 +402,7 @@
             // 
             // txtcontact
             // 
-            txtcontact.Location = new Point(7, 237);
+            txtcontact.Location = new Point(7, 213);
             txtcontact.Name = "txtcontact";
             txtcontact.Size = new Size(203, 25);
             txtcontact.TabIndex = 4;
@@ -355,7 +411,7 @@
             // 
             label27.AutoSize = true;
             label27.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label27.Location = new Point(8, 217);
+            label27.Location = new Point(8, 193);
             label27.Name = "label27";
             label27.Size = new Size(93, 15);
             label27.TabIndex = 9;
@@ -363,7 +419,7 @@
             // 
             // txtdiscount
             // 
-            txtdiscount.Location = new Point(9, 405);
+            txtdiscount.Location = new Point(9, 381);
             txtdiscount.MaxLength = 11;
             txtdiscount.Name = "txtdiscount";
             txtdiscount.Size = new Size(203, 25);
@@ -373,7 +429,7 @@
             // 
             label28.AutoSize = true;
             label28.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label28.Location = new Point(8, 274);
+            label28.Location = new Point(8, 250);
             label28.Name = "label28";
             label28.Size = new Size(49, 15);
             label28.TabIndex = 7;
@@ -381,7 +437,7 @@
             // 
             // txtaddress
             // 
-            txtaddress.Location = new Point(8, 294);
+            txtaddress.Location = new Point(8, 270);
             txtaddress.Multiline = true;
             txtaddress.Name = "txtaddress";
             txtaddress.Size = new Size(203, 83);
@@ -391,7 +447,7 @@
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label31.Location = new Point(8, 49);
+            label31.Location = new Point(8, 25);
             label31.Name = "label31";
             label31.Size = new Size(91, 15);
             label31.TabIndex = 1;
@@ -399,7 +455,7 @@
             // 
             // textfullname
             // 
-            textfullname.Location = new Point(8, 69);
+            textfullname.Location = new Point(8, 45);
             textfullname.Name = "textfullname";
             textfullname.Size = new Size(203, 25);
             textfullname.TabIndex = 0;
@@ -408,7 +464,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(806, 564);
+            ClientSize = new Size(806, 578);
             Controls.Add(groupBox3);
             Controls.Add(pictureBox2);
             Controls.Add(groupBox1);
@@ -440,7 +496,6 @@
         private PictureBox pictureBox1;
         private Label label10;
         private GroupBox groupBox3;
-        private DataGridView dataGridView1;
         private Button addBtn;
         private PictureBox pictureBox2;
         private TextBox txtFilter;
@@ -463,5 +518,9 @@
         private Label label31;
         private TextBox textfullname;
         private Button btnUpdate;
+        private Label label4;
+        private Label label3;
+        private ComboBox comboBox2;
+        private DataGridView dataGridView1;
     }
 }

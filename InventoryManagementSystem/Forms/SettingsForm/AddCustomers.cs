@@ -55,6 +55,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             get { return comboBox1.SelectedValue?.ToString(); }
             set { comboBox1.SelectedValue = value; }
         }
+        public string isactive
+        {
+            get { return comboBox2.SelectedItem?.ToString(); }
+            set { comboBox2.SelectedItem = value; }
+        }
 
         public AddCustomers()
         {
@@ -68,7 +73,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             textfullname.Text = "";
             LoadCategoriesFromDatabase();
 
-
+            comboBox2.Items.Add("Active");
+            comboBox2.Items.Add("Inactive");
         }
 
 
@@ -122,9 +128,13 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("select c.ID, c.[name] as [Full name], c.Email, c.Contact, c.[Address], c.Discount, s.[name] as [Is Supplier?] " +
-                    " from [IV].[Customer] c inner join [IV].[Supplier] s on c.is_supplier = s.id " +
-                    " order by c.ID asc", connection);
+                adapter = new SqlDataAdapter(
+                    "SELECT c.ID, c.[name] AS [Full name], c.Email, c.Contact, c.[Address], c.Discount, " +
+                    "s.[name] AS [Is Supplier?], " +
+                    "CASE WHEN c.isactive = 1 THEN 'Active' ELSE 'Inactive' END AS IsActive " +
+                    "FROM [IV].[Customer] c " +
+                    "INNER JOIN [IV].[Supplier] s ON c.is_supplier = s.id " +
+                    "ORDER BY c.ID ASC", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
@@ -132,24 +142,24 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 // Hide the ID column
                 dataGridView1.Columns["ID"].Visible = false;
 
-                // Resize the columns based on the content
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-
-                // Resize the column headers
-                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-                // Ensure all rows are visible
-                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                // Set DataGridView properties
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dataGridView1.AllowUserToOrderColumns = true;
+                dataGridView1.AllowUserToResizeColumns = true;
+                dataGridView1.AllowUserToResizeRows = true;
+                dataGridView1.RowHeadersVisible = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
+                dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(242, 242, 242);
+                dataGridView1.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(210, 210, 210);
 
-                // Adjust the last column to fill the remaining space
-                dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                // Ensure horizontal scrolling
-                dataGridView1.ScrollBars = ScrollBars.Both;
+                // Handle the CellFormatting event to set text colors in the IsActive column
+                dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             }
             catch (Exception ex)
             {
@@ -159,6 +169,24 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 // Ensure the connection is closed
                 connection.Close();
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "IsActive")
+            {
+                string status = e.Value as string;
+                if (status == "Active")
+                {
+                    e.CellStyle.ForeColor = Color.Green;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
+                }
+                else if (status == "Inactive")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
+                }
             }
         }
         public void RefreshDataGridView()
@@ -220,6 +248,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 txtcontact.Text = row.Cells["Contact"].Value?.ToString();
                 txtaddress.Text = row.Cells["Address"].Value?.ToString();
                 txtdiscount.Text = row.Cells["Discount"].Value?.ToString();
+                comboBox2.Text = row.Cells["IsActive"].Value?.ToString();
 
             }
         }
@@ -266,7 +295,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
+                    int isActive = isactive == "Active" ? 1 : 0;
                     int supplierId;
                     using (SqlCommand command = new SqlCommand("SELECT ID FROM [IV].[Supplier] WHERE Name = @Name", connection))
                     {
@@ -275,7 +304,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     }
 
                     using (SqlCommand command = new SqlCommand("UPDATE [IV].[Customer] SET Name = @Name, Email = @Email, Contact = @Contact, " +
-                        "Address = @Address, Discount = @Discount, is_supplier = @IsSupplier WHERE ID = @ID", connection))
+                    "Address = @Address, Discount = @Discount, is_supplier = @IsSupplier, isactive = @IsActive WHERE ID = @ID", connection))
                     {
                         command.Parameters.AddWithValue("@ID", ID);
                         command.Parameters.AddWithValue("@Name", Name);
@@ -284,6 +313,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                         command.Parameters.AddWithValue("@Address", Address);
                         command.Parameters.AddWithValue("@Discount", Discount);
                         command.Parameters.AddWithValue("@IsSupplier", supplierId);
+                        command.Parameters.AddWithValue("@IsActive", isActive);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)

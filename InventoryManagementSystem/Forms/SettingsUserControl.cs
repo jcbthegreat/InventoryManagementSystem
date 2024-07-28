@@ -34,24 +34,24 @@ namespace InventoryManagementSystem.Forms
         private RoleAccess roleaccess;
         private ChooseRole chooserole;
         private RoleAssignment roleassign;
-        private string roletype,submodulename;
+        private string roletype, submodulename;
         private int moduleid, submoduleid;
         private bool isactive;
 
         private Dictionary<int, Button> _moduleButtons;
 
-        public string RoleType 
-        { 
+        public string RoleType
+        {
             get { return roletype; }
             set { roletype = value; }
         }
-        public int ModuleId 
-        { 
+        public int ModuleId
+        {
             get { return moduleid; }
             set { moduleid = value; }
         }
-        public int SubModuleId 
-        { 
+        public int SubModuleId
+        {
             get { return submoduleid; }
             set { submoduleid = value; }
         }
@@ -98,7 +98,7 @@ namespace InventoryManagementSystem.Forms
             this.roleassign = roleassign;
 
 
-          
+
 
         }
 
@@ -113,8 +113,8 @@ namespace InventoryManagementSystem.Forms
         public event EventHandler ShowStaff;
         public event EventHandler ShowWarehouse;
         public event EventHandler ShowCustomer;
-       
-      
+
+
 
         private void paymentMethodBtn_Click(object sender, EventArgs e)
         {
@@ -326,6 +326,11 @@ namespace InventoryManagementSystem.Forms
                 { 10, this.button9 },
                 { 11, this.button10 }
             };
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -14,6 +14,7 @@ namespace InventoryManagementSystem.Model
         private string username, password;
         private string firstname, lastname;
         private string position;
+      
 
         public int ID
         {
@@ -61,5 +62,6 @@ namespace InventoryManagementSystem.Model
             get { return position; }
             set { position = value; }
         }
+        public bool isactive { get; set; }
     }
 }

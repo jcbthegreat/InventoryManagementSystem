@@ -78,7 +78,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                string query = "SELECT StaffNo, FirstName, MiddleName, LastName FROM IV.StaffAssignment ORDER BY ID ASC";
+                string query = "SELECT StaffNo, FirstName, MiddleName, LastName FROM IV.StaffAssignment where isactive = 1 ORDER BY ID ASC";
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -134,7 +134,7 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             try
             {
                 connection.Open();
-                string query = "SELECT StaffNo FROM IV.StaffAssignment WHERE CONCAT(FirstName, ' ', MiddleName, ' ', LastName) = @FullName";
+                string query = "SELECT StaffNo FROM IV.StaffAssignment WHERE CONCAT(FirstName, ' ', MiddleName, ' ', LastName) = @FullName and isactive = 1";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@FullName", fullName);
                 var result = command.ExecuteScalar();
@@ -173,11 +173,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Staff role updated successfully.");
+                    ShowToast("SUCCESS", "Role Update Succesful");
                 }
                 else
                 {
-                    MessageBox.Show("No rows affected. Please check if the staff number and role ID are correct.");
+                    //MessageBox.Show("No rows affected. Please check if the staff number and role ID are correct.");
+                    ShowToast("WARNING", "No rows affected. Please check if the staff number and role ID are correct.");
                 }
             }
             catch (Exception ex)
@@ -188,6 +189,14 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             {
                 connection.Close();
             }
+        }
+
+        private void ShowToast(string type, string message)
+        {
+            // Assuming you have a method to show toast messages
+            // This could be implemented as a static method or a service
+            Toast toast = new Toast(type, message);
+            toast.Show();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -205,7 +214,12 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     MessageBox.Show("Selected role type not found.");
                 }
             }
-           
+
+        }
+
+        private void RoleAssignment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

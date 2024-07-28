@@ -33,7 +33,7 @@ namespace InventoryManagementSystem.Presenter
             string contact = _customerView.Contact;
             string discount = _customerView.Discount;
             string issupplier = _customerView.Is_Supplier;
-
+            string isActive = _customerView.isactive;
             // Input validation
             if (string.IsNullOrEmpty(customerName))
             {
@@ -62,6 +62,11 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show("Is Supplier cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(isActive))
+            {
+                MessageBox.Show("Is Active cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Check if the customer already exists
             if (CheckIfCustomerExists(customerName, email))
@@ -71,7 +76,7 @@ namespace InventoryManagementSystem.Presenter
             }
 
             // Insert data into the database
-            InsertCategory(customerName, email,contact, address, discount, issupplier);
+            InsertCategory(customerName, email,contact, address, discount, issupplier, isActive);
 
             _customerView.RefreshDataGridView();
         }
@@ -99,17 +104,20 @@ namespace InventoryManagementSystem.Presenter
             return exists;
         }
 
-        private void InsertCategory(string customerName, string email, string contact, string address, string discount, string issupplier)
+        private void InsertCategory(string customerName, string email, string contact, string address, string discount, string issupplier, string isActive)
         {
             try
             {
                 DateTime createdDate = DateTime.Now;
 
+                // Convert isActive string to integer
+                int isActiveValue = (isActive == "Active") ? 1 : 0;
+
                 using (SqlConnection connection = new SqlConnection(_sqlConnectionString))
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO [IV].[Customer] (Name, Email, Contact, Address, Discount, Is_Supplier) VALUES (@Name, @Email,@Contact, @Address, @Discount, @Is_Supplier)";
+                    string query = "INSERT INTO [IV].[Customer] (Name, Email, Contact, Address, Discount, Is_Supplier, isactive) VALUES (@Name, @Email, @Contact, @Address, @Discount, @Is_Supplier, @IsActive)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Name", customerName);
@@ -118,6 +126,7 @@ namespace InventoryManagementSystem.Presenter
                         command.Parameters.AddWithValue("@Address", address);
                         command.Parameters.AddWithValue("@Discount", discount);
                         command.Parameters.AddWithValue("@Is_Supplier", issupplier);
+                        command.Parameters.AddWithValue("@IsActive", isActiveValue);
 
                         int result = command.ExecuteNonQuery();
 

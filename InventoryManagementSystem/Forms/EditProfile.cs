@@ -81,6 +81,8 @@ namespace InventoryManagementSystem.Forms
             }
         }
         public byte[] ImgPath { get; set; }
+
+        public string isactive { get; set; }
         public EditProfile()
         {
             InitializeComponent();

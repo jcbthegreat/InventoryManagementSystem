@@ -21,6 +21,7 @@ namespace InventoryManagementSystem
         private string lastname, firstname;
         private string position;
         private string roletype;
+ 
         public int ID
         {
             get { return id; }
@@ -62,7 +63,7 @@ namespace InventoryManagementSystem
             get { return inputPassword.Text; }
             set { inputPassword.Text = value; }
         }
-
+        public string isactive { get; set; }
 
         public LoginForm()
         {

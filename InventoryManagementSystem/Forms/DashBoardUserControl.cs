@@ -81,7 +81,7 @@ namespace InventoryManagementSystem.Forms
                     string query = "SELECT p.product_name AS ProductName, wi.Current_Stock AS StockCount " +
                                    "FROM IV.WarehouseItems wi " +
                                    "INNER JOIN IV.Product p ON wi.product_id = p.id " +
-                                   "WHERE wi.Current_Stock <= 5"; // Filter for low stock items
+                                   "WHERE wi.Current_Stock <= 5 and (wi.isdeleted is null or wi.isdeleted = 0)"; // Filter for low stock items
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -113,7 +113,7 @@ namespace InventoryManagementSystem.Forms
                     // Query to get top 5 products based on quantity
                     string query = "SELECT TOP 5 p.product_name AS ProductName, p.product_code AS ProductCode, wi.Current_Stock AS StockCount " +
                                    "FROM IV.WarehouseItems wi " +
-                                   "INNER JOIN IV.Product p ON wi.product_id = p.id " +
+                                   "INNER JOIN IV.Product p ON wi.product_id = p.id and (p.isdeleted is null or p.isdeleted = 0)" +
                                    "ORDER BY wi.Current_Stock DESC"; // Adjust the order clause as per your criteria
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -255,7 +255,7 @@ namespace InventoryManagementSystem.Forms
             {
                 sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[StaffAssignment]"; // Use 'Staff' table
+                string query = "SELECT COUNT(*) FROM [IV].[StaffAssignment] where isactive = 1" ; // Use 'Staff' table
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
@@ -282,7 +282,7 @@ namespace InventoryManagementSystem.Forms
             {
                 sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[Customer] WHERE is_supplier = 1"; // Use 'Customer' table
+                string query = "SELECT COUNT(*) FROM [IV].[Customer] WHERE is_supplier = 1 and isactive = 1"; // Use 'Customer' table
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
@@ -309,7 +309,7 @@ namespace InventoryManagementSystem.Forms
             {
                 sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[Customer] WHERE is_supplier = 2"; // Use 'Supplier' table
+                string query = "SELECT COUNT(*) FROM [IV].[Customer] WHERE is_supplier = 2 and isactive = 1"; // Use 'Supplier' table
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
@@ -363,7 +363,7 @@ namespace InventoryManagementSystem.Forms
             {
                 sqlConnection.Open(); // Open connection
 
-                string query = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE Current_Stock <= 5"; // Use 'WarehouseItems' table with stock filter
+                string query = "SELECT COUNT(*) FROM [IV].[WarehouseItems] WHERE Current_Stock <= 5 and (isdeleted = 0 or isdeleted is null)"; // Use 'WarehouseItems' table with stock filter
 
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
@@ -468,7 +468,7 @@ namespace InventoryManagementSystem.Forms
                     string query = "SELECT p.product_name AS ProductName, p.product_code AS ProductCode, wi.Current_Stock AS StockCount " +
                                    "FROM IV.WarehouseItems wi " +
                                    "INNER JOIN IV.Product p ON wi.product_id = p.id " +
-                                   "WHERE wi.Current_Stock <= 5 " + // Filter for low stock items
+                                   "WHERE wi.Current_Stock <= 5 and (wi.isdeleted is null or wi.isdeleted = 0) " + // Filter for low stock items
                                    "GROUP BY p.product_name, p.product_code, wi.Current_Stock"; // Group by product name, product code, and stock count
 
                     using (SqlCommand command = new SqlCommand(query, connection))

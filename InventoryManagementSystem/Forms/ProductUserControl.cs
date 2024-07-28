@@ -79,8 +79,8 @@ namespace InventoryManagementSystem.Forms
                     using (var command = new SqlCommand(
                         "SELECT p.ID as ID, wh.[Name] as [Warehouse Name], p.product_code as [Product Code], p.product_name as [Product Name], " +
                         "b.BrandName as [Brand Name], c.CategoryName as [Category Name], s.subcategoryname as [Sub Category Name], " +
-                        "t.typename as [Type Name], v.variantname as [Variant Name], m.measurementname as [Measurement Name], " +
-                        "p.unit_count as [Measurement Count], w.current_stock as [Current Stock], w.min_stock as [Minimun Stock], " +
+                        "t.typename as [Type Name], v.variantname as [Variant Name], m.measurementname as [Unit], " +
+                        "p.unit_count as [Qty], w.current_stock as [Current Stock], w.min_stock as [Minimun Stock], " +
                         "w.max_stock as [Maximum Stock], w.original_price as [Original Price], w.retail_price as [Retail Price] " +
                         "FROM [IV].[Product] p " +
                         "LEFT JOIN [IV].[brand] b ON p.brand_id = b.id " +
@@ -315,6 +315,11 @@ namespace InventoryManagementSystem.Forms
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
