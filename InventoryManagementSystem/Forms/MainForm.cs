@@ -25,6 +25,8 @@ namespace InventoryManagementSystem.Forms
         private string staffno, roletype, position, lastname, firstname;
         private int moduleid;
         string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+
+        private Dictionary<int, Panel> _moduleButtons;
         public static MainForm Instance { get; private set; }
         public string StaffNo
         {
@@ -62,6 +64,7 @@ namespace InventoryManagementSystem.Forms
         public MainForm(string firstname, string lastname, string postion, string username,string StaffNo, string RoleType)
         {
             InitializeComponent();
+            InitializeModuleButtons();
             settingsBtn.Click += delegate { ShowSettings?.Invoke(this, EventArgs.Empty); };
             pictureBox3.Click += delegate { ShowProfile?.Invoke(this, EventArgs.Empty); };
             button2.Click += delegate { ShowProduct?.Invoke(this, EventArgs.Empty); };
@@ -489,6 +492,33 @@ namespace InventoryManagementSystem.Forms
             this.panel11.Visible = true;
         }
 
+        void IMainView.ShowButtons()
+        {
+            this.Show();
+        }
 
+        void IMainView.HideButtons()
+        {
+            this.Hide();
+        }
+
+        void IMainView.SetButtonVisibility(int moduleId, bool visible)
+        {
+            if (_moduleButtons.ContainsKey(moduleId))
+            {
+                _moduleButtons[moduleId].Visible = visible;
+            }
+        }
+
+        private void InitializeModuleButtons()
+        {
+            _moduleButtons = new Dictionary<int, Panel>
+            {
+                { 1, this.panel6 },
+                { 2, this.panel9 },
+                { 3, this.panel11 },
+                { 4, this.panel12 }
+            };
+        }
     }
 }

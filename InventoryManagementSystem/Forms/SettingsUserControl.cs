@@ -34,9 +34,44 @@ namespace InventoryManagementSystem.Forms
         private RoleAccess roleaccess;
         private ChooseRole chooserole;
         private RoleAssignment roleassign;
+        private string roletype,submodulename;
+        private int moduleid, submoduleid;
+        private bool isactive;
+
+        private Dictionary<int, Button> _moduleButtons;
+
+        public string RoleType 
+        { 
+            get { return roletype; }
+            set { roletype = value; }
+        }
+        public int ModuleId 
+        { 
+            get { return moduleid; }
+            set { moduleid = value; }
+        }
+        public int SubModuleId 
+        { 
+            get { return submoduleid; }
+            set { submoduleid = value; }
+        }
+
+        public string SubModuleName
+        {
+            get { return submodulename; }
+            set { submodulename = value; }
+        }
+        public bool IsActive
+        {
+            get { return isactive; }
+            set { isactive = value; }
+        }
+
+
         public SettingsUserControl()
         {
             InitializeComponent();
+            InitializeModuleButtons();
             button1.Click += delegate { ShowCategory?.Invoke(this, EventArgs.Empty); };
             button6.Click += delegate { ShowSubCategory?.Invoke(this, EventArgs.Empty); };
             button7.Click += delegate { ShowType?.Invoke(this, EventArgs.Empty); };
@@ -256,6 +291,41 @@ namespace InventoryManagementSystem.Forms
 
         }
 
-       
+        void ISettingsUserControl.ShowButtons()
+        {
+            this.Hide();
+        }
+
+        void ISettingsUserControl.HideButtons()
+        {
+            this.Show();
+        }
+
+
+        void ISettingsUserControl.SetButtonVisibility(int moduleId, bool visible)
+        {
+            if (_moduleButtons.ContainsKey(moduleId))
+            {
+                _moduleButtons[moduleId].Visible = visible;
+            }
+        }
+
+        private void InitializeModuleButtons()
+        {
+            _moduleButtons = new Dictionary<int, Button>
+            {
+                { 1, this.paymentMethodBtn },
+                { 2, this.button1 },
+                { 3, this.button6 },
+                { 4, this.button7 },
+                { 5, this.button8 },
+                { 6, this.button5 },
+                { 7, this.button3 },
+                { 8, this.button4 },
+                { 9, this.button2 },
+                { 10, this.button9 },
+                { 11, this.button10 }
+            };
+        }
     }
 }

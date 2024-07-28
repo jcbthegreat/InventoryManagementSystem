@@ -20,6 +20,10 @@ namespace InventoryManagementSystem.View
         void ShowSettingsUserControl(ISettingsUserControl settingsUserControl);
         void ShowProductControl(IShowProductControl showProductControl);
 
+        void ShowButtons();
+        void HideButtons();
+        void SetButtonVisibility(int moduleId, bool visible);
+
         void HideSettingsBtn();
         void HidePurchaseOrderBtn();
         void HideProductsBtn();

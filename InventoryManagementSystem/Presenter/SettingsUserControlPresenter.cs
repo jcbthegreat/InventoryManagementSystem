@@ -18,13 +18,60 @@ namespace InventoryManagementSystem.Presenter
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
         private readonly string _sqlConnectionString;
+        private int paymentBtn = 1;
+        private int manageCategoryBtn = 2;
+        private int subCategoryBtn = 3;
+        private int typeBtn = 4;
+        private int variantBtn = 5;
+        private int measurementBtn = 6;
+        private int brandNameBtn = 7;
+        private int addWareHouseBtn = 8;
+        private int manageUserBtn = 9;
+        private int manageStaffBtn = 10;
+        private int roleAccessBtn = 11;
 
-        public SettingsUserControlPresenter(ISettingsUserControl settingsUserControl, string createdByFirstName, string createdByLastName, string sqlConnectionString)
+        public SettingsUserControlPresenter(ISettingsUserControl settingsUserControl, string createdByFirstName, string createdByLastName, string sqlConnectionString, string roleType, int moduleId)
         {
             _settingsUserControl = settingsUserControl;
             _createdByFirstName = createdByFirstName;
             _createdByLastName = createdByLastName;
             _sqlConnectionString = sqlConnectionString;
+
+
+            try
+            {
+                using (var repository = new SettingsUserControlRepository(_sqlConnectionString))
+                {
+                    var accessModules = repository.GetSubModuleAccess(roleType, moduleId);
+
+                    //_mainView.HidePurchaseOrderBtn();
+                    //_mainView.HideProductsBtn();
+                    //_mainView.HideReportsBtn();
+                    //_mainView.HideSettingsBtn();
+
+                    //_mainView.SetButtonVisibility(purchaseOrderBtn, false);
+                    _settingsUserControl.SetButtonVisibility(paymentBtn, false);
+                    _settingsUserControl.SetButtonVisibility(manageCategoryBtn, false);
+                    _settingsUserControl.SetButtonVisibility(subCategoryBtn, false);
+                    _settingsUserControl.SetButtonVisibility(typeBtn, false);
+                    _settingsUserControl.SetButtonVisibility(variantBtn, false);
+                    _settingsUserControl.SetButtonVisibility(measurementBtn, false);
+                    _settingsUserControl.SetButtonVisibility(brandNameBtn, false);
+                    _settingsUserControl.SetButtonVisibility(addWareHouseBtn, false);
+                    _settingsUserControl.SetButtonVisibility(manageUserBtn, false);
+                    _settingsUserControl.SetButtonVisibility(manageStaffBtn, false);
+                    _settingsUserControl.SetButtonVisibility(roleAccessBtn, false);
+
+                    foreach (var submodule in accessModules)
+                    {
+                        _settingsUserControl.SetButtonVisibility(submodule.SubModuleId, true);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
             this._settingsUserControl.ShowCategory += ShowCategory;
             this._settingsUserControl.ShowSubCategory += ShowSubCategory;
             this._settingsUserControl.ShowType += ShowType;

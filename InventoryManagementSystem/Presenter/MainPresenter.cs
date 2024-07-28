@@ -19,6 +19,12 @@ namespace InventoryManagementSystem.Presenter
         private readonly string _createdByFirstName;
         private readonly string _createdByLastName;
         private readonly string _staffNo;
+
+        private int purchaseOrderBtn = 1;
+        private int productsBtn = 2;
+        private int reportsBtn = 3;
+        private int settingsBtn = 4;
+
         public MainPresenter(IMainView mainView, string sqlConnectionString)
         {
             _mainView = mainView;
@@ -30,30 +36,19 @@ namespace InventoryManagementSystem.Presenter
                 {
                     var accessModules = repository.GetRoleModuleAccess(_mainView.RoleType);
 
-                    _mainView.HidePurchaseOrderBtn();
-                    _mainView.HideProductsBtn();
-                    _mainView.HideReportsBtn();
-                    _mainView.HideSettingsBtn();
+                    //_mainView.HidePurchaseOrderBtn();
+                    //_mainView.HideProductsBtn();
+                    //_mainView.HideReportsBtn();
+                    //_mainView.HideSettingsBtn();
+
+                    _mainView.SetButtonVisibility(purchaseOrderBtn, false);
+                    _mainView.SetButtonVisibility(productsBtn, false);
+                    _mainView.SetButtonVisibility(reportsBtn, false);
+                    _mainView.SetButtonVisibility(settingsBtn, false);
+
                     foreach (var module in accessModules)
                     {
-                        switch (module.ModuleID)
-                        {
-                            case 1:
-                                _mainView.ShowPurchaseOrderBtn();
-                                break;
-                            case 2:
-                                _mainView.ShowProductsBtn();
-                                break;
-                            case 3:
-                                _mainView.ShowReportsBtn();
-                                break;
-                            case 4:
-                                _mainView.ShowSettingsBtn();
-                                break;
-                            default:
-                                // Handle default case or other module IDs if necessary
-                                break;
-                        }
+                        _mainView.SetButtonVisibility(module.ModuleID, true);
                     }
                 }
             }
@@ -71,7 +66,7 @@ namespace InventoryManagementSystem.Presenter
         private void ShowSettings(object? sender, EventArgs e)
         {
             ISettingsUserControl settingsView = new SettingsUserControl();
-            new SettingsUserControlPresenter(settingsView, MainForm.Instance.FirstName, MainForm.Instance.Lastname, _sqlConnectionString);
+            new SettingsUserControlPresenter(settingsView, MainForm.Instance.FirstName, MainForm.Instance.Lastname, _sqlConnectionString, _mainView.RoleType, settingsBtn);
             _mainView.ShowSettingsUserControl(settingsView);
         }
 
