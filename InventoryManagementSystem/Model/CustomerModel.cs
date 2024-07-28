@@ -17,6 +17,7 @@ namespace InventoryManagementSystem.Model
         private string address;
         private string discount;
         private string is_suplier;
+        private string isactive;
 
    
 
@@ -56,6 +57,11 @@ namespace InventoryManagementSystem.Model
         {
             get { return is_suplier; }
             set { is_suplier = value; }
+        }
+        public string IsActive
+        {
+            get { return isactive; }
+            set { isactive = value; }
         }
     }
 }

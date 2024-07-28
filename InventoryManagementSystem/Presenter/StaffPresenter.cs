@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.View;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using InventoryManagementSystem.View;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -37,6 +38,7 @@ namespace InventoryManagementSystem.Presenter
             string username = _staffView.Username;
             string password = _staffView.Password;
             string imgpath = _staffView.ImgPath != null ? Convert.ToBase64String(_staffView.ImgPath) : null;
+            string isActive = _staffView.isactive;
 
             // Input validation
             if (string.IsNullOrEmpty(staffNo))
@@ -89,6 +91,11 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show("Password cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrEmpty(isActive))
+            {
+                MessageBox.Show("Is Active cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Check if the staff already exists
             if (CheckIfStaffExists(staffNo))
@@ -98,7 +105,7 @@ namespace InventoryManagementSystem.Presenter
             }
 
             // Insert data into the database
-            InsertCategory(staffNo, roletype, position, firstname, middlename, lastname, email, contactno, username, password, imgpath);
+            InsertCategory(staffNo, roletype, position, firstname, middlename, lastname, email, contactno, username, password, imgpath,isActive);
 
             _staffView.RefreshDataGridView();
         }
@@ -124,17 +131,17 @@ namespace InventoryManagementSystem.Presenter
             return exists;
         }
 
-        private void InsertCategory(string staffNo, string roletype, string position, string firstname, string middlename, string lastname, string email, string contactno, string username, string password, string imgpath)
+        private void InsertCategory(string staffNo, string roletype, string position, string firstname, string middlename, string lastname, string email, string contactno, string username, string password, string imgpath,string isActive)
         {
             try
             {
                 DateTime createdDate = DateTime.Now;
-
+                int isActiveValue = (isActive == "Active") ? 1 : 0;
                 using (SqlConnection connection = new SqlConnection(_sqlConnectionString))
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO IV.StaffAssignment (StaffNo, RoleType, Position, FirstName, MiddleName, Lastname, Email, ContactNo, Username, Password, ImgPath, CreatedBy, CreatedDate) VALUES (@StaffNo, @RoleType, @Position, @FirstName, @MiddleName, @Lastname, @Email, @ContactNo, @Username, @Password, CONVERT(varbinary(max), @ImgPath), @CreatedBy, @CreatedDate)";
+                    string query = "INSERT INTO IV.StaffAssignment (StaffNo, RoleType, Position, FirstName, MiddleName, Lastname, Email, ContactNo, Username, Password, ImgPath,isactive, CreatedBy, CreatedDate) VALUES (@StaffNo, @RoleType, @Position, @FirstName, @MiddleName, @Lastname, @Email, @ContactNo, @Username, @Password, CONVERT(varbinary(max), @ImgPath),@isActive, @CreatedBy, @CreatedDate)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@StaffNo", staffNo);
@@ -155,6 +162,7 @@ namespace InventoryManagementSystem.Presenter
                         {
                             command.Parameters.AddWithValue("@ImgPath", DBNull.Value);
                         }
+                        command.Parameters.AddWithValue("@IsActive", isActiveValue);
                         command.Parameters.AddWithValue("@CreatedBy", $"{_createdByFirstName} {_createdByLastName}");
                         command.Parameters.AddWithValue("@CreatedDate", createdDate);
                         int result = command.ExecuteNonQuery();
@@ -175,6 +183,8 @@ namespace InventoryManagementSystem.Presenter
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
 

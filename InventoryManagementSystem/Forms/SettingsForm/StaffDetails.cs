@@ -81,6 +81,11 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             set { txtPassword.Text = value; }
         }
         public byte[] ImgPath { get; set; }
+        public string isactive
+        {
+            get { return comboBox1.SelectedItem?.ToString(); }
+            set { comboBox1.SelectedItem = value; }
+        }
 
         public StaffDetails()
         {
@@ -97,6 +102,9 @@ namespace InventoryManagementSystem.Forms.SettingsForm
             connection = new SqlConnection(connectionString);
 
             showdata();
+
+            comboBox1.Items.Add("Active");
+            comboBox1.Items.Add("Inactive");
         }
         public void Categorie()
         {
@@ -203,38 +211,41 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         {
             try
             {
-                // Open the connection
                 connection.Open();
-                adapter = new SqlDataAdapter("SELECT StaffNo as [Staff No],RoleType as [Role],Position,FirstName as [First Name],MiddleName as [Middle Name] " +
-                     ", LastName as [Last Name], Email, ContactNo as [Contact No], UserName as Username FROM IV.StaffAssignment  " +
-                    " order by StaffNo asc", connection);
+                adapter = new SqlDataAdapter("SELECT StaffNo as [Staff No], RoleType as [Role], Position, FirstName as [First Name], MiddleName as [Middle Name], LastName as [Last Name], Email, ContactNo as [Contact No], " +
+                    " UserName as Username, CASE WHEN isactive = 1 THEN 'Active' ELSE 'Inactive' END AS IsActive FROM IV.StaffAssignment order by StaffNo asc", connection);
                 dt = new DataTable();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                // Resize the columns based on the content
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
+                // Create a ComboBox column for IsActive
+                DataGridViewComboBoxColumn isActiveColumn = new DataGridViewComboBoxColumn();
+                isActiveColumn.HeaderText = "IsActive";
+                isActiveColumn.Name = "IsActive";
+                isActiveColumn.DataPropertyName = "IsActive";
+                isActiveColumn.Items.AddRange("Active", "Inactive");
 
-                dataGridView1.AutoResizeColumns();
+                dataGridView1.Columns.Remove("IsActive"); // Remove the existing IsActive column
+                dataGridView1.Columns.Add(isActiveColumn); // Add the ComboBox column
 
-                // Remove padding from the cells
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.DefaultCellStyle.Padding = new Padding(0);
-                }
-
-                // Resize the column headers
-                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-                // Ensure all rows are visible
-                dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dataGridView1.AllowUserToOrderColumns = true;
+                dataGridView1.AllowUserToResizeColumns = true;
+                dataGridView1.AllowUserToResizeRows = true;
+                dataGridView1.RowHeadersVisible = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
+                dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(242, 242, 242);
+                dataGridView1.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(210, 210, 210);
 
-                // Optionally, adjust the last column to fill the remaining space
-                //dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+                dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+                dataGridView1.CurrentCellDirtyStateChanged += dataGridView1_CurrentCellDirtyStateChanged;
             }
             catch (Exception ex)
             {
@@ -245,6 +256,68 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 connection.Close();
             }
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "IsActive")
+            {
+                string status = e.Value as string;
+                if (status == "Active")
+                {
+                    e.CellStyle.ForeColor = Color.Green;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
+                }
+                else if (status == "Inactive")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
+                }
+            }
+        }
+
+        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.IsCurrentCellDirty)
+            {
+                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "IsActive")
+            {
+                string staffNo = dataGridView1.Rows[e.RowIndex].Cells["Staff No"].Value.ToString();
+                string newStatus = dataGridView1.Rows[e.RowIndex].Cells["IsActive"].Value.ToString();
+                int isActive = (newStatus == "Active") ? 1 : 0;
+
+                UpdateStaffIsActiveStatus(staffNo, isActive);
+            }
+        }
+
+        private void UpdateStaffIsActiveStatus(string staffNo, int isActive)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "UPDATE IV.StaffAssignment SET isactive = @IsActive WHERE StaffNo = @StaffNo";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IsActive", isActive);
+                        command.Parameters.AddWithValue("@StaffNo", staffNo);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                ShowToast("SUCCESS", "Update Status Successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void RefreshDataGridView()
         {
             showdata();
@@ -252,6 +325,13 @@ namespace InventoryManagementSystem.Forms.SettingsForm
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private void ShowToast(string type, string message)
+        {
+            // Assuming you have a method to show toast messages
+            // This could be implemented as a static method or a service
+            Toast toast = new Toast(type, message);
+            toast.Show();
         }
 
         private void btnGeneratepass_Click(object sender, EventArgs e)
@@ -272,34 +352,6 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                 }
 
                 txtPassword.Text = password;
-            }
-        }
-
-        private void browseBtn_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.BMP;*.JPG;*.JPEG;*.GIF;*.PNG";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    imagePath = openFileDialog.FileName;
-                    addimage.Image = new System.Drawing.Bitmap(imagePath);
-                }
-            }
-        }
-
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-            if (addimage.Image != null)
-            {
-                addimage.Image = null;
-                imagePath = null;
-                MessageBox.Show("Image removed successfully.");
-            }
-            else
-            {
-                MessageBox.Show("No image to remove.");
             }
         }
 

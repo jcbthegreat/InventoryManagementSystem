@@ -14,6 +14,7 @@ namespace InventoryManagementSystem.View
         string Contact { get; set; }
         string Discount { get; set; }
         string Is_Supplier { get; set; }
+        string isactive { get; set; }
 
 
         event EventHandler Customer;

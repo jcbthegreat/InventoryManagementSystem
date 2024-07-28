@@ -16,6 +16,7 @@ namespace InventoryManagementSystem.View
         string FirstName { get; set; }
         string UserName { get; set; }
         string PassWord { get; set; }
+        string isactive { get; set; }
 
 
         event EventHandler Login;

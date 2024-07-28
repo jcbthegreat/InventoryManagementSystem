@@ -23,6 +23,7 @@ namespace InventoryManagementSystem.Presenter
         {
             string userName = _loginView.UserName;
             string password = _loginView.PassWord;
+            string isactive = _loginView.isactive;
 
             // Check if username or password fields are empty
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
@@ -40,21 +41,32 @@ namespace InventoryManagementSystem.Presenter
                     // Check if user is found and credentials match
                     if (user != null && user.UserName == userName && user.PassWord == password)
                     {
-                        // Successful login
-                        _loginView.Hide();
+                        // Check if the account is active
+                        if (user.isactive)
+                        {
+                            // Successful login
+                            _loginView.Hide();
 
-                        // Retrieve first name, last name, and position
-                        string firstName = user.FirstName;
-                        string lastName = user.LastName;
-                        string position = user.Position;
+                            // Retrieve first name, last name, and position
+                            string firstName = user.FirstName;
+                            string lastName = user.LastName;
+                            string position = user.Position;
 
-                        // Create and show the main view
-                        IMainView mainView = new MainForm(firstName, lastName, position, userName, user.StaffNo, user.RoleType);
-                        new MainPresenter(mainView, sqlConnectionString);
+                            // Create and show the main view
+                            IMainView mainView = new MainForm(firstName, lastName, position, userName, user.StaffNo, user.RoleType);
+                            new MainPresenter(mainView, sqlConnectionString);
 
-                        mainView.Show();
+                            mainView.Show();
 
-                        ShowToast("SUCCESS", "Login successful!");
+                            ShowToast("SUCCESS", "Login successful!");
+                        }
+                        else
+                        {
+                            ShowToast("ERROR", "Account suspended.");
+                            // Clear the fields after a failed attempt
+                            _loginView.UserName = string.Empty;
+                            _loginView.PassWord = string.Empty;
+                        }
                     }
                     else
                     {

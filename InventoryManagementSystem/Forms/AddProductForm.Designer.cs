@@ -52,6 +52,7 @@
             label8 = new Label();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
+            label2 = new Label();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(comboBox6);
             groupBox1.Controls.Add(label12);
@@ -197,9 +199,9 @@
             label11.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label11.Location = new Point(228, 169);
             label11.Name = "label11";
-            label11.Size = new Size(119, 15);
+            label11.Size = new Size(29, 15);
             label11.TabIndex = 28;
-            label11.Text = "Unit of Measurement";
+            label11.Text = "Unit";
             // 
             // comboBox3
             // 
@@ -321,6 +323,16 @@
             comboBox1.Size = new Size(195, 23);
             comboBox1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(446, 169);
+            label2.Name = "label2";
+            label2.Size = new Size(28, 15);
+            label2.TabIndex = 36;
+            label2.Text = "Qty.";
+            // 
             // AddProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -366,5 +378,6 @@
         private Label label8;
         private ComboBox comboBox2;
         private ComboBox comboBox1;
+        private Label label2;
     }
 }
