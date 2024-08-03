@@ -120,8 +120,8 @@ namespace InventoryManagementSystem.Forms.SettingsForm
                     return;
                 }
 
-                    // Subukan ding tiyakin na ang contact number ay may eksaktong 11 digits
-                    if (contactNumber.Length != 11)
+                // Subukan ding tiyakin na ang contact number ay may eksaktong 11 digits
+                if (contactNumber.Length != 11)
                 {
                     MessageBox.Show("Invalid contact number format. Please enter a 11-digit number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtcontact.Focus();
@@ -362,7 +362,25 @@ namespace InventoryManagementSystem.Forms.SettingsForm
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = textBox3.Text;
+
+
+            DataView StaffView = new DataView(dt);
+
+
+            string filterExpression = string.Format(
+                "[Staff No] LIKE '%{0}%' OR [First Name] LIKE '%{0}%' OR [Last Name] LIKE '%{0}%'",
+                filterText
+            );
+
+            StaffView.RowFilter = filterExpression;
+
+            dataGridView1.DataSource = StaffView;
         }
     }
 }

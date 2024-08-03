@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelBg = new Panel();
+            button3 = new Button();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             button6 = new Button();
@@ -70,6 +71,7 @@
             // panelBg
             // 
             panelBg.BackColor = Color.DimGray;
+            panelBg.Controls.Add(button3);
             panelBg.Controls.Add(pictureBox2);
             panelBg.Controls.Add(label1);
             panelBg.Controls.Add(button6);
@@ -80,6 +82,22 @@
             panelBg.Size = new Size(1435, 36);
             panelBg.TabIndex = 0;
             panelBg.Paint += panelBg_Paint_2;
+            panelBg.MouseMove += OnMouseDown;
+            // 
+            // button3
+            // 
+            button3.BackgroundImage = (Image)resources.GetObject("button3.BackgroundImage");
+            button3.BackgroundImageLayout = ImageLayout.Center;
+            button3.Cursor = Cursors.Hand;
+            button3.Dock = DockStyle.Right;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1339, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(32, 36);
+            button3.TabIndex = 4;
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // pictureBox2
             // 
@@ -120,7 +138,7 @@
             // mainFormCloseBtn
             // 
             mainFormCloseBtn.BackgroundImage = (Image)resources.GetObject("mainFormCloseBtn.BackgroundImage");
-            mainFormCloseBtn.BackgroundImageLayout = ImageLayout.Center;
+            mainFormCloseBtn.BackgroundImageLayout = ImageLayout.Zoom;
             mainFormCloseBtn.Cursor = Cursors.Hand;
             mainFormCloseBtn.Dock = DockStyle.Right;
             mainFormCloseBtn.FlatAppearance.BorderSize = 0;
@@ -380,6 +398,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
             ClientSize = new Size(1435, 745);
             Controls.Add(panel5);
             Controls.Add(panel4);
@@ -388,7 +407,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "MainForm";
             Load += MainForm_Load_1;
             panelBg.ResumeLayout(false);
@@ -437,6 +456,6 @@
         private Button reportBtn;
 
         private Panel panel5;
-
+        private Button button3;
     }
 }

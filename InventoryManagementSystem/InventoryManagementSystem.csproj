@@ -8,8 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>logo_Dux_icon.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
-    <AssemblyVersion>1.0.0.38</AssemblyVersion>
-    <FileVersion>1.0.0.38</FileVersion>
+    <AssemblyVersion>1.0.0.39</AssemblyVersion>
+    <FileVersion>1.0.0.39</FileVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
