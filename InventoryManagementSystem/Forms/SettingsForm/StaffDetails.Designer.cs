@@ -105,6 +105,7 @@
             textBox3.PlaceholderText = "Search Staff";
             textBox3.Size = new Size(212, 25);
             textBox3.TabIndex = 21;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // panelBg
             // 

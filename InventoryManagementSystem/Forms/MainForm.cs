@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static InventoryManagementSystem.LoginForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
+using System.Runtime.InteropServices;
 namespace InventoryManagementSystem.Forms
 {
     public partial class MainForm : Form, IMainView
@@ -24,6 +24,7 @@ namespace InventoryManagementSystem.Forms
         private Size previousSize;
         private string staffno, roletype, position, lastname, firstname;
         private int moduleid;
+
         string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
 
         private Dictionary<int, Panel> _moduleButtons;
@@ -61,7 +62,7 @@ namespace InventoryManagementSystem.Forms
             set { moduleid = value; }
         }
 
-        public MainForm(string firstname, string lastname, string postion, string username,string StaffNo, string RoleType)
+        public MainForm(string firstname, string lastname, string postion, string username, string StaffNo, string RoleType)
         {
             InitializeComponent();
             InitializeModuleButtons();
@@ -88,6 +89,21 @@ namespace InventoryManagementSystem.Forms
             button1.PerformClick();
             this.Load += MainForm_Load;
 
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+        [DllImport("User32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("User32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
         }
 
         private void LoadProfileImage(string username)
@@ -133,7 +149,7 @@ namespace InventoryManagementSystem.Forms
             }
             PanelBg.BackColor = panelColor;
             button1.PerformClick();
-           
+
 
 
         }
@@ -519,6 +535,11 @@ namespace InventoryManagementSystem.Forms
                 { 3, this.panel11 },
                 { 4, this.panel12 }
             };
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }
