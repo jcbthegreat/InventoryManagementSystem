@@ -54,6 +54,25 @@
             panel4 = new Panel();
             label2 = new Label();
             panel5 = new Panel();
+            button4 = new Button();
+            comboBox10 = new ComboBox();
+            label28 = new Label();
+            textBox4 = new TextBox();
+            label27 = new Label();
+            label26 = new Label();
+            dateTimePicker4 = new DateTimePicker();
+            comboBox9 = new ComboBox();
+            label25 = new Label();
+            comboBox8 = new ComboBox();
+            label24 = new Label();
+            comboBox7 = new ComboBox();
+            label23 = new Label();
+            label22 = new Label();
+            dateTimePicker3 = new DateTimePicker();
+            comboBox6 = new ComboBox();
+            label21 = new Label();
+            textBox3 = new TextBox();
+            label20 = new Label();
             panelBg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
@@ -66,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel4.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panelBg
@@ -387,12 +407,189 @@
             // panel5
             // 
             panel5.BackColor = SystemColors.Control;
+            panel5.Controls.Add(button4);
+            panel5.Controls.Add(comboBox10);
+            panel5.Controls.Add(label28);
+            panel5.Controls.Add(textBox4);
+            panel5.Controls.Add(label27);
+            panel5.Controls.Add(label26);
+            panel5.Controls.Add(dateTimePicker4);
+            panel5.Controls.Add(comboBox9);
+            panel5.Controls.Add(label25);
+            panel5.Controls.Add(comboBox8);
+            panel5.Controls.Add(label24);
+            panel5.Controls.Add(comboBox7);
+            panel5.Controls.Add(label23);
+            panel5.Controls.Add(label22);
+            panel5.Controls.Add(dateTimePicker3);
+            panel5.Controls.Add(comboBox6);
+            panel5.Controls.Add(label21);
+            panel5.Controls.Add(textBox3);
+            panel5.Controls.Add(label20);
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(263, 36);
             panel5.Name = "panel5";
             panel5.Size = new Size(1172, 664);
             panel5.TabIndex = 3;
             panel5.Paint += panel5_Paint_1;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(975, 398);
+            button4.Name = "button4";
+            button4.Size = new Size(75, 23);
+            button4.TabIndex = 37;
+            button4.Text = "button4";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox10
+            // 
+            comboBox10.FormattingEnabled = true;
+            comboBox10.Location = new Point(122, 370);
+            comboBox10.Name = "comboBox10";
+            comboBox10.Size = new Size(193, 23);
+            comboBox10.TabIndex = 36;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(122, 352);
+            label28.Name = "label28";
+            label28.Size = new Size(44, 15);
+            label28.TabIndex = 35;
+            label28.Text = "label28";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(752, 316);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(298, 23);
+            textBox4.TabIndex = 34;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(752, 299);
+            label27.Name = "label27";
+            label27.Size = new Size(44, 15);
+            label27.TabIndex = 33;
+            label27.Text = "label27";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(542, 299);
+            label26.Name = "label26";
+            label26.Size = new Size(44, 15);
+            label26.TabIndex = 32;
+            label26.Text = "label26";
+            // 
+            // dateTimePicker4
+            // 
+            dateTimePicker4.Location = new Point(542, 317);
+            dateTimePicker4.Name = "dateTimePicker4";
+            dateTimePicker4.Size = new Size(193, 23);
+            dateTimePicker4.TabIndex = 31;
+            // 
+            // comboBox9
+            // 
+            comboBox9.FormattingEnabled = true;
+            comboBox9.Location = new Point(331, 317);
+            comboBox9.Name = "comboBox9";
+            comboBox9.Size = new Size(193, 23);
+            comboBox9.TabIndex = 30;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(331, 299);
+            label25.Name = "label25";
+            label25.Size = new Size(44, 15);
+            label25.TabIndex = 29;
+            label25.Text = "label25";
+            // 
+            // comboBox8
+            // 
+            comboBox8.FormattingEnabled = true;
+            comboBox8.Location = new Point(122, 317);
+            comboBox8.Name = "comboBox8";
+            comboBox8.Size = new Size(193, 23);
+            comboBox8.TabIndex = 28;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(122, 299);
+            label24.Name = "label24";
+            label24.Size = new Size(44, 15);
+            label24.TabIndex = 27;
+            label24.Text = "label24";
+            // 
+            // comboBox7
+            // 
+            comboBox7.FormattingEnabled = true;
+            comboBox7.Location = new Point(752, 262);
+            comboBox7.Name = "comboBox7";
+            comboBox7.Size = new Size(193, 23);
+            comboBox7.TabIndex = 26;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(752, 244);
+            label23.Name = "label23";
+            label23.Size = new Size(44, 15);
+            label23.TabIndex = 25;
+            label23.Text = "label23";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(542, 244);
+            label22.Name = "label22";
+            label22.Size = new Size(44, 15);
+            label22.TabIndex = 24;
+            label22.Text = "label22";
+            // 
+            // dateTimePicker3
+            // 
+            dateTimePicker3.Location = new Point(542, 262);
+            dateTimePicker3.Name = "dateTimePicker3";
+            dateTimePicker3.Size = new Size(193, 23);
+            dateTimePicker3.TabIndex = 23;
+            // 
+            // comboBox6
+            // 
+            comboBox6.FormattingEnabled = true;
+            comboBox6.Location = new Point(331, 262);
+            comboBox6.Name = "comboBox6";
+            comboBox6.Size = new Size(193, 23);
+            comboBox6.TabIndex = 22;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(331, 244);
+            label21.Name = "label21";
+            label21.Size = new Size(44, 15);
+            label21.TabIndex = 21;
+            label21.Text = "label21";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(122, 262);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(193, 23);
+            textBox3.TabIndex = 20;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(122, 245);
+            label20.Name = "label20";
+            label20.Size = new Size(44, 15);
+            label20.TabIndex = 19;
+            label20.Text = "label20";
             // 
             // MainForm
             // 
@@ -425,6 +622,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -457,5 +656,24 @@
 
         private Panel panel5;
         private Button button3;
+        private Button button4;
+        private ComboBox comboBox10;
+        private Label label28;
+        private TextBox textBox4;
+        private Label label27;
+        private Label label26;
+        private DateTimePicker dateTimePicker4;
+        private ComboBox comboBox9;
+        private Label label25;
+        private ComboBox comboBox8;
+        private Label label24;
+        private ComboBox comboBox7;
+        private Label label23;
+        private Label label22;
+        private DateTimePicker dateTimePicker3;
+        private ComboBox comboBox6;
+        private Label label21;
+        private TextBox textBox3;
+        private Label label20;
     }
 }

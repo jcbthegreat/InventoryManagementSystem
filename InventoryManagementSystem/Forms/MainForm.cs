@@ -208,9 +208,34 @@ namespace InventoryManagementSystem.Forms
             }
         }
 
+
         private void purchaseOrderBtn_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new PurchaseOrderUserControl());
+            try
+            {
+                // Clear existing controls in panel5
+                panel5.Controls.Clear();
+
+                // Instantiate the PurchaseOrderUserControl
+                PurchaseOrderUserControl purchaseOrderControl = new PurchaseOrderUserControl();
+
+                if (purchaseOrderControl != null && purchaseOrderControl is Control control)
+                {
+                    // Dock the control to fill the panel (this automatically resizes the control)
+                    control.Dock = DockStyle.Fill;
+
+                    // Add the new control to the panel
+                    panel5.Controls.Add(control);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to load purchase order control: Control is null or does not implement Control interface.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading purchase order control: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
