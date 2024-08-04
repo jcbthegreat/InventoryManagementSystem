@@ -279,7 +279,6 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Cursor = Cursors.Hand;
-            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.GridColor = SystemColors.Control;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
