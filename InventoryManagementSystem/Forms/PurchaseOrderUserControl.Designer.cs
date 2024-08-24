@@ -821,7 +821,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(1145, 240);
             dataGridView2.TabIndex = 5;
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            //dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // tableLayoutPanel2
             // 
@@ -869,7 +869,7 @@
             comboBoxCus.Name = "comboBoxCus";
             comboBoxCus.Size = new Size(193, 23);
             comboBoxCus.TabIndex = 47;
-            comboBoxCus.SelectedIndexChanged += comboBoxCus_SelectedIndexChanged_2;
+            //comboBoxCus.SelectedIndexChanged += comboBoxCus_SelectedIndexChanged_2;
             // 
             // btnSave
             // 
@@ -889,7 +889,7 @@
             comboBoxStatus.Name = "comboBoxStatus";
             comboBoxStatus.Size = new Size(193, 23);
             comboBoxStatus.TabIndex = 46;
-            comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
+            //comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
             // 
             // label28
             // 
@@ -907,7 +907,7 @@
             textCheckNum.Name = "textCheckNum";
             textCheckNum.Size = new Size(298, 23);
             textCheckNum.TabIndex = 45;
-            textCheckNum.TextChanged += textCheckNum_TextChanged;
+           // textCheckNum.TextChanged += textCheckNum_TextChanged;
             // 
             // comboBoxBank
             // 
@@ -916,7 +916,7 @@
             comboBoxBank.Name = "comboBoxBank";
             comboBoxBank.Size = new Size(193, 23);
             comboBoxBank.TabIndex = 44;
-            comboBoxBank.SelectedIndexChanged += comboBoxBank_SelectedIndexChanged;
+            //comboBoxBank.SelectedIndexChanged += comboBoxBank_SelectedIndexChanged;
             // 
             // label22
             // 
@@ -955,8 +955,8 @@
             dateTimePicOrderDate.Name = "dateTimePicOrderDate";
             dateTimePicOrderDate.Size = new Size(193, 23);
             dateTimePicOrderDate.TabIndex = 38;
-            dateTimePicOrderDate.ValueChanged += dateTimePicOrderDate_ValueChanged;
-            // 
+            //dateTimePicOrderDate.ValueChanged += dateTimePicOrderDate_ValueChanged;
+            /// 
             // comboBoxModePay
             // 
             comboBoxModePay.FormattingEnabled = true;
@@ -964,7 +964,7 @@
             comboBoxModePay.Name = "comboBoxModePay";
             comboBoxModePay.Size = new Size(193, 23);
             comboBoxModePay.TabIndex = 42;
-            comboBoxModePay.SelectedIndexChanged += comboBoxModePay_SelectedIndexChanged;
+            //comboBoxModePay.SelectedIndexChanged += comboBoxModePay_SelectedIndexChanged;
             // 
             // label26
             // 
@@ -1004,7 +1004,7 @@
             dateTimePickerBankDate.RightToLeft = RightToLeft.No;
             dateTimePickerBankDate.Size = new Size(193, 23);
             dateTimePickerBankDate.TabIndex = 42;
-            dateTimePickerBankDate.ValueChanged += dateTimePickerBankDate_ValueChanged;
+            //dateTimePickerBankDate.ValueChanged += dateTimePickerBankDate_ValueChanged;
             // 
             // label21
             // 
@@ -1023,15 +1023,15 @@
             comboBoxpayMethod.Name = "comboBoxpayMethod";
             comboBoxpayMethod.Size = new Size(193, 23);
             comboBoxpayMethod.TabIndex = 41;
-            comboBoxpayMethod.SelectedIndexChanged += comboBoxpayMethod_SelectedIndexChanged;
-            // 
+            //comboBoxpayMethod.SelectedIndexChanged += comboBoxpayMethod_SelectedIndexChanged;
+            /// 
             // po_num
             // 
             po_num.Location = new Point(117, 46);
             po_num.Name = "po_num";
             po_num.Size = new Size(193, 23);
             po_num.TabIndex = 38;
-            po_num.TextChanged += po_num_TextChanged;
+            //po_num.TextChanged += po_num_TextChanged;
             // 
             // label20
             // 
