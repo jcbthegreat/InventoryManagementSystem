@@ -11,6 +11,7 @@ namespace InventoryManagementSystem.Forms
         private readonly string connectionString = "Server=desktop-eqrn1iv.taile2b728.ts.net;Database=INVENTORY-SYSTEM;User Id=sa;Password=sasa;";
         private SqlConnection connection;
         private int customerId;
+
         public PurchaseOrderUserControl()
         {
             InitializeComponent();
@@ -144,9 +145,9 @@ namespace InventoryManagementSystem.Forms
         {
             dataGridView2.Columns.Clear();
 
-            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "ID", HeaderText = "ID", DataPropertyName = "ID" });
-            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Purchase Order ID", HeaderText = "Purchase Order ID", DataPropertyName = "purchase_order_id" });
-
+            
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { Name = "Purchase Order ID", HeaderText = "Purchase Order ID", DataPropertyName = "PO_NUMBER" });
+            await LoadPurchaseOrdersAsync();
             var warehouseColumn = new DataGridViewComboBoxColumn
             {
                 Name = "Warehouse Name",
@@ -230,7 +231,8 @@ namespace InventoryManagementSystem.Forms
                                 }
 
                                 // Fetch discount
-                                string discountQuery = "SELECT discount FROM [IV].[Customer] WHERE ID = @ClientId";
+                                customerId = Convert.ToInt32(comboBoxCus.SelectedValue);
+                                string discountQuery = "SELECT Discount FROM [IV].[Customer] WHERE ID = @ClientId";
                                 using (var discountCmd = new SqlCommand(discountQuery, conn))
                                 {
                                     discountCmd.Parameters.AddWithValue("@ClientId", customerId);
@@ -250,34 +252,48 @@ namespace InventoryManagementSystem.Forms
                         var retailPrice = GetDecimalValue(row.Cells["Retail Price"].Value);
                         var discount = GetDecimalValue(row.Cells["Discount"].Value);
 
-                        // Calculate total amount
                         var amount = quantity * retailPrice;
                         row.Cells["Amount"].Value = amount;
 
-                        // Calculate net amount
-                        var discountAmount = amount * (discount / 100);
-                        var netAmount = amount - discountAmount;
+                        // Calculate net amount after discount
+                        var netAmount = amount - (amount * (discount / 100));
                         row.Cells["Net Amount"].Value = netAmount;
                     }
                 }
             };
-
-            dataGridView2.EditingControlShowing += DataGridView2_EditingControlShowing;
         }
-
-        private void DataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private async Task LoadPurchaseOrdersAsync()
         {
-            var comboBox = e.Control as ComboBox;
-            if (comboBox != null)
+            string query = "SELECT PO_NUMBER, ID FROM [IV].[PurchaseOrder] WHERE is_deleted = 0";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Set specific properties for the ComboBox if needed
-                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                try
+                {
+                    await conn.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        await Task.Run(() => adapter.Fill(dataTable));
+
+                        dataGridView2.DataSource = dataTable; // Bind the DataTable to the DataGridView
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading purchase orders: {ex.Message}");
+                }
             }
         }
-
         private decimal GetDecimalValue(object value)
         {
-            return value != DBNull.Value && value != null ? Convert.ToDecimal(value) : 0;
+            return value != null && decimal.TryParse(value.ToString(), out decimal result) ? result : 0;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // Code to add the current purchase order details
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -331,41 +347,21 @@ namespace InventoryManagementSystem.Forms
                         purchaseOrderId = Convert.ToInt32(await poCommand.ExecuteScalarAsync());
                     }
 
-                    // Check stock and insert into PurchaseOrderDetail
+                    // Insert into PurchaseOrderDetail
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
-                        if (row.IsNewRow) continue;
+                        if (row.IsNewRow) continue; // Skip new row placeholder
 
                         var quantity = Convert.ToDecimal(row.Cells["Quantity"].Value ?? 0);
                         var productId = Convert.ToInt32(row.Cells["Product Name"].Value ?? 0);
-
-                        // Check stock
-                        decimal currentStock = 0;
-                        string stockQuery = "SELECT Current_Stock FROM [IV].[WarehouseItems] WHERE Product_id = @ProductId";
-                        using (var stockCommand = new SqlCommand(stockQuery, conn))
-                        {
-                            stockCommand.Parameters.AddWithValue("@ProductId", productId);
-                            var stockResult = await stockCommand.ExecuteScalarAsync();
-                            if (stockResult != DBNull.Value)
-                            {
-                                currentStock = Convert.ToDecimal(stockResult);
-                            }
-                        }
-
-                        if (quantity > currentStock)
-                        {
-                            MessageBox.Show($"Insufficient stock for product ID {productId}. Available stock is {currentStock}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        var amount = Convert.ToDecimal(row.Cells["Amount"].Value ?? 0);
+                        var netAmount = Convert.ToDecimal(row.Cells["Net Amount"].Value ?? 0);
 
                         string insertPODetailQuery = "INSERT INTO [IV].[PurchaseOrderDetail] (purchase_order_id, warehouse_id, product_id, quantitty, amount, discount, net_amount) " +
                             "VALUES (@PurchaseOrderId, @WarehouseId, @ProductId, @Quantity, @Amount, @Discount, @NetAmount)";
 
                         using (var cmd = new SqlCommand(insertPODetailQuery, conn))
                         {
-                            var amount = Convert.ToDecimal(row.Cells["Amount"].Value ?? 0);
-                            var netAmount = amount - (amount * customerDiscount / 100);
-
                             cmd.Parameters.AddWithValue("@PurchaseOrderId", purchaseOrderId);
                             cmd.Parameters.AddWithValue("@WarehouseId", row.Cells["Warehouse Name"].Value ?? DBNull.Value);
                             cmd.Parameters.AddWithValue("@ProductId", productId);
@@ -375,16 +371,6 @@ namespace InventoryManagementSystem.Forms
                             cmd.Parameters.AddWithValue("@NetAmount", netAmount);
 
                             await cmd.ExecuteNonQueryAsync();
-                        }
-
-                        // Update stock after inserting purchase order detail
-                        string updateStockQuery = "UPDATE [IV].[WarehouseItems] SET Current_Stock = Current_Stock - @Quantity WHERE Product_id = @ProductId";
-                        using (var updateStockCmd = new SqlCommand(updateStockQuery, conn))
-                        {
-                            updateStockCmd.Parameters.AddWithValue("@Quantity", quantity);
-                            updateStockCmd.Parameters.AddWithValue("@ProductId", productId);
-
-                            await updateStockCmd.ExecuteNonQueryAsync();
                         }
                     }
 
@@ -396,5 +382,6 @@ namespace InventoryManagementSystem.Forms
                 }
             }
         }
+      
     }
 }

@@ -255,6 +255,7 @@ namespace InventoryManagementSystem.Forms
         private void reportBtn_Click(object sender, EventArgs e)
         {
             LoadUserControl(new ReportsUserControl());
+
         }
 
         private void LoadUserControl(UserControl control)
